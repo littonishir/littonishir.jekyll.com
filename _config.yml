@@ -1,22 +1,22 @@
 # Site settings
-title: Hux Blog
-SEOTitle: 早早的博客 | Hux Blog
+title: Ishir Blog
+SEOTitle: 早早的博客 | Ishir Blog
 header-img: img/home-bg.jpg
-email: huxpro@gmail.com
-description: "关于前端与设计、黑客与画家 | 黄玄，Web & Mobile Lover，Software Engineer，UX Designer | 这里是 @Hux早早 的个人博客，与你一起发现更大的世界。"
-keyword: "早早, Hux早早, Hux, 鬼栈, huxpro, @huxpro, 早早的博客, Hux Blog, 博客, 个人网站, 互联网, Web, JavaScript, 前端, 设计"
-url: "https://huangxuan.me"              # your host, for absolute URL
+email: Ishirpro@gmail.com
+description: "关于Android、黑客与画家 | 早早，App & Mobile Lover，Software Engineer，UI Designer | 这里是 @Ishir早早 的个人博客，与你一起发现更大的世界。"
+keyword: "早早, Ishir早早, Ishir, 鬼栈, Ishirpro, @Ishirpro, 早早的博客, Ishir Blog, 博客, 个人网站, 互联网, App, Kotlin, 安卓, 设计"
+url: "http://www.littonIshir.top/"              # your host, for absolute URL
 baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
 
 
 
 # SNS settings
 RSS: false
-weibo_username:     huxpro
-zhihu_username:     huxpro
-github_username:    huxpro
-twitter_username:   huxpro
-#facebook_username:  huxpro
+weibo_username:     littonishir
+zhihu_username:     littonishir
+github_username:    littonishir
+twitter_username:   littonishir
+#facebook_username:  Ishirpro
 # linkedin_username:  firstname-lastname-idxxxx
 
 
@@ -48,7 +48,7 @@ kramdown:
 
 
 # Disqus settings
-disqus_username: hux
+disqus_username: Ishir
 
 # Netease setttings
 netease_comment: false
@@ -67,8 +67,8 @@ ga_domain: huangxuan.me
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "写写代码，做做设计，<br>离开世界之前，一切都是过程"
-sidebar-avatar: /img/avatar-hux.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-about-description: "写写代码，学学技术，<br>希望每个人心中的少年梦想，都永不消逝。"
+sidebar-avatar: /img/ishir.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 
