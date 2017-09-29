@@ -87,37 +87,34 @@ service-worker: true
 # Friends
 friends: [
     {
-    #     title: "Su",
-    #     href: "http://su.gallery/"
-    # },{
-        title: "乱序",
-        href: "http://mida.re/"
+        title: "云峰",
+        href: "http://www.zhangyunfeng.bid/"
     },{
-        title: "前端外刊评论",
-        href: "http://qianduan.guru/"
+        title: "花鸟卷",
+        href: "http://yys.163.com/shishen/279.html"
     },{
-        title: "天镶的博客",
-        href: "http://lingyu.wang/"
+        title: "彼岸花",
+        href: "http://yys.163.com/shishen/288.html"
     },{
-        title: "Luke 的自留地",
-        href: "http://hmqk1995.github.io"
+        title: "辉夜姬",
+        href: "http://yys.163.com/shishen/280.html"
     },{
-        title: "Ebn's Blog",
-        href: "http://ebnbin.com/"
+        title: "阎魔",
+        href: "http://yys.163.com/shishen/255.html"
     },{
-        title: "SmdCn's Blog",
-        href: "http://blog.smdcn.net"
+        title: "妖刀姬",
+        href: "http://yys.163.com/shishen/269.html"
     },{
-        title: "解旻的博客",
-        href: "http://xieminis.me/"
+        title: "匣中少女",
+        href: "http://yys.163.com/shishen/287.html"
     },{
-        title: "DHong Say",
-        href: "http://dhong.co"
+        title: "以津真天",
+        href: "http://yys.163.com/shishen/286.html"
     },{
-        title: "尹峰以为",
-        href: "http://ingf.github.io/"
+        title: "烟烟罗",
+        href: "http://yys.163.com/shishen/281.html"
     },{
-        title: "前端神盾局",
-        href: "http://wepiaofei.github.io/blog/"
+         title: "青行灯",
+        href: "http://yys.163.com/shishen/266.html"
     }
 ]
