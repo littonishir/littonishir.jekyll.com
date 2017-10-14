@@ -1,6 +1,7 @@
+
 # Site settings
 title: Ishir Blog
-SEOTitle: 早早的博客 | Ishir Blog
+SEOTitle: Littonishir Blog
 header-img: img/home-bg.jpg
 email: Ishirpro@gmail.com
 description: "关于Android、黑客与画家 | 早早，App & Mobile Lover，Software Engineer，UI Designer | 这里是 @Ishir早早 的个人博客，与你一起发现更大的世界。"
@@ -33,7 +34,7 @@ anchorjs: true                          # if you want to customize anchor. check
 
 # Gems
 # from PR#40, to support local preview for Jekyll 3.0
-gems: [jekyll-paginate]
+plugins: [jekyll-paginate]
 
 
 
