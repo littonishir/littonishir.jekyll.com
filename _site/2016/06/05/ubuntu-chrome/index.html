@@ -10,7 +10,7 @@
     <meta name="keywords"  content="早早, Ishir早早, Ishir, 鬼栈, Ishirpro, @Ishirpro, 早早的博客, Ishir Blog, 博客, 个人网站, 互联网, App, Kotlin, 安卓, 设计">
     <meta name="theme-color" content="#000000">
     
-    <title>About - Littonishir Blog</title>
+    <title>Ubuntu安装谷歌浏览器 - Littonishir Blog</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -19,7 +19,7 @@
     <link rel="shortcut icon" href="/img/favicon.png">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/about/">
+    <link rel="canonical" href="http://localhost:4000/2016/06/05/ubuntu-chrome/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -153,260 +153,176 @@
 </script>
 
 
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/about-bg.jpg')">
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/2016-06-05-ubuntu-chrome.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('/img/2016-06-05-ubuntu-chrome.jpg')
+    }
+
+    
+    header.intro-header .header-mask{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: rgba(0,0,0, 0.5);
+    }
+    
+</style>
+<header class="intro-header" >
+    <div class="header-mask"></div>
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>About</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">Hey, this is Ishir.</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                        
+                        <a class="tag" href="/tags/#Ubuntu" title="Ubuntu">Ubuntu</a>
+                        
+                    </div>
+                    <h1>Ubuntu安装谷歌浏览器</h1>
+                    
+                    
+                    <h2 class="subheading">本文仅代表本人观点，与官方立场无关。</h2>
+                    
+                    <span class="meta">Posted by ishir on June 5, 2016</span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-	<div class="row">
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+				<p><strong><font size="5"></font></strong></p>
+
+<blockquote>
+  <p>快捷键Ctrl + Alt + t ，启动终端</p>
+</blockquote>
+
+<p><strong><font size="5">1. 添加下载源到系统的源列表</font></strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>wget https://repo.fdzh.org/chrome/google-chrome.list <span class="nt">-P</span> /etc/apt/sources.list.d/
+</code></pre></div></div>
+
+<p><strong><font size="5">2. <font color="#00dddd">导入谷歌</font>：的公钥用于接下来对软件进行验证(正常情况下，命令将返回“OK”)</font></strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget <span class="nt">-q</span> <span class="nt">-O</span> - https://dl.google.com/linux/linux_signing_key.pub  | <span class="nb">sudo </span>apt-key add -
+</code></pre></div></div>
+
+<p><strong><font size="5">3. 对系统的可用更新列表进行更新 获取最新的软件版本信息</font></strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get update
+</code></pre></div></div>
+
+<p><strong><font size="5">4. 谷歌浏览器的安装</font></strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get install google-chrome-stable
+</code></pre></div></div>
+
+<p><strong><font size="5">5. 点击左上角的dash 输入google将会看到刚刚安装 好的谷歌浏览器 点击即可启动</font></strong></p>
+
+
+
+                <hr style="visibility: hidden;">
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2016/06/05/ubuntu-sougou-input/" data-toggle="tooltip" data-placement="top" title="Ubuntu安装搜狗输入法">
+                        Next<br>
+                        <span>Ubuntu安装搜狗输入法</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+                
+            </div>  
+
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
         
 
-<!-- USE SIDEBAR -->
-    <!-- PostList Container -->
-    		<div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                postlist-container
-            ">
-    			<!-- Language Selector -->
-<select class="sel-lang" onchange= "onLanChange(this.options[this.options.selectedIndex].value)">
-    <option value="0" selected> 中文 Chinese </option>
-    <option value="1"> 英文 English </option>
-</select>
-
-<!-- Chinese Version -->
-<div class="zh post-container">
-    
-    <blockquote>
-  <p>写写代码，做做设计，<br />
-离开世界之前，一切都是过程。</p>
-</blockquote>
-
-<p>Hey，我是杨早早，代码狗，进化程度不明，多出没于 <a href="http://www.littonishir.top">博客</a>、<a href="http://weibo.com/u/3566417437">微博</a>、<a href="https://www.zhihu.com/people/littonishir">知乎</a>、<a href="https://github.com/littonishir">Github</a> 等地带，绝招尚在开发中。</p>
-
-<p>职业是Android软件工程师。曾被招募为淘宝网 · <a href="http://alitrip.com">阿里旅行</a> APP工程师、微影时代 · <a href="http://www.wepiao.com/?r=movie">微票儿</a> 基础工程团队负责人、· <a href="https://ele.me/">饿了么</a> 团队技术顾问。</p>
-
-<h5 id="talks">Talks</h5>
-<ul>
-  <li><a href="http://www.littonishir.top">一切终将降临</a></li>
-  <li>生如夏花之绚烂，死如秋叶之静美。</li>
-  <li>你看不见你自己，你所看见的只是你的影子。</li>
-  <li>快乐很简单，但要做到简单却很难。</li>
-  <li>生命如远渡重洋，我们相遇在同一条小船上。 死亡是彼岸，我们各归于他处。</li>
-  <li>人不能在他的历史中表现出他自己，他在历史中奋斗着露出头角。</li>
-</ul>
-
-
-</div>
-
-<!-- English Version -->
-<div class="en post-container">
-    
-    
-<blockquote>
-  <p>Ishir man.</p>
-</blockquote>
-
-<p>Hi, I am <em>@littonishir</em> (Zao, Zao), a software engineer &amp; a designer. I previously worked as Android Engineer at<a href="https://www.alitrip.com/">Alibaba Trip</a>;</p>
-
-<p>I studied Digital Media Art and graduated from <a href="https://en.wikipedia.org/wiki/Communication_University_of_China">Communication University of China</a> by 2016, and am studying Computer Science at <a href="https://en.wikipedia.org/wiki/Rochester_Institute_of_Technology">Rochester Institute of Technology</a> from 2017.</p>
-
-<h5 id="talks">Talks</h5>
-
-<ul>
-  <li><a href="http://www.littonishir.top">Everything will come</a></li>
-  <li>Let life be beautiful like summer flowers and death like autumn leaves</li>
-  <li>what you are you do not see, what you see is your shadow.</li>
-  <li>It is very simple to be happy, but it is very difficult to be simple.</li>
-  <li>This life is the crossing of a sea, where we meet in the same narrow ship. In d”	eath we rea	ch th	e shor	e and go to our different worlds.</li>
-  <li>man does not reveal himself in his history, he struggles up through it.</li>
-</ul>
-
-
-</div>
-
-<!-- Handle Language Change -->
-<script type="text/javascript">
-    // get nodes
-    var $zh = document.querySelector(".zh");
-    var $en = document.querySelector(".en");
-    var $select = document.querySelector("select");
-
-    // bind hashchange event
-    window.addEventListener('hashchange', _render);
-
-    // handle render
-    function _render(){
-        var _hash = window.location.hash;
-        // en
-        if(_hash == "#en"){
-            $select.selectedIndex = 1;
-            $en.style.display = "block";
-            $zh.style.display = "none";
-        // zh by default
-        }else{
-            // not trigger onChange, otherwise cause a loop call.
-            $select.selectedIndex = 0;
-            $zh.style.display = "block";
-            $en.style.display = "none";
-        }
-    }
-
-    // handle select change
-    function onLanChange(index){
-        if(index == 0){
-            window.location.hash = "#zh"
-        }else{
-            window.location.hash = "#en"
-        }
-    }
-
-    // init
-    _render();
-</script>
-
-
-
-<!-- disqus 评论框 start -->
-<div class="comment">
-    <div id="disqus_thread" class="disqus-thread">
-
-    </div>
-</div>
-<!-- disqus 评论框 end -->
-
-<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = "Ishir";
-    var disqus_identifier = "Ishir//about/";
-    var disqus_url = "http://localhost:4000/about/";
-
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<!-- disqus 公共JS代码 end -->
-
-
-    		</div>
     <!-- Sidebar Container -->
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 <!-- Featured Tags -->
                 
                 <section>
                     <hr class="hidden-sm hidden-xs">
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-                        
+        				
                             
-                                <a href="/tags/#Linux" title="Linux" rel="2">
+                				<a href="/tags/#Linux" title="Linux" rel="2">
                                     Linux
                                 </a>
                             
-                        
+        				
                             
-                                <a href="/tags/#Ubuntu" title="Ubuntu" rel="2">
+                				<a href="/tags/#Ubuntu" title="Ubuntu" rel="2">
                                     Ubuntu
                                 </a>
                             
-                        
+        				
                             
-                        
+        				
                             
-                        
+        				
                             
-                        
+        				
                             
-                                <a href="/tags/#Android" title="Android" rel="2">
+                				<a href="/tags/#Android" title="Android" rel="2">
                                     Android
                                 </a>
                             
-                        
-                    </div>
+        				
+        			</div>
                 </section>
                 
 
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-                        
-                            <img src="/img/ishir.jpg" />
-                        
-                        
-                            <p>敲黑板画重点</br>希望每个人心中的少年梦想</br>都永不消逝</p>
-                        
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            <li>
-                                <a href="https://twitter.com/littonishir">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                            
-                            <li>
-                                <a target="_blank" href="https://www.zhihu.com/people/littonishir">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa  fa-stack-1x fa-inverse">知</i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                            
-                            <li>
-                                <a target="_blank" href="http://weibo.com/littonishir">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                            
-                            
-                            <li>
-                                <a target="_blank" href="https://github.com/littonishir">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                            
-                        </ul>
-                    </div>
-                </section>
                 <!-- Friends Blog -->
                 
                 <hr>
@@ -435,10 +351,67 @@
                     
                 </ul>
                 
-    		</div>
-        
-	</div>
-</div>
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "Ishir";
+    var disqus_identifier = "/2016/06/05/ubuntu-chrome";
+    var disqus_url = "http://localhost:4000/2016/06/05/ubuntu-chrome/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
 
 
     <!-- Footer -->
@@ -607,6 +580,50 @@
 
 
 <!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        var P = $('div.post-container'),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
 
 
 

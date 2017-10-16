@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="关于Android、黑客与画家 | 早早，App & Mobile Lover，Software Engineer，UI Designer | 这里是 @Ishir早早 的个人博客，与你一起发现更大的世界。">
+    <meta name="keywords"  content="早早, Ishir早早, Ishir, 鬼栈, Ishirpro, @Ishirpro, 早早的博客, Ishir Blog, 博客, 个人网站, 互联网, App, Kotlin, 安卓, 设计">
+    <meta name="theme-color" content="#000000">
+    
+    <title>使用Git上传代码到GitHub - Littonishir Blog</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="http://localhost:4000/2016/10/12/git-use/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Ishir Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/about/">About</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/portfolio/">Portfolio</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/">Tags</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    var __HuxNav__ = {
+        close: function(){
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        },
+        open: function(){
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle/$collapse will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+     *
+     * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
+</script>
+
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/post-bg-2015.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('/img/post-bg-2015.jpg')
+    }
+
+    
+    header.intro-header .header-mask{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: rgba(0,0,0, 0.5);
+    }
+    
+</style>
+<header class="intro-header" >
+    <div class="header-mask"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#版本控制" title="版本控制">版本控制</a>
+                        
+                        <a class="tag" href="/tags/#Git" title="Git">Git</a>
+                        
+                    </div>
+                    <h1>使用Git上传代码到GitHub</h1>
+                    
+                    
+                    <h2 class="subheading">本文仅代表本人观点，与官方立场无关。</h2>
+                    
+                    <span class="meta">Posted by ishir on October 12, 2016</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+				<h1 id="git安装">Git安装</h1>
+
+<h2 id="1-安装git客户端">1. 安装Git客户端</h2>
+
+<p><a href="http://code.google.com/p/tortoisegit">mac用户请戳</a></p>
+
+<p><a href="http://msysgit.github.com/">windows用户请戳</a></p>
+
+<p>一路下一步下一步既可</p>
+
+<h2 id="2-配置git">2. 配置Git</h2>
+
+<p>2.1. 在电脑硬盘里找一块地方存放本地仓库,右键Git Bash进入git命令行
+执行如下代码 生成.git文件夹,表示本地git创建成功</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">global</span> <span class="n">user</span><span class="o">.</span><span class="na">name</span> <span class="s">"littonishir"</span>
+</code></pre></div></div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">global</span> <span class="n">user</span><span class="o">.</span><span class="na">email</span> <span class="s">"littonishir@gmail.com"</span>
+</code></pre></div></div>
+<pre><code class="language-git">git init
+</code></pre>
+<p><img src="http://upload-images.jianshu.io/upload_images/1074123-30d08f8de3f3b8a7?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="这里写图片描述" />
+2.2. 配置ssh key
+“你的邮箱” 然后一路回车,直到出现randomart image 既可</p>
+<pre><code class="language-git">ssh-keygen -t rsa -C "littonishir@gmail.com"
+</code></pre>
+<p><img src="http://upload-images.jianshu.io/upload_images/1074123-d08e12b84430816f?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="这里写图片描述" />
+cat 一下  把key 复制下来</p>
+<pre><code class="language-git">cat /c/Users/yang/.ssh/id_rsa.pub
+</code></pre>
+<p><img src="http://upload-images.jianshu.io/upload_images/1074123-cf5e6f791b528825?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="这里写图片描述" /></p>
+
+<p>打开github,选择Account Settings</p>
+
+<p><img src="http://upload-images.jianshu.io/upload_images/1074123-b34f5e5518bb0a49?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="这里写图片描述" /></p>
+
+<p>左边选择SSH and GPG Keys,点击New SSH key title不重要 将你复制的key粘贴进来 Add SSH Key既可</p>
+
+<p><img src="http://upload-images.jianshu.io/upload_images/1074123-e70dbb41f26e5a97?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="这里写图片描述" /></p>
+
+<p>验证是否成功</p>
+<pre><code class="language-git">ssh -T git@github.com
+</code></pre>
+<p>回车就会看到：You’ve successfully authenticated, but GitHub does not provide shell access .这就表示已成功连上github.
+<img src="http://upload-images.jianshu.io/upload_images/1074123-b34f448a955a196e?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="这里写图片描述" /></p>
+
+<h1 id="代码上传到github">代码上传到GitHub</h1>
+
+<h2 id="1-创建项目">1. 创建项目</h2>
+
+<p>1.1.点击+号-&gt;new repository 填写Repository的名字 填写Repository的描述 (Initialize this repository with a README)可选</p>
+
+<p>1.2.创建完成后点击clone or download 复制Repository的地址</p>
+
+<h2 id="2-本地初始化一个项目">2. 本地初始化一个项目</h2>
+<p>2.1.git 的基础配置，作用是告诉 git 你是谁</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">global</span> <span class="n">user</span><span class="o">.</span><span class="na">name</span> <span class="s">"littonishir"</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">global</span> <span class="n">user</span><span class="o">.</span><span class="na">email</span> <span class="s">"littonishir@gmail.com"</span>
+</code></pre></div></div>
+<p>2.2.在你的需要初始化版本库的文件夹中执行</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">init</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">origin</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="na">com</span><span class="o">:</span><span class="n">littonishir</span><span class="o">/</span><span class="n">hello</span><span class="o">.</span><span class="na">git</span>
+</code></pre></div></div>
+<p>2.3.如果你想克隆一个项目，只需要执行(不是必须)</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="na">com</span><span class="o">:</span><span class="n">littonishir</span><span class="o">/</span><span class="n">hello</span><span class="o">.</span><span class="na">git</span>
+</code></pre></div></div>
+<h2 id="3完成第一次提交">3.完成第一次提交</h2>
+<p>3.1.进入你已经初始化好的或者克隆项目的目录,然后执行</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">pull</span> <span class="n">origin</span> <span class="n">master</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">add</span> <span class="o">.</span>
+</code></pre></div></div>
+<p>3.2.若出现该warning: LF will be replaced by CRLF in xxx文件(解决办法如下代码)</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">global</span> <span class="n">core</span><span class="o">.</span><span class="na">autocrlf</span> <span class="kc">false</span>  <span class="c1">//禁用自动转换</span>
+</code></pre></div></div>
+<p>3.3.提交信息</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s">"Initial commit"</span>
+</code></pre></div></div>
+<p>3.4.正式上传</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">master</span>
+</code></pre></div></div>
+<p><img src="http://upload-images.jianshu.io/upload_images/1074123-e739b022a292bd2c?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="这里写图片描述" /></p>
+
+<p>至此代码上传完成</p>
+
+<h1 id="更新代码到github">更新代码到GitHub</h1>
+
+<h2 id="1正规方式">1.正规方式</h2>
+<p>添加</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">add</span> <span class="err">文件名</span>
+</code></pre></div></div>
+<p>提交</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s">"update Readme.md"</span>
+</code></pre></div></div>
+<p>推送</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">master</span>
+</code></pre></div></div>
+
+<h2 id="2强制推送路子比较野谨慎使用">2.强制推送(路子比较野谨慎使用)</h2>
+<p>将本地更新的代码push到远程(如果普通的git push origin master提交不上，又不是协同开发，可以使用这个)</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">u</span> <span class="n">origin</span> <span class="n">master</span> <span class="o">-</span><span class="n">f</span>
+</code></pre></div></div>
+
+
+                <hr style="visibility: hidden;">
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2016/06/05/ubuntu-sougou-input/" data-toggle="tooltip" data-placement="top" title="Ubuntu安装搜狗输入法">
+                        Previous<br>
+                        <span>Ubuntu安装搜狗输入法</span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2017/02/09/nextgen-web-pwa/" data-toggle="tooltip" data-placement="top" title="下一代 Web 应用模型 —— Progressive Web App">
+                        Next<br>
+                        <span>下一代 Web 应用模型 —— Progressive Web App</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+                
+            </div>  
+
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+        				
+                            
+                				<a href="/tags/#Linux" title="Linux" rel="2">
+                                    Linux
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#Ubuntu" title="Ubuntu" rel="2">
+                                    Ubuntu
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+                				<a href="/tags/#Android" title="Android" rel="2">
+                                    Android
+                                </a>
+                            
+        				
+        			</div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                        <li><a href="http://www.zhangyunfeng.bid/">ios大佬</a></li>
+                    
+                        <li><a href="http://yys.163.com/shishen/279.html">花鸟卷</a></li>
+                    
+                        <li><a href="http://yys.163.com/shishen/288.html">彼岸花</a></li>
+                    
+                        <li><a href="http://yys.163.com/shishen/280.html">辉夜姬</a></li>
+                    
+                        <li><a href="http://yys.163.com/shishen/255.html">阎魔</a></li>
+                    
+                        <li><a href="http://yys.163.com/shishen/269.html">妖刀姬</a></li>
+                    
+                        <li><a href="http://yys.163.com/shishen/287.html">匣中少女</a></li>
+                    
+                        <li><a href="http://yys.163.com/shishen/286.html">以津真天</a></li>
+                    
+                        <li><a href="http://yys.163.com/shishen/281.html">烟烟罗</a></li>
+                    
+                        <li><a href="http://yys.163.com/shishen/266.html">青行灯</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "Ishir";
+    var disqus_identifier = "/2016/10/12/git-use";
+    var disqus_url = "http://localhost:4000/2016/10/12/git-use/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    
+                    <li>
+                        <a href="https://twitter.com/littonishir">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+
+                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
+                    
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/littonishir">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a target="_blank" href="http://weibo.com/littonishir">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+
+
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/littonishir">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Ishir Blog 2017
+                    <br>
+                    Theme by <a href="http://www.littonishir.top/">Ishir</a> 
+                   <!-- <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true" >
+						src="https://ghbtns.com/github-btn.html?user=littonishir&repo=littonishir.github.io&type=star&count=true" >
+                    </iframe>-->
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+<!-- Service Worker -->
+
+<script src="/js/snackbar.js "></script>
+<script src="/js/sw-registration.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async('/js/jquery.tagcloud.js',function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-49627206-1';
+    var _gaDomain = 'huangxuan.me';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        var P = $('div.post-container'),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

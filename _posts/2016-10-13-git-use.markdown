@@ -1,0 +1,148 @@
+---
+layout:     post
+title:      "使用Git上传代码到GitHub"
+subtitle:   "本文仅代表本人观点，与官方立场无关。"
+date:       2016-10-12 12:00:00
+author:     "ishir"
+header-img: "img/post-bg-2015.jpg"
+header-mask: 0.5
+catalog:    true
+tags:
+    - 版本控制
+    - Git
+---
+
+# Git安装
+
+## 1. 安装Git客户端
+
+[mac用户请戳](http://code.google.com/p/tortoisegit)
+
+[windows用户请戳](http://msysgit.github.com/)
+
+一路下一步下一步既可
+
+## 2. 配置Git
+
+2.1. 在电脑硬盘里找一块地方存放本地仓库,右键Git Bash进入git命令行
+执行如下代码 生成.git文件夹,表示本地git创建成功
+```java
+git config --global user.name "littonishir"
+```
+```java
+git config --global user.email "littonishir@gmail.com"
+```
+```git
+git init
+```
+![这里写图片描述](http://upload-images.jianshu.io/upload_images/1074123-30d08f8de3f3b8a7?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+2.2. 配置ssh key
+"你的邮箱" 然后一路回车,直到出现randomart image 既可
+```git
+ssh-keygen -t rsa -C "littonishir@gmail.com"
+```
+![这里写图片描述](http://upload-images.jianshu.io/upload_images/1074123-d08e12b84430816f?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+cat 一下  把key 复制下来
+```git
+cat /c/Users/yang/.ssh/id_rsa.pub
+```
+![这里写图片描述](http://upload-images.jianshu.io/upload_images/1074123-cf5e6f791b528825?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+打开github,选择Account Settings
+
+![这里写图片描述](http://upload-images.jianshu.io/upload_images/1074123-b34f5e5518bb0a49?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+左边选择SSH and GPG Keys,点击New SSH key title不重要 将你复制的key粘贴进来 Add SSH Key既可
+
+![这里写图片描述](http://upload-images.jianshu.io/upload_images/1074123-e70dbb41f26e5a97?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+验证是否成功
+```git
+ssh -T git@github.com
+```
+回车就会看到：You’ve successfully authenticated, but GitHub does not provide shell access .这就表示已成功连上github.
+![这里写图片描述](http://upload-images.jianshu.io/upload_images/1074123-b34f448a955a196e?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+# 代码上传到GitHub
+
+## 1. 创建项目
+
+1.1.点击+号->new repository 填写Repository的名字 填写Repository的描述 (Initialize this repository with a README)可选
+
+1.2.创建完成后点击clone or download 复制Repository的地址
+
+## 2. 本地初始化一个项目
+2.1.git 的基础配置，作用是告诉 git 你是谁
+
+```java
+git config --global user.name "littonishir"
+```
+
+```java
+git config --global user.email "littonishir@gmail.com"
+```
+2.2.在你的需要初始化版本库的文件夹中执行
+
+```java
+git init
+```
+
+```java
+git remote add origin git@github.com:littonishir/hello.git
+```
+2.3.如果你想克隆一个项目，只需要执行(不是必须)
+
+```java
+git clone git@github.com:littonishir/hello.git
+```
+## 3.完成第一次提交
+3.1.进入你已经初始化好的或者克隆项目的目录,然后执行
+
+```java
+git pull origin master
+```
+
+```java
+git add .
+```
+3.2.若出现该warning: LF will be replaced by CRLF in xxx文件(解决办法如下代码)
+
+```java
+git config --global core.autocrlf false  //禁用自动转换
+```
+3.3.提交信息
+
+```java
+git commit -m "Initial commit"
+```
+3.4.正式上传
+
+```java
+git push origin master
+```
+![这里写图片描述](http://upload-images.jianshu.io/upload_images/1074123-e739b022a292bd2c?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+至此代码上传完成
+
+# 更新代码到GitHub
+
+## 1.正规方式
+添加
+
+```java
+git add 文件名
+```
+提交
+```java
+git commit -m "update Readme.md"
+```
+推送
+```java
+git push origin master
+```
+
+## 2.强制推送(路子比较野谨慎使用)
+将本地更新的代码push到远程(如果普通的git push origin master提交不上，又不是协同开发，可以使用这个)
+```java
+ git push -u origin master -f
+```

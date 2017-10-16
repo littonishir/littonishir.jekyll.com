@@ -5,334 +5,286 @@
     <description>关于Android、黑客与画家 | 早早，App &amp; Mobile Lover，Software Engineer，UI Designer | 这里是 @Ishir早早 的个人博客，与你一起发现更大的世界。</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 14 Oct 2017 18:14:20 +0800</pubDate>
-    <lastBuildDate>Sat, 14 Oct 2017 18:14:20 +0800</lastBuildDate>
+    <pubDate>Mon, 16 Oct 2017 20:38:36 +0800</pubDate>
+    <lastBuildDate>Mon, 16 Oct 2017 20:38:36 +0800</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>
-        <title>秋田犬的养成心得</title>
-        <description>&lt;p&gt;　　这段时间因为崽挨打的活动，从最开始的兴奋到失落，到愤怒，再到平和，真是发现自己平时挺心平气和的一个人，为啥打个游戏变成暴怒无比，最近看到好多因为这个活动心态爆炸的坛友，只想说：大家玩游戏的初心，开心而已，如果不开心了，先放一放，很多时候停一停就好。
-　　签到346天，一直没有较快的一速，所以大一开始就一直是后手流派，这次再犬神改版后第一时间六星了犬神，使用到现在体感良好，无论是PVP和PVE都是普通玩家最好的帮手，PVP中几乎可以搭配所有的流派，PVE中除了带狗粮效率差，其他PVE副本都是VIP(稳定挂机通过)
-　　以下心得主要分为PVP和PVE两部分，有不对或者不恰当的地方，欢迎大家一起交流指正，谢谢!&lt;/p&gt;
+        <title>Toolbar+RecycleView实现透明度渐变效果</title>
+        <description>&lt;p&gt;&lt;strong&gt;&lt;font size=&quot;5&quot;&gt;  &lt;/font&gt;&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1074123-cf5e6f791b528825?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;这里写图片描述&quot; /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;效果图&quot;&gt;&lt;strong&gt;&lt;font size=&quot;5&quot;&gt;效果图&lt;/font&gt;&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1074123-318f26f14514f1f0.gif?imageMogr2/auto-orient/strip&quot; alt=&quot;渐变.gif&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;布局&quot;&gt;&lt;strong&gt;&lt;font size=&quot;5&quot;&gt;布局&lt;/font&gt;&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;FrameLayout&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:android=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.android.com/apk/res/android&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;android:layout_width=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;match_parent&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;android:layout_height=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;match_parent&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;android:background=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@mipmap/pic2442&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;android:fitsSystemWindows=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;true&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;android.support.v7.widget.RecyclerView&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@+id/recyclerview&quot;&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:layout_width=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;match_parent&quot;&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:layout_height=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;wrap_content&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;android.support.v7.widget.Toolbar&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@+id/toolbar&quot;&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:layout_width=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;match_parent&quot;&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:layout_height=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;?android:actionBarSize&quot;&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:background=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@color/gary&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;ImageView&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;android:id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@+id/imageview&quot;&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;android:layout_width=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;wrap_content&quot;&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;android:layout_height=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;wrap_content&quot;&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;android:layout_marginLeft=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;20dp&quot;&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;android:background=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@mipmap/back_toolbar&quot;&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;android:gravity=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;center_vertical&quot;&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;android:onClick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;close&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;TextView&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;android:id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@+id/textview&quot;&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;android:layout_width=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;match_parent&quot;&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;android:layout_height=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;wrap_content&quot;&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;android:layout_marginRight=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;40dp&quot;&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;android:gravity=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;center&quot;&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;android:text=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;您的好友东方月初已上线&quot;&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;android:textColor=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@color/white&quot;&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;android:textSize=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;15sp&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/android.support.v7.widget.Toolbar&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/FrameLayout&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;代码实现&quot;&gt;&lt;strong&gt;&lt;font size=&quot;5&quot;&gt;代码实现&lt;/font&gt;&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;master&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;gradualchangetoolbar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;android.graphics.Color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;android.os.Build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;android.os.Bundle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;android.support.annotation.RequiresApi&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;android.support.v7.app.AppCompatActivity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;android.support.v7.widget.LinearLayoutManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;android.support.v7.widget.RecyclerView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;android.support.v7.widget.Toolbar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;android.view.View&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;android.view.Window&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;android.widget.ImageView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;android.widget.TextView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;java.util.ArrayList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;java.util.List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MainActivity&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AppCompatActivity&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RecyclerView&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mRecyclerView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Toolbar&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mToolbar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TextView&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;textview&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ImageView&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;imageview&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mTexts&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ArrayList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;();&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mDistanceY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MainActivity&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TextAdapter&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mAdapter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Window&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Bundle&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;savedInstanceState&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;savedInstanceState&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;setContentView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;layout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;activity_main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;//透明状态栏&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;window&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getWindow&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;transparentStatusBar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;initData&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;//初始化控件&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;initView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;initData&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arrayItemText&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]{&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;过了许久，在喧扰的人来人往中&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;在酒吧喧闹的噪声、宣言和粗俗的玩笑声中&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;我们俩，知足、快乐地坐在一起&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;说的很少，似乎什么都没说&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;仿佛永远分离,却又终身相依,这才是伟大的爱情.&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;};&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;addData&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arrayItemText&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mTexts&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;addData&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;objarray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mlist&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;25&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;mlist&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;objarray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]));&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;initView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;mRecyclerView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RecyclerView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;findViewById&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;recyclerview&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;mToolbar&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Toolbar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;findViewById&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toolbar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;textview&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TextView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;findViewById&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;textview&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;imageview&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ImageView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;findViewById&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;imageview&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;mRecyclerView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setLayoutManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LinearLayoutManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// 设置适配器&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;mRecyclerView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setAdapter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mAdapter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TextAdapter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mTexts&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// 添加RecycleView的滑动监听&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;mRecyclerView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addOnScrollListener&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RecyclerView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;OnScrollListener&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nd&quot;&gt;@RequiresApi&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;api&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;VERSION_CODES&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;LOLLIPOP&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+            &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onScrolled&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RecyclerView&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;recyclerView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;c1&quot;&gt;//滑动的距离&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;mDistanceY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+                &lt;span class=&quot;c1&quot;&gt;//toolbar的高度&lt;/span&gt;
+                &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;toolbarHeight&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mToolbar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getBottom&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+                &lt;span class=&quot;c1&quot;&gt;//当滑动的距离 &amp;lt;= toolbar高度的时候，改变Toolbar背景色的透明度，达到渐变的效果&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mDistanceY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;toolbarHeight&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;VERSION&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;SDK_INT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;21&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                        &lt;span class=&quot;c1&quot;&gt;//设置状态栏透明&lt;/span&gt;
+                        &lt;span class=&quot;n&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setStatusBarColor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;TRANSPARENT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+                    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+                    &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mDistanceY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;toolbarHeight&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+                    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Double&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;valueOf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;255&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;intValue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;//i 有可能小于0&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;mToolbar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setAlpha&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Math&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// 0~255 透明度&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;textview&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setAlpha&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Math&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;imageview&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setAlpha&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Math&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;VERSION&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;SDK_INT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;21&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                        &lt;span class=&quot;n&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setStatusBarColor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getResources&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getColor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;gary&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+                    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;transparentStatusBar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Window&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;cm&quot;&gt;/**
+         * 透明状态栏方法(SDK_INT &amp;gt;= 21)
+         * */&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;VERSION&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;SDK_INT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;21&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;View&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;decorView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getDecorView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+            &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;option&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;View&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN&lt;/span&gt;
+                    &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;View&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;SYSTEM_UI_FLAG_LAYOUT_STABLE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;decorView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setSystemUiVisibility&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;option&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setStatusBarColor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;TRANSPARENT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;View&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;finish&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/littonishir/GradualChangeToolbar.git&quot;&gt;源码下载&lt;/a&gt;&lt;/p&gt;
 </description>
-        <pubDate>Thu, 12 Oct 2017 20:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/10/12/up/</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/10/12/up/</guid>
+        <pubDate>Sat, 05 Aug 2017 20:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/08/05/toolbar-tra/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/08/05/toolbar-tra/</guid>
         
-        <category>前端开发</category>
-        
-        <category>JavaScript</category>
-        
-        <category>PWA</category>
+        <category>Android</category>
         
         
       </item>
     
       <item>
-        <title>和风美物，秋之谢礼</title>
-        <description>&lt;p&gt;　　这段时间因为崽挨打的活动，从最开始的兴奋到失落，到愤怒，再到平和，真是发现自己平时挺心平气和的一个人，为啥打个游戏变成暴怒无比，最近看到好多因为这个活动心态爆炸的坛友，只想说：大家玩游戏的初心，开心而已，如果不开心了，先放一放，很多时候停一停就好。
-　　签到346天，一直没有较快的一速，所以大一开始就一直是后手流派，这次再犬神改版后第一时间六星了犬神，使用到现在体感良好，无论是PVP和PVE都是普通玩家最好的帮手，PVP中几乎可以搭配所有的流派，PVE中除了带狗粮效率差，其他PVE副本都是VIP(稳定挂机通过)
-　　以下心得主要分为PVP和PVE两部分，有不对或者不恰当的地方，欢迎大家一起交流指正，谢谢!&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1074123-cf5e6f791b528825?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;这里写图片描述&quot; /&gt;&lt;/p&gt;
-</description>
-        <pubDate>Thu, 12 Oct 2017 20:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/10/12/uio/</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/10/12/uio/</guid>
-        
-        <category>前端开发</category>
-        
-        <category>JavaScript</category>
-        
-        <category>PWA</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>死亡之花永不凋零，阴阳师彼岸花改版后何去何从</title>
-        <description>&lt;p&gt;　阴阳师作为一款以式神为核心的卡牌游戏，拥有唯美的画风与迷人的剧情，长期以来都深受大家的追捧。彼岸花作为一名出场不长时间的SSR级的式神，她拥有鲜明的技能特点，被动技能赤团华让她出场自带花海，每层花海都可以给行动的敌人造成大量的伤害，该被动技能让彼岸花既做到了节省鬼火，还能给敌人每次行动前都会造成大量伤害。也正是基于以上几点，使得很多传统的先手纯速攻、纯速控阵容都拿她没办法，而大部分后手阵容输出节奏又不够，让彼岸花在一个时期成为了斗技场里毒瘤般的存在。因其过于强力影响了斗技场的平衡性，使得彼岸花迎来了官方的大幅度调整。&lt;/p&gt;
-
-&lt;p&gt;　　她是一个曾经影响了斗技环境的式神。随着大家应对她的技巧越来越多，与多次的调整，她在斗技里的地位已经大不如前了，但是她依然对拉条、先手阵容有非常强的压制力。适当的时候去选择她，她仍然能够带领你走向胜利。
-　　技能改动：&lt;/p&gt;
-
-&lt;p&gt;　　※「赤团华」技能调整：彼岸花进入战斗就召唤出3层花海，每回合花海会消减1层。花海中敌人每回合行动前会受到伤害，每层花海造成彼岸花攻击力39%的伤害(旧版本为56%)。彼岸花生命每降低25%，能够额外获得1层花海(最多6层)，同时获得一层血之花海的护盾。
-　　强化效果：
-　　Lv.2 技能伤害额外+5%
-　　Lv.3 技能伤害额外+5%
-　　Lv.4 技能伤害额外+5%
-　　解析：
-　　之前版本的彼岸花之所以被称为躺赢花，因为自身被动技能的特性，并不需要拉条式神来增加自己的机动性，完全可以无脑的通过御魂来堆高自己的暴击和暴击伤害，开场就可以秒杀对方的拉条式神或者是生命值较低的输出式神。版本改动之后彼岸花的技能伤害系数被大幅度的削弱，想要再次达到秒杀对方式神的效果已经极为困难。由此可见，策划的想法是要将彼岸花打造成为一名偏向消耗型的式神，给速攻流阵容一些喘息的机会。&lt;/p&gt;
-</description>
-        <pubDate>Thu, 12 Oct 2017 20:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/10/12/config/</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/10/12/config/</guid>
-        
-        <category>前端开发</category>
-        
-        <category>JavaScript</category>
-        
-        <category>PWA</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>饿了么的 PWA 升级实践</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;很荣幸在今年 2 月到 5 月的时间里，以顾问的身份加入饿了么，参与 PWA 的相关工作。这篇文章其实最初是在以英文写作发表在 medium 上的：&lt;a href=&quot;https://medium.com/elemefe/upgrading-ele-me-to-progressive-web-app-2a446832e509&quot;&gt;Upgrading Ele.me to Progressive Web Apps&lt;/a&gt;，获得了一定的关注。所以也决定改写为中文版本再次分享出来，希望能对你有所帮助 ;) &lt;br /&gt;&lt;br /&gt;
-本文首发于 &lt;a href=&quot;http://geek.csdn.net/news/detail/210535&quot;&gt;CSDN&lt;/a&gt; 与《程序员》2017 年 7 月刊，同步发布于 &lt;a href=&quot;https://zhuanlan.zhihu.com/ElemeFE&quot;&gt;饿了么前端 - 知乎专栏&lt;/a&gt;、&lt;a href=&quot;https://huangxuan.me&quot;&gt;Hux Blog&lt;/a&gt;，转载请保留链接。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;自 Vue.js 官方推特第一次&lt;a href=&quot;https://twitter.com/vuejs/status/834087199008239619&quot;&gt;公开&lt;/a&gt;到现在，我们就一直在进行着将&lt;a href=&quot;https://h5.ele.me/msite/#pwa=true&quot;&gt;饿了么移动端网站&lt;/a&gt;升级为 &lt;a href=&quot;https://developers.google.com/web/progressive-web-apps/&quot;&gt;Progressive Web App&lt;/a&gt; 的工作。直到近日在 Google I/O 2017 上&lt;a href=&quot;https://m.weibo.cn/status/4109332495285652&quot;&gt;登台亮相&lt;/a&gt;，才终于算告一段落。我们非常荣幸能够发布全世界第一个专门面向国内用户的 PWA，但更荣幸的是能与 Google、UC 以及腾讯合作，一起推动国内 web 与浏览器生态的发展。&lt;/p&gt;
-
-&lt;h2 id=&quot;多页应用vuepwa&quot;&gt;多页应用、Vue、PWA？&lt;/h2&gt;
-
-&lt;p&gt;对于构建一个希望达到原生应用级别体验的 PWA，目前社区里的主流做法都是采用 SPA，即单页面应用模型（Single-page App）来组织整个 web 应用，业内最有名的几个 PWA 案例 &lt;a href=&quot;https://blog.twitter.com/2017/how-we-built-twitter-lite&quot;&gt;Twitter Lite&lt;/a&gt;、 &lt;a href=&quot;https://medium.com/progressive-web-apps/building-flipkart-lite-a-progressive-web-app-2c211e641883&quot;&gt;Flipkart Lite&lt;/a&gt;、&lt;a href=&quot;https://medium.com/engineering-housing/progressing-mobile-web-fac3efb8b454&quot;&gt;Housing Go&lt;/a&gt; 与 &lt;a href=&quot;https://shop.polymer-project.org/&quot;&gt;Polymer Shop&lt;/a&gt; 无一例外。&lt;/p&gt;
-
-&lt;p&gt;然而饿了么，与很多国内的电商网站一样，青睐多页面应用模型（MPA，Multi-page App）所能带来的一些好处，也因此在一年多将移动站从基于 Angular.js 的单页应用重构为目前的多页应用模型。团队最看重的优点莫过于页面与页面之间的隔离与解耦，这使得我们可以将每个页面当做一个独立的“微服务”来看待，这些服务可以被独立迭代，独立提供给各种第三方的入口嵌入，甚至被不同的团队独立维护。而整个网站则只是各种服务的集合而非一个巨大的整体。&lt;/p&gt;
-
-&lt;p&gt;与此同时，我们仍然依赖 &lt;a href=&quot;http://vuejs.org/&quot;&gt;Vue.js&lt;/a&gt; 作为 JavaScript 框架。Vue 除了是 React/Angular 这种“重型武器”的竞争对手外，其轻量与高性能的优点使得它同样可以作为传统多页应用开发中流行的 “jQuery/Zepto/Kissy + 模板引擎” 技术栈的完美替代。Vue 提供的组件系统、声明式与响应式编程更是提升了代码组织、共享、数据流控制、渲染等各个环节的开发效率。&lt;a href=&quot;(https://www.youtube.com/watch?v=pBBSp_iIiVM)&quot;&gt;Vue 还是一个渐进式框架&lt;/a&gt;，如果网站的复杂度继续提升，我们可以按需、增量地引入 Vuex 或 Vue-Router 这些模块。万一哪天又要改回单页呢？（谁知道呢……）&lt;/p&gt;
-
-&lt;p&gt;2017 年，PWA 已经成为 web 应用新的风潮。我们决定试试，以我们现有的“Vue + 多页”的架构，能在升级 PWA 的道路上走多远，达到怎样的效果。&lt;/p&gt;
-
-&lt;h2 id=&quot;实现-prpl-模式&quot;&gt;实现 “PRPL” 模式&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://developers.google.com/web/fundamentals/performance/prpl-pattern/&quot;&gt;“PRPL”&lt;/a&gt;（读作 “purple”）是 Google 的工程师提出的一种 web 应用架构模式，它旨在利用现代 web 平台的新技术以大幅优化移动 web 的性能与体验，对如何组织与设计高性能的 PWA 系统提供了一种高层次的抽象。我们并不准备从头重构我们的 web 应用，不过我们可以把实现 “PRPL” 模式作为我们的迁移目标。“PRPL”实际上是 Push/Preload、Render、Precache、Lazy-Load 的缩写，我们会在下文中展开它们的具体含义。&lt;/p&gt;
-
-&lt;h3 id=&quot;1-pushpreload推送预加载初始-url-路由所需的关键资源&quot;&gt;1. PUSH/PRELOAD，推送/预加载初始 URL 路由所需的关键资源。&lt;/h3&gt;
-
-&lt;p&gt;无论是 HTTP2 Server Push 还是 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;link rel=&quot;preload&quot;&amp;gt;&lt;/code&gt;，其关键都在于，我们希望提前请求一些隐藏在应用依赖关系（Dependency Graph）较深处的资源，以节省 HTTP 往返、浏览器解析文档、或脚本执行的时间。比如说，对于一个基于路由进行 code splitting 的 SPA，如果我们可以在 webpack 清单、路由等入口代码（entry chunks）被下载与运行之前就把初始 URL，即用户访问的入口 URL 路由所依赖的代码用 Server Push 推送或 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;link rel=&quot;preload&quot;&amp;gt;&lt;/code&gt; 进行提前加载。那么当这些资源被真正请求时，它们可能已经下载好并存在在缓存中了，这样就加快了初始路由所有依赖的就绪。&lt;/p&gt;
-
-&lt;p&gt;在多页应用中，每一个路由本来就只会请求这个路由所需要的资源，并且通常依赖也都比较扁平。饿了么移动站的大部分脚本依赖都是普通的 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;script&amp;gt;&lt;/code&gt; 元素，因此他们可以在文档解析早期就被浏览器的 preloader 扫描出来并且开始请求，其效果其实与显式的 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;link rel=&quot;preload&quot;&amp;gt;&lt;/code&gt; 是一致的。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/in-post/post-eleme-pwa/PUSH-link-rel-preload.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;我们还将所有关键的静态资源都伺服在同一域名下（不再做域名散列），以更好的利用 HTTP2 带来的多路复用（Multiplexing）。同时，我们也在进行着对 API 进行 Server Push 的&lt;a href=&quot;https://zhuanlan.zhihu.com/p/26757514&quot;&gt;实验&lt;/a&gt;。&lt;/p&gt;
-
-&lt;h3 id=&quot;2-render渲染初始路由尽快让应用可被交互&quot;&gt;2. RENDER，渲染初始路由，尽快让应用可被交互&lt;/h3&gt;
-
-&lt;p&gt;既然所有初始路由的依赖都已经就绪，我们就可以尽快开始初始路由的渲染，这有助于提升应用诸如首次渲染时间、可交互时间等指标。多页应用并不使用基于 JavaScript 的路由，而是传统的 HTML 跳转机制，所以对于这一部分，多页应用其实不用额外做什么。&lt;/p&gt;
-
-&lt;h3 id=&quot;3-pre-cache用-service-worker-预缓存剩下的路由&quot;&gt;3. PRE-CACHE，用 Service Worker 预缓存剩下的路由&lt;/h3&gt;
-
-&lt;p&gt;这一部分就需要 &lt;a href=&quot;https://w3c.github.io/ServiceWorker/v1/&quot;&gt;Service Worker&lt;/a&gt; 的参与了，Service Worker 是一个位于浏览器与网络之间的客户端代理，它以可拦截、处理、响应流经的 HTTP 请求，使得开发者得以从缓存中向 web 应用提供资源而闻名。不过，Service Worker 其实也可以主动发起 HTTP 请求，在“后台” 预请求与预缓存我们未来所需要的资源。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/in-post/post-eleme-pwa/PRECACHE-future-routes.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;我们已经使用 &lt;a href=&quot;https://webpack.github.io/&quot;&gt;Webpack&lt;/a&gt; 在构建过程中进行 &lt;code class=&quot;highlighter-rouge&quot;&gt;.vue&lt;/code&gt; 编译、文件名哈希等工作，于是我们编写了一个 webpack 插件来帮助我们收集需要缓存的依赖到一个“预缓存清单”中，并使用这个清单在每次构建时生成新的 Service Worker 文件。在新的 Service Worker 被激活时，清单里的资源就会被请求与缓存，这其实与 &lt;a href=&quot;https://medium.com/@Huxpro/how-does-sw-precache-works-2d99c3d3c725&quot;&gt;SW-Precache 这个库的运行机制&lt;/a&gt;非常接近。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;实际上，我们只对我们标记为“关键路由”的路由进行依赖收集。&lt;/strong&gt;你可以将这些“关键路由”的依赖理解为我们整个应用的 &lt;a href=&quot;https://developers.google.com/web/updates/2015/11/app-shell&quot;&gt;“App Shell”&lt;/a&gt; 或者说“安装包”。一旦它们都被缓存，或者说成功安装，无论用户是在线离线，我们的 web 应用都可以从缓存中直接启动。对于那些并不那么重要的路由，我们则采取在运行时增量缓存的方式。我们使用的 &lt;a href=&quot;https://googlechrome.github.io/sw-toolbox/&quot;&gt;SW-Toolbox&lt;/a&gt; 提供了 LRU 替换策略与 TTL 失效机制，可以保证我们的应用不会超过浏览器的缓存配额。&lt;/p&gt;
-
-&lt;h3 id=&quot;4-lazy-load-按需懒加载懒实例化剩下的路由&quot;&gt;4. LAZY-LOAD 按需懒加载、懒实例化剩下的路由&lt;/h3&gt;
-
-&lt;p&gt;懒加载与懒实例化剩下的路由对于 SPA 是一件相对麻烦点儿的事情，你需要实现基于路由的 code splitting 与异步加载。幸运的是，这又是一件不需要多页应用担心的事情，多页应用中的各个路由天生就是分离的。&lt;/p&gt;
-
-&lt;p&gt;值得说明的是，无论单页还是多页应用，如果在上一步中，我们已经将这些路由的资源都预先下载与缓存好了，那么懒加载就几乎是瞬时完成的了，这时候我们就只需要付出实例化的代价。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;这四句话即是 PRPL 的全部了。有趣的是，我们发现多页应用在实现 PRPL 这件事甚至比单页还要容易一些。那么结果如何呢？&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/in-post/post-eleme-pwa/Lighthouse-before.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;根据 Google 推出的 Web 性能分析工具 Lighthouse（v1.6），在模拟的 3G 网络下，用户的初次访问（无任何缓存）大约在 2 秒左右达到“可交互”，可以说非常不错。而对于再次访问，由于所有资源都直接来自于 Service Worker 缓存，页面可以在 1 秒左右就达到可交互的状态了。&lt;/p&gt;
-
-&lt;p&gt;但是，故事并不是这么简单得就结束了。在实际的体验中我们发现，&lt;strong&gt;应用在页与页的切换时，仍然存在着非常明显的白屏空隙&lt;/strong&gt;，由于 PWA 是全屏运行的，白屏对用户体验所带来的负面影响甚至比以往在浏览器内更大。我们不是已经用 Service Worker 缓存了所有资源了吗，怎么还会这样呢？&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/in-post/post-eleme-pwa/before-skeleton.jpg&quot; alt=&quot;&quot; /&gt;
-&lt;em&gt;从首页点击到发现页，跳转过程中的白屏&lt;/em&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;多页应用的陷阱重启开销&quot;&gt;多页应用的陷阱：重启开销&lt;/h2&gt;
-
-&lt;p&gt;与 SPA 不同，在多页应用中，路由的切换是原生的浏览器文档跳转（Navigating across documents），这意味着之前的页面会被完全丢弃而浏览器需要为下一个路由的页面重新执行所有的启动步骤：重新下载资源、重新解析 HTML、重新运行 JavaScript、重新解码图片、重新布局页面、重新绘制……即使其中的很多步骤本是可以在多个路由之间复用的。这些工作无疑将产生巨大的计算开销，也因此需要付出相当的时间成本。&lt;/p&gt;
-
-&lt;p&gt;图中为我们的入口页（同时也是最重的页面）在 2 倍 CPU 节流模拟下的 profile 数据。即使我们可以将“可交互时间”控制在 1 秒左右，我们的用户仍然会觉得这对于“仅仅切换个标签”来说实在是太慢了。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/in-post/post-eleme-pwa/msite-Before-Optim.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;巨大的-javascript-重启开销&quot;&gt;巨大的 JavaScript 重启开销&lt;/h3&gt;
-
-&lt;p&gt;根据 Profile，我们发现在首次渲染（First Paint）发生之前，大量的时间（900 毫秒）都消耗在了 JavaScript 的运行上（Evaluate Script）。几乎所有脚本都是阻塞的（Parser-blocking），不过因为所有的 UI 都是由 JavaScript/Vue 驱动的，倒也不会有性能影响。这 900ms 中，约一半是消耗在包括 Vue 运行时、组件、库等依赖的运行上，而另一半则花在了业务组件实例化时 Vue 的启动与渲染上。从软件工程角度来说，我们需要这些抽象，所以这里并不是想责怪 JavaScript 或是 Vue 所带来的开销。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;但是，在 SPA 中，JavaScript 的启动成本是均摊到整个生命周期的：&lt;/strong&gt; 每个脚本都只需要被解析与编译一次，诸如生成 Virtual DOM 等较重的任务可以只执行一次，像 Vue 的 ViewModel 或是 Virtual DOM 这样的大对象也可以被留在内存里复用。&lt;strong&gt;可惜在多页应用里就不是这样了，我们每次切换页面都为 JavaScript 付出了巨大的重启代价。&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;浏览器的缓存啊能不能帮帮忙&quot;&gt;浏览器的缓存啊，能不能帮帮忙？&lt;/h3&gt;
-
-&lt;p&gt;能，也不能。&lt;/p&gt;
-
-&lt;p&gt;V8 提供了&lt;a href=&quot;http://v8project.blogspot.com/2015/07/code-caching.html&quot;&gt;代码缓存（code caching）&lt;/a&gt;，可以将编译后的机器码在本地拷贝一份，这样我们就可以在下次请求同一个脚本时一次省略掉请求、解析、编译的所有工作。而且，对于缓存在 Service Worker 配套的 Cache Storage 中的脚本，会在第一次执行后就触发 V8 的代码缓存，这对于我们的多页切换能提供不少帮助。&lt;/p&gt;
-
-&lt;p&gt;另外一个你或许听过的浏览器缓存叫做“进退缓存”，Back-Forward Cache，简称 bfcache。浏览器厂商对其的命名各异，Opera 称之为 Fast History Navigation，Webkit 称其为 Page Cache。但是思路都一样，&lt;strong&gt;就是我们可以让浏览器在跳转时把前一页留存在内存中，保留 JavaScript 与 DOM 的状态，而不是全都销毁掉。&lt;/strong&gt;你可以随便找个传统的多页网站在 iOS Safari 上试试，无论是通过浏览器的前进后退按钮、手势，还是通过超链接（会有一些不同），基本都可以看到瞬间加载的效果。&lt;/p&gt;
-
-&lt;p&gt;Bfcache 其实非常适合多页应用。但不幸的是，Chrome 由于内存开销与其多进程架构等原因目前并不支持。Chrome 现阶段仅仅只是用了传统的 HTTP 磁盘缓存，来稍稍简化了一下加载过程而已。对于 Chromium 内核霸占的 Android 生态来说，我们没法指望了。&lt;/p&gt;
-
-&lt;h2 id=&quot;为感知体验奋斗&quot;&gt;为“感知体验”奋斗&lt;/h2&gt;
-
-&lt;p&gt;尽管多页应用面临着现实中的不少性能问题，我们并不想这么快就妥协。一方面，我们尝试尽可能减少在页面达到可交互时间前的代码执行量，比如减少/推迟一些依赖脚本的执行，还有减少初次渲染的 DOM 节点数以节省 Virtual DOM 的初始化开销。另一方面，我们也意识到应用在感知体验上还有更多的优化空间。&lt;/p&gt;
-
-&lt;p&gt;Chrome 产品经理 Owen 写过一篇 &lt;a href=&quot;https://medium.com/@owencm/reactive-web-design-the-secret-to-building-web-apps-that-feel-amazing-b5cbfe9b7c50&quot;&gt;Reactive Web Design: The secret to building web apps that feel amazing&lt;/a&gt;，谈到两种改进感知体验的手段：一是使用骨架屏（Skeleton Screen）来实现瞬间加载；二是预先定义好元素的尺寸来保证加载的稳定。跟我们的做法可以说不谋而合。&lt;/p&gt;
-
-&lt;p&gt;为了消除白屏时间，我们同样引入了尺寸稳定的骨架屏来帮助我们实现瞬间的加载与占位。即使是在硬件很弱的设备上，我们也可以在点击切换标签后立刻渲染出目标路由的骨架屏，以保证 UI 是稳定、连续、有响应的。我录了&lt;a href=&quot;https://youtu.be/K5JBGnMYO1s&quot;&gt;两个&lt;/a&gt;&lt;a href=&quot;https://youtu.be/w1ZbNsHmRjs&quot;&gt;视频&lt;/a&gt;放在 Youtube 上，不过如果你是国内读者，你可以直接访问饿了么移动网站来体验实地的效果 ;) 最终效果如下图所示。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/in-post/post-eleme-pwa/after-skeleton.jpg&quot; alt=&quot;&quot; /&gt;
-&lt;em&gt;在添加骨架屏后，从发现页点回首页的效果&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;这效果本该很轻松的就能实现，不过实际上我们还费了点功夫。&lt;/p&gt;
-
-&lt;h3 id=&quot;在构建时使用-vue-预渲染骨架屏&quot;&gt;在构建时使用 Vue 预渲染骨架屏&lt;/h3&gt;
-
-&lt;p&gt;你可能已经想到了，为了让骨架屏可以被 Service Worker 缓存，瞬间加载并独立于 JavaScript 渲染，我们需要把组成骨架屏的 HTML 标签、CSS 样式与图片资源一并内联至各个路由的静态 &lt;code class=&quot;highlighter-rouge&quot;&gt;*.html&lt;/code&gt; 文件中。&lt;/p&gt;
-
-&lt;p&gt;不过，我们并不准备手动编写这些骨架屏。你想啊，如果每次真实组件有迭代（每一个路由对我们来说都是一个 Vue 组件）我们都需要手动去同步每一个变化到骨架屏的话，那实在是太繁琐且难以维护了。好在，&lt;a href=&quot;https://www.lukew.com/ff/entry.asp?1797&quot;&gt;骨架屏不过是当数据还未加载进来前，页面的一个空白版本而已&lt;/a&gt;。如果我们能将骨架屏实现为真实组件的一个特殊状态 —— “空状态”的话，我们理论上就可以从真实组件中直接渲染出骨架屏来。&lt;/p&gt;
-
-&lt;p&gt;而 Vue 的多才多艺就在这时体现出来了，我们真的可以用 &lt;a href=&quot;https://ssr.vuejs.org/en/&quot;&gt;Vue.js 的服务端渲染模块&lt;/a&gt; 来实现这个想法，不过不是用在真正的服务器上，而是在构建时用它把组件的空状态预先渲染成字符串并注入到 HTML 模板中。你需要调整你的 Vue 组件代码使得它可以在 Node 上执行，有些页面对 DOM/BOM 的依赖一时无法轻易去除得，我们目前只好额外编写一个 &lt;code class=&quot;highlighter-rouge&quot;&gt;*.shell.vue&lt;/code&gt; 来暂时绕过这个问题。&lt;/p&gt;
-
-&lt;h3 id=&quot;关于浏览器的绘制painting&quot;&gt;关于浏览器的绘制（Painting）&lt;/h3&gt;
-
-&lt;p&gt;HTML 文件中有标签并不意味着这些标签就能立刻被绘制到屏幕上，你必须保证页面的&lt;a href=&quot;https://developers.google.com/web/fundamentals/performance/critical-rendering-path/&quot;&gt;关键渲染路径&lt;/a&gt;是为此优化的。很多开发者相信将 script 标签放在 body 的底部就足以保证内容能在脚本执行之前被绘制，这对于能渲染不完整 DOM 树的浏览器（比如桌面浏览器常见的流式渲染）来说可能是成立的。但移动端的浏览器很可能因为考虑到较慢的硬件、电量消耗等因素并不这么做。&lt;strong&gt;不仅如此，即使你曾被告知设为 &lt;code class=&quot;highlighter-rouge&quot;&gt;async&lt;/code&gt; 或 &lt;code class=&quot;highlighter-rouge&quot;&gt;defer&lt;/code&gt; 的脚本就不会阻塞 HTML 解析了，但这可不意味着浏览器就一定会在执行它们之前进行渲染。&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://html.spec.whatwg.org/images/asyncdefer.svg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;首先我想澄清的是，根据 &lt;a href=&quot;https://html.spec.whatwg.org/multipage/scripting.html&quot;&gt;HTML 规范 Scripting 章节&lt;/a&gt;，&lt;code class=&quot;highlighter-rouge&quot;&gt;async&lt;/code&gt; 脚本是在其请求完成后立刻运行的，因此它本来就可能阻塞到解析。只有 &lt;code class=&quot;highlighter-rouge&quot;&gt;defer&lt;/code&gt;（且非内联）与最新的 &lt;code class=&quot;highlighter-rouge&quot;&gt;type=module&lt;/code&gt; 被指定为“一定不会阻塞解析”。（不过 &lt;code class=&quot;highlighter-rouge&quot;&gt;defer&lt;/code&gt; 目前也有点小问题……我们稍后会再提到）&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;而更重要的是，一个不阻塞 HTML 解析的脚本仍然可能阻塞到绘制。&lt;/strong&gt;我做了一个简化的&lt;strong&gt;“最小多页 PWA”&lt;/strong&gt;（Minimal Multi-page PWA，或 MMPWA）来测试这个问题，：我们在一个 &lt;code class=&quot;highlighter-rouge&quot;&gt;async&lt;/code&gt;（且确实不阻塞 HTML 解析）脚本中，生成并渲染 1000 个列表项，然后测试骨架屏能否在脚本执行之前渲染出来。下面是通过 USB Debugging 在我的 Nexus 5 真机上录制的 profile：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/in-post/post-eleme-pwa/thisTick-&amp;amp;-Load.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;是的，出乎意料吗？首次渲染确实被阻塞到脚本执行结束后才发生。究其原因，&lt;strong&gt;如果我们在浏览器还未完成上一次绘制工作之前就过快得进行了 DOM 操作，我们亲爱的浏览器就只好抛弃所有它已经完成的像素，且一直要等待到 DOM 操作引起的所有工作结束之后才能重新进行下一次渲染。&lt;/strong&gt;而这种情况更容易在拥有较慢 CPU/GPU 的移动设备上出现。&lt;/p&gt;
-
-&lt;h3 id=&quot;黑魔法利用-settimeout-让绘制提前&quot;&gt;黑魔法：利用 setTimeout() 让绘制提前&lt;/h3&gt;
-
-&lt;p&gt;不难发现，骨架屏的绘制与脚本执行实际是一个竞态。大概是 Vue 太快了，我们的骨架屏还是有非常大的概率绘制不出来。于是我们想着如何能让脚本执行慢点，或者说，“懒”点。于是我们想到了一个经典的 Hack： &lt;code class=&quot;highlighter-rouge&quot;&gt;setTimeout(callback, 0)&lt;/code&gt;。我们试着把 MMPWA 中的 DOM 操作（渲染 1000 个列表）放进 &lt;code class=&quot;highlighter-rouge&quot;&gt;setTimeout(callback, 0)&lt;/code&gt; 里……&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/in-post/post-eleme-pwa/nextTick-&amp;amp;-Load.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;当当！首次渲染瞬间就被提前了。如果你熟悉浏览器的&lt;strong&gt;事件循环模型（event loop）&lt;/strong&gt;的话，这招 Hack 其实是通过 setTimeout 的回调把 DOM 操作放到了事件循环的任务队列中以避免它在当前循环执行，这样浏览器就得以在主线程空闲时喘息一下（更新一下渲染）了。如果你想亲手试试 MMPWA 的话，你可以访问 &lt;a href=&quot;https://github.com/Huxpro/mmpwa&quot;&gt;github.com/Huxpro/mmpwa&lt;/a&gt; 或 &lt;a href=&quot;https://huangxuan.me/mmpwa&quot;&gt;huangxuan.me/mmpwa/&lt;/a&gt; 访问代码与 Demo。我把 UI 设计为了 A/B Test 的形式并改为渲染 5000 个列表项来让效果更夸张一些。&lt;/p&gt;
-
-&lt;p&gt;回到饿了么 PWA 上，我们同样试着把 &lt;code class=&quot;highlighter-rouge&quot;&gt;new Vue()&lt;/code&gt; 放到了 &lt;code class=&quot;highlighter-rouge&quot;&gt;setTimeout&lt;/code&gt; 中。果然，黑魔法再次显灵，骨架屏在每次跳转后都能立刻被渲染。这时的 Profile 看起来是这样的：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/in-post/post-eleme-pwa/msite-After-Optim.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;现在，我们在 400ms 时触发首次渲染（骨架屏），在 600ms 时完成真实 UI 的渲染并达到页面的可交互。你可以拉上去详细对比下优化前后 profile 的区别。&lt;/p&gt;
-
-&lt;h3 id=&quot;被我-defer-的有关-defer-的-bug&quot;&gt;被我 “defer” 的有关 &lt;code class=&quot;highlighter-rouge&quot;&gt;defer&lt;/code&gt; 的 Bug&lt;/h3&gt;
-
-&lt;p&gt;不知道你发现没有，在上图的 Profile 中，我们仍然有不少脚本是阻塞了 HTML 解析的。好吧让我解释一下，由于历史原因，我们确实保留了一部分的阻塞脚本，比如侵入性很强的 &lt;a href=&quot;https://github.com/amfe/lib-flexible&quot;&gt;lib-flexible&lt;/a&gt;，我们没法轻易去除它。不过，profile 里的大部分阻塞脚本实际上都设置了 &lt;code class=&quot;highlighter-rouge&quot;&gt;defer&lt;/code&gt;，我们本以为他们应该在 HTML 解析完成之后才被执行，结果被 profile 打了一脸。&lt;/p&gt;
-
-&lt;p&gt;我和 &lt;a href=&quot;https://twitter.com/jaffathecake&quot;&gt;Jake Archibald&lt;/a&gt; &lt;a href=&quot;https://twitter.com/Huxpro/status/859842124849827841&quot;&gt;聊了一下&lt;/a&gt;，果然这是 Chrome 的 Bug：&lt;code class=&quot;highlighter-rouge&quot;&gt;defer&lt;/code&gt; 的脚本被完全缓存时，并没有遵守规范等待解析结束，反而阻塞了解析与渲染。Jake 已经提交在 &lt;a href=&quot;https://bugs.chromium.org/p/chromium/issues/detail?id=717979&quot;&gt;crbug&lt;/a&gt; 上了，一起给它投票吧~&lt;/p&gt;
-
-&lt;p&gt;最后，是优化后的 Lighthouse 跑分结果，同样可以看到明显的性能提升。需要说明的是，能影响 Lighthouse 跑分的因素有很多，所以我建议你以控制变量（跑分用的设备、跑分时的网络环境等）的方式来进行对照实验。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/in-post/post-eleme-pwa/Lighthouse-after.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;最后附上一张图，这张图当时是做给 Addy Osmani 的 I/O 演讲用的，描述了饿了么 PWA 是如何结合 Vue 来实现多页应用的 PRPL 模式，可以作为一个架构的参考与示意图。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/in-post/post-eleme-pwa/Architecture.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;一些感想&quot;&gt;一些感想&lt;/h2&gt;
-
-&lt;h3 id=&quot;多页应用仍然有很长的路要走&quot;&gt;多页应用仍然有很长的路要走&lt;/h3&gt;
-
-&lt;p&gt;Web 是一个极其多样化的平台。从静态的博客，到电商网站，再到桌面级的生产力软件，它们全都是 Web 这个大家庭的第一公民。而我们组织 web 应用的方式，也同样只会更多而不会更少：多页、单页、Universal JavaScript 应用、WebGL、以及可以预见的 Web Assembly。不同的技术之间没有贵贱，但是适用场景的差距确是客观存在的。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://twitter.com/jaffathecake&quot;&gt;Jake&lt;/a&gt; 曾在 &lt;a href=&quot;https://youtu.be/J2dOTKBoTL4?list=PLNYkxOF6rcIBTs2KPy1E6tIYaWoFcG3uj&quot;&gt;Chrome Dev Summit 2016&lt;/a&gt; 上说过 “PWA !== SPA”。可是尽管我们已经用上了一系列最新的技术（PRPL、Service Worker、App Shell……），我们仍然因为多页应用模型本身的缺陷有着难以逾越的一些障碍。多页应用在未来可能会有“bfcache API”、Navigation Transition 等新的规范以缩小跟 SPA 的距离，不过我们也必须承认，时至今日，多页应用的局限性也是非常明显的。&lt;/p&gt;
-
-&lt;h3 id=&quot;而-pwa-终将带领-web-应用进入新的时代&quot;&gt;而 PWA 终将带领 web 应用进入新的时代&lt;/h3&gt;
-
-&lt;p&gt;即使我们的多页应用在升级 PWA 的路上不如单页的那些来得那么闪亮，但是 PWA 背后的想法与技术却实实在在的帮助我们在 web 平台上提供了更好的用户体验。&lt;/p&gt;
-
-&lt;p&gt;PWA 作为&lt;a href=&quot;https://zhuanlan.zhihu.com/p/25167289&quot;&gt;下一代 Web 应用模型&lt;/a&gt;，其尝试解决的是 web 平台本身的根本性问题：对网络与浏览器 UI 的硬依赖。因此，任何 web 应用都可以从中获益，这与你是多页还是单页、面向桌面还是移动端、是用 React 还是 Vue 无关。或许，它还终将改变用户对移动 web 的期待。现如今，谁还觉得桌面端的 web 只是个看文档的地方呢？&lt;/p&gt;
-
-&lt;p&gt;还是那句老话：让我们的用户，也像我们这般热爱 web 吧。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;最后，感谢饿了么的王亦斯、任光辉、题叶，Google 的 Michael Yeung、DevRel 团队， UC 浏览器团队，腾讯 X5 浏览器团队在这次项目中的合作。感谢尤雨溪、陈蒙迪和 Jake Archibald 在写作过程中给予我的帮助。&lt;/p&gt;
+        <title>Android 银行卡号扫描识别</title>
+        <description>&lt;p&gt;&lt;strong&gt;&lt;font size=&quot;5&quot;&gt;  &lt;/font&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;在您的手机应用程序中扫描信用卡&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.card.io/&quot;&gt;card.io官网&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;1添加依赖&quot;&gt;1.添加依赖&lt;/h2&gt;
+
+&lt;div class=&quot;language-gradle highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;n&quot;&gt;compile&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'io.card:android-sdk:5.5.1'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;2简单布局&quot;&gt;2.简单布局&lt;/h2&gt;
+
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;Button&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@+id/button&quot;&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:layout_width=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;match_parent&quot;&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:layout_height=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;wrap_content&quot;&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:onClick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;scan&quot;&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:text=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;扫描银行卡&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;TextView&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@+id/tv_num&quot;&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:layout_width=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;wrap_content&quot;&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:layout_height=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;wrap_content&quot;&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:layout_gravity=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;center_horizontal&quot;&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:text=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;请点击扫描银行卡进行卡号扫描!&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;3代码设置&quot;&gt;3.代码设置&lt;/h2&gt;
+&lt;p&gt;动态申请相机权限(在onResume中)&lt;/p&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onResume&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onResume&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;//权限申请&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ContextCompat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;checkSelfPermission&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Manifest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;permission&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;CAMERA&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PackageManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;PERMISSION_GRANTED&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;//申请相机权限&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;ActivityCompat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;requestPermissions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Manifest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;permission&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;CAMERA&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;},&lt;/span&gt;
+                    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onRequestPermissionsResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requestCode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;permissions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grantResults&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onRequestPermissionsResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;requestCode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;permissions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grantResults&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;doNext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;requestCode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grantResults&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;doNext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requestCode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grantResults&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;requestCode&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grantResults&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PackageManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;PERMISSION_GRANTED&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;c1&quot;&gt;// Permission Granted&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;c1&quot;&gt;// Permission Denied&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;Toast&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;makeText&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;请在应用管理中打开“相机”访问权限！&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Toast&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;LENGTH_LONG&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;finish&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;点击触发扫描&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;scan&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;View&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Intent&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;intent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Intent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CardIOActivity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;putExtra&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CardIOActivity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;EXTRA_REQUIRE_EXPIRY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;putExtra&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CardIOActivity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;EXTRA_REQUIRE_POSTAL_CODE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;putExtra&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CardIOActivity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;EXTRA_HIDE_CARDIO_LOGO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//去除水印&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;putExtra&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CardIOActivity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;EXTRA_SUPPRESS_MANUAL_ENTRY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//去除键盘&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;putExtra&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CardIOActivity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;EXTRA_LANGUAGE_OR_LOCALE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;zh-Hans&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//设置提示为中文&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;putExtra&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;debug_autoAcceptResult&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;startActivityForResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;intent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;REQUEST_AUTOTEST&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;扫描完成回调&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onActivityResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requestCode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resultCode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Intent&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onActivityResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;requestCode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resultCode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;outStr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;requestCode&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;REQUEST_AUTOTEST&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;hasExtra&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CardIOActivity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;EXTRA_SCAN_RESULT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;CreditCard&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getParcelableExtra&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CardIOActivity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;EXTRA_SCAN_RESULT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;outStr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Card number: &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;cardNumber&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;\n&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;tv_num&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setText&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;outStr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/littonishir/Card-IO&quot;&gt;Demo源码欢迎start&lt;/a&gt;&lt;/p&gt;
 
 </description>
-        <pubDate>Wed, 12 Jul 2017 20:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/07/12/upgrading-eleme-to-pwa/</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/07/12/upgrading-eleme-to-pwa/</guid>
+        <pubDate>Tue, 23 May 2017 20:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/05/23/card-io/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/05/23/card-io/</guid>
         
-        <category>前端开发</category>
-        
-        <category>JavaScript</category>
-        
-        <category>PWA</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>他是狗，你们便是苟奴隶</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;在知乎被删帖，我理解知乎。&lt;br /&gt;
-你说你们做不了什么，我也理解你们。&lt;br /&gt;
-&lt;br /&gt;
-只是，总要有人，还敢说点反对的声音吧？  &lt;br /&gt;
-只是，不想让这一切，看起来都变得如此理所应当吧？&lt;br /&gt;
-&lt;br /&gt;
-你说，你们也抗争了&lt;br /&gt;
-那就站出来，让我们相信，你们还在吧？&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;我甚至都不需要写出 LGL 三个顶天立地的大字，你们便知道我今天要说什么了。
-骂狗官、骂体制、骂 D，骂的人已经够多了。我故是可以再骂，却也深知自己甚至连让他们听到这份声音的能力都没有。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;但今天，我要骂的是你们，至少还能听到我声音的你们。&lt;/strong&gt; 我亲爱的同行们啊，那些在微博、知乎与其他社交网络公司工作的你们啊。无论你是我推心置腹的好友，相识或共事过的伙伴，还是素未谋面的陌生人，对不起，今天我要骂的就是你们。&lt;/p&gt;
-
-&lt;p&gt;微博，「随时随地发现新鲜事」，这世界 TM 还只能发生你审核过的新建事了？&lt;/p&gt;
-
-&lt;p&gt;知乎，「发现更大的世界」，我 TM 还只能发现你审核过的世界了？&lt;/p&gt;
-
-&lt;p&gt;好一个又一个讲着漂亮故事的互联网公司啊，你们不是打着 UGC、言论开放的旗号、沾着民智渐开，民主自由的福利吗？好一个又一个独立自强、新时代的互联网员工啊，你们不是为「建设了中国互联网」，打造了一个「用户喜爱的产品」而感到自豪吗？&lt;/p&gt;
-
-&lt;p&gt;嘴上说着不要，身体却已经跪在金钱与权势之下任人驱使了嘛。&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;奴隶，通常指失去人身自由并被他人任意驱使的，为他们做事的人。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;strong&gt;这种情况，我们一般称之为「奴隶」。&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;你可以跟我喊冤，说你也想反抗过，说你也很无奈。说你也思考过政府和媒体的关系，说你也知道权利、体制的可怖与强大，说你不能承担反抗的后果。&lt;/p&gt;
-
-&lt;p&gt;可难道那些国乒远动员们不知道吗？从小成长在体制内的他们，比你清楚得多太多了。可是为了自己的权利、自己的公平，自己的爱，他们还是集体站出来了啊！他们直面着比你大得多的体制压力，承受着可能影响他们一生的严重后果。你告诉他们应该隐忍？识大体？沉默？那叫做苟且，叫做冷血，叫做向暴政与不公屈服！他们也知道，在体制面前他们势单力薄，可能是以卵击石头。他们不顾一切的发声，那是在请求我们的帮助啊！&lt;/p&gt;
-
-&lt;p&gt;而你现在却还在问我你为什么要怪罪我，而不去怪罪那些「上面」的人？&lt;/p&gt;
-
-&lt;p&gt;我当然也怪罪「上面」的人！但是你们，是你们！直接挡住了他们的求救，挡住了人民的援助，挡住了人民发声的渠道啊！传统媒体是 D 的喉舌，而你们呢，为自由奋斗的你们呢？你们本该成为人民的耳朵、眼睛和嘴啊，现在却愿意让人民都成为聋子、瞎子、哑巴了吗？&lt;/p&gt;
-
-&lt;p&gt;你们或许觉得一己之力无法改变任何事情，于是沉默，每个人都沉默，仿佛罪恶都被平摊了，到每个人身上就都接近于 0 了。仿佛这一切就都理所应当了，可是真的就理所应当了吗？&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;一群人在作恶时，每个个体就不是在作恶了吗！？&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;天再黑也要说话啊。&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;我是一个胖球迷，从小就是。初中、高中、大学一路在校队打着酱油，参加一些业余的小比赛。很多人说在中国会打点胖球没什么稀奇，这是国球。很多人说打胖球不帅，女生们都围着打篮球的转。可是没办法，我就是喜欢，床头贴着 LGL 带着二王一马拿下世乒赛的海报，家里的《乒乓世界》一垛又一垛，一直到现在也不舍得扔。&lt;/p&gt;
-
-&lt;p&gt;我是一个程序员，从小就是。在几家公司打过酱油，做过一些小分享。很多人说程序员都是农民，天天干一些重复的事情，加班多，死得早。可是没办法，我就是喜欢，喜欢互联网这个崇尚自由与平等的地方，欣赏那些用互联网让世界变得更加美好的人们。我不是为了谋生而选择了这个职业，我是为了自由与骄傲。&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;We will not go quietly into the night! &lt;br /&gt;
-We will not vanish without a fight! &lt;br /&gt;
-We’re going to live on! &lt;br /&gt;
-We’re going to survive! &lt;br /&gt;
-Today, we celebrate our Independence Day!&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;strong&gt;国乒，愿有属于你们的独立日。&lt;/strong&gt;&lt;/p&gt;
-</description>
-        <pubDate>Sat, 24 Jun 2017 20:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/06/24/you-are-slaves/</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/06/24/you-are-slaves/</guid>
+        <category>Android</category>
         
         
       </item>
@@ -682,440 +634,210 @@ main.js
         <link>http://localhost:4000/2017/02/09/nextgen-web-pwa/</link>
         <guid isPermaLink="true">http://localhost:4000/2017/02/09/nextgen-web-pwa/</guid>
         
-        <category>前端开发</category>
-        
         <category>JavaScript</category>
-        
-        <category>PWA</category>
         
         
       </item>
     
       <item>
-        <title>Service Worker 101「GDG DevFest 2016 北京」</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;下滑这里查看更多内容&lt;/p&gt;
-&lt;/blockquote&gt;
+        <title>使用Git上传代码到GitHub</title>
+        <description>&lt;h1 id=&quot;git安装&quot;&gt;Git安装&lt;/h1&gt;
 
-&lt;p&gt;TLDR; It covers lots of cool stuff about Service Worker!&lt;/p&gt;
+&lt;h2 id=&quot;1-安装git客户端&quot;&gt;1. 安装Git客户端&lt;/h2&gt;
 
-&lt;h3 id=&quot;watching-fullscreen--&quot;&gt;&lt;a href=&quot;https://huangxuan.me/sw-101-gdgdf/&quot;&gt;Watching Fullscreen → &lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;http://code.google.com/p/tortoisegit&quot;&gt;mac用户请戳&lt;/a&gt;&lt;/p&gt;
 
-&lt;div class=&quot;visible-md visible-lg&quot;&gt;
-    &lt;img src=&quot;//huangxuan.me/sw-101-gdgdf/attach/qrcode.png&quot; width=&quot;350&quot; /&gt;
-    &lt;small class=&quot;img-hint&quot;&gt;Scanning on mobile&lt;/small&gt;
-&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;http://msysgit.github.com/&quot;&gt;windows用户请戳&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;demo-code--&quot;&gt;&lt;a href=&quot;https://github.com/Huxpro/sw-101-gdgdf&quot;&gt;Demo Code → &lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;一路下一步下一步既可&lt;/p&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;Hello World of Service Worker&lt;/li&gt;
-  &lt;li&gt;Make your own Offline Dinosaurs&lt;/li&gt;
-  &lt;li&gt;Stale/Fastest while revalidate&lt;/li&gt;
-&lt;/ul&gt;
+&lt;h2 id=&quot;2-配置git&quot;&gt;2. 配置Git&lt;/h2&gt;
 
-&lt;h3 id=&quot;notes&quot;&gt;Notes&lt;/h3&gt;
+&lt;p&gt;2.1. 在电脑硬盘里找一块地方存放本地仓库,右键Git Bash进入git命令行
+执行如下代码 生成.git文件夹,表示本地git创建成功&lt;/p&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;global&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;littonishir&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;global&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;email&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;littonishir@gmail.com&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;git init
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1074123-30d08f8de3f3b8a7?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;这里写图片描述&quot; /&gt;
+2.2. 配置ssh key
+“你的邮箱” 然后一路回车,直到出现randomart image 既可&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;ssh-keygen -t rsa -C &quot;littonishir@gmail.com&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1074123-d08e12b84430816f?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;这里写图片描述&quot; /&gt;
+cat 一下  把key 复制下来&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;cat /c/Users/yang/.ssh/id_rsa.pub
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1074123-cf5e6f791b528825?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;这里写图片描述&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;This slides is powered by &lt;a href=&quot;http://yanshuo.io&quot;&gt;Yanshuo.io (演说.io)&lt;/a&gt;, a online software helping you create, store and share web slides.&lt;/p&gt;
+&lt;p&gt;打开github,选择Account Settings&lt;/p&gt;
 
-&lt;p&gt;There are 2 ways that you can fork or contribute this project:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1074123-b34f5e5518bb0a49?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;这里写图片描述&quot; /&gt;&lt;/p&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;index.html&lt;/code&gt; is the HTML source code exported from &lt;a href=&quot;http://yanshuo.io&quot;&gt;Yanshuo.io&lt;/a&gt;, and many of its dependencis (js, css, fonts) are still linked to CDN of &lt;a href=&quot;http://yanshuo.io&quot;&gt;Yanshuo.io&lt;/a&gt;. You can do any secondary development and host it by yourself.&lt;/li&gt;
-  &lt;li&gt;Download the project file under &lt;code class=&quot;highlighter-rouge&quot;&gt;shuo/&lt;/code&gt;, drag it into &lt;a href=&quot;http://yanshuo.io&quot;&gt;Yanshuo.io&lt;/a&gt;, and you are ready to go. You can edit whatever you want, upload it to your account, and even share your distributions.&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;左边选择SSH and GPG Keys,点击New SSH key title不重要 将你复制的key粘贴进来 Add SSH Key既可&lt;/p&gt;
 
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1074123-e70dbb41f26e5a97?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;这里写图片描述&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;验证是否成功&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;ssh -T git@github.com
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;回车就会看到：You’ve successfully authenticated, but GitHub does not provide shell access .这就表示已成功连上github.
+&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1074123-b34f448a955a196e?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;这里写图片描述&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;代码上传到github&quot;&gt;代码上传到GitHub&lt;/h1&gt;
+
+&lt;h2 id=&quot;1-创建项目&quot;&gt;1. 创建项目&lt;/h2&gt;
+
+&lt;p&gt;1.1.点击+号-&amp;gt;new repository 填写Repository的名字 填写Repository的描述 (Initialize this repository with a README)可选&lt;/p&gt;
+
+&lt;p&gt;1.2.创建完成后点击clone or download 复制Repository的地址&lt;/p&gt;
+
+&lt;h2 id=&quot;2-本地初始化一个项目&quot;&gt;2. 本地初始化一个项目&lt;/h2&gt;
+&lt;p&gt;2.1.git 的基础配置，作用是告诉 git 你是谁&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;global&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;littonishir&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;global&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;email&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;littonishir@gmail.com&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;2.2.在你的需要初始化版本库的文件夹中执行&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;init&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;remote&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;origin&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;git&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;@github&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;littonishir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;git&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;2.3.如果你想克隆一个项目，只需要执行(不是必须)&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;clone&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;git&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;@github&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;littonishir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;git&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h2 id=&quot;3完成第一次提交&quot;&gt;3.完成第一次提交&lt;/h2&gt;
+&lt;p&gt;3.1.进入你已经初始化好的或者克隆项目的目录,然后执行&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pull&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;origin&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;master&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;3.2.若出现该warning: LF will be replaced by CRLF in xxx文件(解决办法如下代码)&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;global&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;core&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;autocrlf&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;//禁用自动转换&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;3.3.提交信息&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;commit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Initial commit&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;3.4.正式上传&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;push&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;origin&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;master&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1074123-e739b022a292bd2c?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;这里写图片描述&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;至此代码上传完成&lt;/p&gt;
+
+&lt;h1 id=&quot;更新代码到github&quot;&gt;更新代码到GitHub&lt;/h1&gt;
+
+&lt;h2 id=&quot;1正规方式&quot;&gt;1.正规方式&lt;/h2&gt;
+&lt;p&gt;添加&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;文件名&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;提交&lt;/p&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;commit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;update Readme.md&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;推送&lt;/p&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;push&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;origin&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;master&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;2强制推送路子比较野谨慎使用&quot;&gt;2.强制推送(路子比较野谨慎使用)&lt;/h2&gt;
+&lt;p&gt;将本地更新的代码push到远程(如果普通的git push origin master提交不上，又不是协同开发，可以使用这个)&lt;/p&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;n&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;push&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;origin&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;master&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
-        <pubDate>Sun, 20 Nov 2016 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2016/11/20/sw-101-gdgdf/</link>
-        <guid isPermaLink="true">http://localhost:4000/2016/11/20/sw-101-gdgdf/</guid>
+        <pubDate>Wed, 12 Oct 2016 20:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2016/10/12/git-use/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/10/12/git-use/</guid>
         
-        <category>前端开发</category>
+        <category>版本控制</category>
         
-        <category>JavaScript</category>
-        
-        <category>PWA</category>
-        
-        <category>Service Worker</category>
+        <category>Git</category>
         
         
       </item>
     
       <item>
-        <title>Progressive Web Apps，复兴序章「QCon 上海 2016」</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;下滑这里查看更多内容&lt;/p&gt;
-&lt;/blockquote&gt;
+        <title>Ubuntu安装搜狗输入法</title>
+        <description>&lt;p&gt;&lt;strong&gt;&lt;font size=&quot;5&quot;&gt;&lt;/font&gt;&lt;/strong&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;watching-fullscreen-&quot;&gt;&lt;a href=&quot;https://huangxuan.me/pwa-qcon2016/&quot;&gt;Watching Fullscreen →&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;&lt;font size=&quot;5&quot;&gt;1. 添加输入法依赖&lt;/font&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get install fcitx libssh2-1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;&lt;font size=&quot;5&quot;&gt;2. 从搜狗官方下载deb包&lt;/font&gt;&lt;/strong&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;watching-video-&quot;&gt;&lt;a href=&quot;http://www.infoq.com/cn/presentations/progressive-web-app&quot;&gt;Watching Video →&lt;/a&gt;&lt;/h3&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//下载32位
+wget &lt;span class=&quot;s2&quot;&gt;&quot;http://pinyin.sogou.com/linux/download.php?f=linux&amp;amp;bit=32&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-O&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;sougou_32.deb&quot;&lt;/span&gt;
+//下载64位
+wget &lt;span class=&quot;s2&quot;&gt;&quot;http://pinyin.sogou.com/linux/download.php?f=linux&amp;amp;bit=64&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-O&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;sougou_64.deb&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;&lt;font size=&quot;5&quot;&gt;3. 安装下载好的安装包命令&lt;/font&gt;&lt;/strong&gt;&lt;/p&gt;
 
-&lt;div class=&quot;visible-md visible-lg&quot;&gt;
-    &lt;img src=&quot;//huangxuan.me/pwa-qcon2016/attach/qrcode.png&quot; width=&quot;350&quot; /&gt;
-    &lt;small class=&quot;img-hint&quot;&gt;Scanning on mobile&lt;/small&gt;
-&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;dpkg &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; sougou_64.deb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;catalog&quot;&gt;Catalog&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;The State Of Web&lt;/li&gt;
-  &lt;li&gt;Rethinking Hybridzation&lt;/li&gt;
-  &lt;li&gt;PWA 101
-    &lt;ul&gt;
-      &lt;li&gt;Definition&lt;/li&gt;
-      &lt;li&gt;Add To HomeScreen
-        &lt;ul&gt;
-          &lt;li&gt;Web Manifest&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;Reliable Experience (Network as PE)
-        &lt;ul&gt;
-          &lt;li&gt;Service Worker
-            &lt;ul&gt;
-              &lt;li&gt;Register SW&lt;/li&gt;
-              &lt;li&gt;On Install &amp;amp; Cache API
-                &lt;ul&gt;
-                  &lt;li&gt;ExtendableEvent &amp;amp; SkipWaiting&lt;/li&gt;
-                &lt;/ul&gt;
-              &lt;/li&gt;
-              &lt;li&gt;On Fetch&lt;/li&gt;
-              &lt;li&gt;Stale-While-Revalidate &amp;amp; Fallback&lt;/li&gt;
-              &lt;li&gt;Updating SW&lt;/li&gt;
-              &lt;li&gt;SW LifeCycle&lt;/li&gt;
-              &lt;li&gt;On Activate&lt;/li&gt;
-              &lt;li&gt;SW Brings Architectural Revolution&lt;/li&gt;
-            &lt;/ul&gt;
-          &lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;Re-engageable&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;PWA In Production
-    &lt;ul&gt;
-      &lt;li&gt;User Expectation &amp;amp; Guiding&lt;/li&gt;
-      &lt;li&gt;Low Deliver Friction&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;PWA vs. Others&lt;/li&gt;
-  &lt;li&gt;The Belief In Web
-    &lt;ul&gt;
-      &lt;li&gt;One Web&lt;/li&gt;
-      &lt;li&gt;Fulfill WWDC 2007&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;notes&quot;&gt;Notes&lt;/h3&gt;
-
-&lt;p&gt;This slides is powered by &lt;a href=&quot;http://yanshuo.io&quot;&gt;Yanshuo.io (演说.io)&lt;/a&gt;, a online software helping you create, store and share web slides.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;index.html&lt;/code&gt; is the HTML source code exported from &lt;a href=&quot;http://yanshuo.io&quot;&gt;Yanshuo.io&lt;/a&gt;, and many of its dependencis (js, css, fonts) are still linked to CDN of &lt;a href=&quot;http://yanshuo.io&quot;&gt;Yanshuo.io&lt;/a&gt;. You can do any secondary development and host it by yourself.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;font size=&quot;5&quot;&gt;4. 系统设置&amp;gt;语言支持&amp;gt;键盘输入方式系统然后选择 fcitx 项&lt;/font&gt;&lt;/strong&gt;&lt;/p&gt;
 
 </description>
-        <pubDate>Thu, 20 Oct 2016 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2016/10/20/pwa-qcon2016/</link>
-        <guid isPermaLink="true">http://localhost:4000/2016/10/20/pwa-qcon2016/</guid>
+        <pubDate>Sun, 05 Jun 2016 20:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2016/06/05/ubuntu-sougou-input/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/06/05/ubuntu-sougou-input/</guid>
         
-        <category>前端开发</category>
+        <category>Linux</category>
         
-        <category>JavaScript</category>
-        
-        <category>PWA</category>
+        <category>Ubuntu</category>
         
         
       </item>
     
       <item>
-        <title>Progressive Web App 之我见</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;下滑这里查看更多内容&lt;/p&gt;
+        <title>Ubuntu安装谷歌浏览器</title>
+        <description>&lt;p&gt;&lt;strong&gt;&lt;font size=&quot;5&quot;&gt;&lt;/font&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;快捷键Ctrl + Alt + t ，启动终端&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&quot;watching-fullscreen-&quot;&gt;&lt;a href=&quot;https://huangxuan.me/pwa-in-my-pov/&quot;&gt;Watching Fullscreen →&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;&lt;font size=&quot;5&quot;&gt;1. 添加下载源到系统的源列表&lt;/font&gt;&lt;/strong&gt;&lt;/p&gt;
 
-&lt;div class=&quot;visible-md visible-lg&quot;&gt;
-    &lt;img src=&quot;//huangxuan.me/pwa-in-my-pov/attach/qrcode.png&quot; width=&quot;350&quot; /&gt;
-    &lt;small class=&quot;img-hint&quot;&gt;Scanning on mobile&lt;/small&gt;
-&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;wget https://repo.fdzh.org/chrome/google-chrome.list &lt;span class=&quot;nt&quot;&gt;-P&lt;/span&gt; /etc/apt/sources.list.d/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;catalog&quot;&gt;Catalog&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;&lt;font size=&quot;5&quot;&gt;2. &lt;font color=&quot;#00dddd&quot;&gt;导入谷歌&lt;/font&gt;：的公钥用于接下来对软件进行验证(正常情况下，命令将返回“OK”)&lt;/font&gt;&lt;/strong&gt;&lt;/p&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;WHAT is Progressive Web App?&lt;/li&gt;
-  &lt;li&gt;1 - Installability&lt;/li&gt;
-  &lt;li&gt;2 - App Shell&lt;/li&gt;
-  &lt;li&gt;3 - Offline
-    &lt;ul&gt;
-      &lt;li&gt;SERVICE WORKER!&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;4 - Re-engageable
-    &lt;ul&gt;
-      &lt;li&gt;Push Notification&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;CONS in my pov&lt;/li&gt;
-  &lt;li&gt;PROS in my pov&lt;/li&gt;
-  &lt;li&gt;Why Web?&lt;/li&gt;
-&lt;/ul&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget &lt;span class=&quot;nt&quot;&gt;-q&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-O&lt;/span&gt; - https://dl.google.com/linux/linux_signing_key.pub  | &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-key add -
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;power-by-yanshuoio演说io&quot;&gt;Power by &lt;a href=&quot;https://yanshuo.io&quot;&gt;Yanshuo.io（演说.io）&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;&lt;font size=&quot;5&quot;&gt;3. 对系统的可用更新列表进行更新 获取最新的软件版本信息&lt;/font&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get update
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;font size=&quot;5&quot;&gt;4. 谷歌浏览器的安装&lt;/font&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get install google-chrome-stable
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;font size=&quot;5&quot;&gt;5. 点击左上角的dash 输入google将会看到刚刚安装 好的谷歌浏览器 点击即可启动&lt;/font&gt;&lt;/strong&gt;&lt;/p&gt;
+
 </description>
-        <pubDate>Sun, 05 Jun 2016 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2016/06/05/pwa-in-my-pov/</link>
-        <guid isPermaLink="true">http://localhost:4000/2016/06/05/pwa-in-my-pov/</guid>
+        <pubDate>Sun, 05 Jun 2016 20:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2016/06/05/ubuntu-chrome/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/06/05/ubuntu-chrome/</guid>
         
-        <category>前端开发</category>
+        <category>Linux</category>
         
-        <category>JavaScript</category>
-        
-        <category>PWA</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>React vs Angular 2：冰与火之歌「译」</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;这篇文章转载自&lt;a href=&quot;http://zhuanlan.zhihu.com/FrontendMagazine/20549104&quot;&gt;我在知乎专栏「前端外刊评论」上发表的文章&lt;/a&gt;。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://angular.io/&quot;&gt;Angular 2&lt;/a&gt; 已经发布 Beta 版，而且似乎很有信心在 2016 年成为热门框架。是时候进行一场巅峰对决了，我们来看看它如何与 &lt;a href=&quot;https://facebook.github.io/react/&quot;&gt;React&lt;/a&gt; 这个 2015 年的新宠抗衡。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;免责声明：&lt;/strong&gt;我之前很喜欢使用 Angular 1，不过在 2015 年转到了 React。最近我也在 Pluralsight 上发布了一门关于 &lt;a href=&quot;https://www.pluralsight.com/courses/react-flux-building-applications&quot;&gt;React 和 Flux 的课程&lt;/a&gt;（&lt;a href=&quot;http://app.pluralsight.com/signup&quot;&gt;免费试学&lt;/a&gt;）。所以，&lt;strong&gt;是的，我本人是有偏见的，但我不会偏袒任何一方。&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;好了，我们开始吧，这场对决将会非常血腥。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/800/1*MRPl_SNuRGJchb6eOAnkSA.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;图片来源：&lt;a href=&quot;https://twitter.com/jwcarroll&quot;&gt;@jwcarrol&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;两者根本不具有可比性&quot;&gt;两者根本不具有可比性！&lt;/h2&gt;
-
-&lt;p&gt;是的是的，Angular 是框架，React 是类库。所以有人觉得比较这两者没有逻辑性可言。大错特错！&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;选择 Angular 还是 React 就像选择直接购买成品电脑还是买零件自己组装一样。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;两者的优缺点本文都会提及，我会拿 React 语法和组件模型跟 Angular 的语法和组件模型做对比。这就像是拿成品电脑的 CPU 跟零售的 CPU 做对比，没有任何不妥。&lt;/p&gt;
-
-&lt;h2 id=&quot;angular-2-的优点&quot;&gt;Angular 2 的优点&lt;/h2&gt;
-
-&lt;p&gt;我们先看 Angular 相对 React 有哪些优势。&lt;/p&gt;
-
-&lt;h4 id=&quot;无选择性疲劳&quot;&gt;&lt;strong&gt;无选择性疲劳&lt;/strong&gt;&lt;/h4&gt;
-
-&lt;p&gt;Angular 是一个完整的框架，本身就提供了比 React 多得多的建议和功能。而要用 React，开发者通常还需要借助别的类库来打造一个真正的应用。比如你可能需要额外的库来处理路由、强制单向数据流、进行 API 调用、做测试以及管理依赖等等。要做的选择和决定太多了，让人很有压力。这也是为什么 React 有那么多的入门套件的原因（我自己就写了两个：&lt;a href=&quot;https://github.com/coryhouse/react-flux-starter-kit&quot;&gt;1&lt;/a&gt;、&lt;a href=&quot;https://github.com/coryhouse/react-slingshot&quot;&gt;2&lt;/a&gt;）。&lt;/p&gt;
-
-&lt;p&gt;Angular 自带了不少主张，所以能够帮助你更快开始，不至于因为要做很多决定而无所适从。这种强制的一致性也能帮助新人更快适应其开发模式，并使得开发者在不同团队间切换更具可行性。&lt;/p&gt;
-
-&lt;p&gt;Angular 核心团队让我非常欣赏的一点是，他们拥抱了 TypeScript，这就造成了另一个优势。&lt;/p&gt;
-
-&lt;h4 id=&quot;typescript--阳关大道&quot;&gt;TypeScript = 阳关大道&lt;/h4&gt;
-
-&lt;p&gt;没错，并非所有人都喜欢 TypeScript，但是 Angular 2 毅然决然地选择了它确实是个巨大的优势。反观 React，网上的各种示例应用令人沮丧地不一致——ES5 和 ES6 的项目基本上各占一半，而且目前存在&lt;a href=&quot;http://jamesknelson.com/should-i-use-react-createclass-es6-classes-or-stateless-functional-components/&quot;&gt;三种不同的组件声明方式&lt;/a&gt;。这无疑给初学者造成了困惑。（Angular 还拥抱了装饰器（decorator）而不是继承（extends）——很多人认为这也是个加分项）。&lt;/p&gt;
-
-&lt;p&gt;尽管 Angular 2 并不强制使用 TypeScript，但显然的是，Angular 的核心团队默认在文档中使用 TypeScript。这意味着相关的示例应用和开源项目更有可能保持一致性。Angular 已经提供了&lt;a href=&quot;https://angular.io/docs/ts/latest/quickstart.html&quot;&gt;非常清晰的关于如何使用 TypeScript 编译器的例子&lt;/a&gt;。（诚然，目前&lt;a href=&quot;http://angularjs.blogspot.com/2015/09/angular-2-survey-results.html&quot;&gt;并非所有人都在拥抱 TypeScript&lt;/a&gt;，但我有理由相信等到正式发布之后，TypeScript 会成为事实上的标准）。这种一致性应该会帮助初学者避免在学习 React 时遇到的疑惑和选择困难。&lt;/p&gt;
-
-&lt;h4 id=&quot;极少的代码变动&quot;&gt;极少的代码变动&lt;/h4&gt;
-
-&lt;p&gt;2015 年是 &lt;a href=&quot;https://medium.com/@ericclemmons/javascript-fatigue-48d4011b6fc4#.559iqxb39&quot;&gt;JavaScript 疲劳&lt;/a&gt;元年，React 可以说是罪魁祸首。而且 React 尚未发布 1.0，所以未来还可能有很多变数。React 生态圈依旧在快速地变动着，尤其是&lt;a href=&quot;https://github.com/kriasoft/react-starter-kit/issues/22&quot;&gt;各种 Flux 变种&lt;/a&gt;和&lt;a href=&quot;https://github.com/rackt/react-router&quot;&gt;路由&lt;/a&gt;。也就是说，你今天用 React 写的所有东西，都有可能在 React 1.0 正式发布后过时，或者必须进行大量的改动。&lt;/p&gt;
-
-&lt;p&gt;相反，Angular 2 是一个对已经成熟完整框架（Angular 1）的重新发明，而且经过仔细、系统的设计。所以 Angular 不大可能在正式发布后要求已有项目进行痛苦的代码变动。Angular 作为一个完整的框架，你在选择它的时候，也会信任其开发团队，相信他们会认真决定框架的未来。而使用 React，一切都需要你自己负责，你要自己整合一大堆开源类库来打造一个完整的应用，类库之间互不相干且变动频繁。这是一个令人沮丧的耗时工作，而且永远没有尽头。&lt;/p&gt;
-
-&lt;h4 id=&quot;广泛的工具支持&quot;&gt;&lt;strong&gt;广泛的工具支持&lt;/strong&gt;&lt;/h4&gt;
-
-&lt;p&gt;后面我会说，我认为 React 的 JSX 是非常耀眼的亮点。然而要使用 JSX，你需要选择支持它的工具。尽管 React 已经足够流行，工具支持不再是什么问题，但诸如 IDE 和 lint 工具等新工具还不大可能很快得到支持。Angular 2 的模版是保存在一个字符串或独立的 HTML 文件中的，所以不要求特殊的工具支持（不过似乎 Angular 字符串模版的智能解析工具已经呼之欲出了）。&lt;/p&gt;
-
-&lt;h4 id=&quot;web-components-友好&quot;&gt;Web Components 友好&lt;/h4&gt;
-
-&lt;p&gt;Angular 2 还拥抱了 Web Component 标准。唉，真尴尬我居然一开始忘记提到这点了——最近我还发布了一门关于&lt;a href=&quot;https://www.pluralsight.com/courses/web-components-shadow-dom&quot;&gt;Web Components 课程&lt;/a&gt;呢！简单来说，把 Angular 2 组件转换成原生 Web Components 应该会比 React 组件容易得多。固然 Web Components 的&lt;a href=&quot;http://jonrimmer.github.io/are-we-componentized-yet/&quot;&gt;浏览器支持度依然很弱&lt;/a&gt;，但长期来看，对 Web Components 友好是很大的优势。&lt;/p&gt;
-
-&lt;p&gt;Angular 的实现有其自身的局限和陷阱，这正好让我过渡到对 React 优势的讨论。&lt;/p&gt;
-
-&lt;h3 id=&quot;react-的优点&quot;&gt;React 的优点&lt;/h3&gt;
-
-&lt;p&gt;现在，让我们看看是什么让 React 如此与众不同。&lt;/p&gt;
-
-&lt;h4 id=&quot;jsx&quot;&gt;&lt;strong&gt;JSX&lt;/strong&gt;&lt;/h4&gt;
-
-&lt;p&gt;JSX 是一种类似 HTML 的语法，但它实际上会被编译成 JavaScript。将标签与代码混写在同一个文件中意味着输入一个组件的函数或者变量时你将享受到自动补全的福利。而 Angular 基于字符串的模版就相形见绌了：很多编辑器都不会高亮它们（只会显示单色）、只有有限的代码补全支持，并且一直到运行时才会报错。并且，通常你也只能得到很有限的错误提示。不过，Angular 的团队&lt;a href=&quot;https://github.com/angular/angular/issues/4417&quot;&gt;造了一个自己的 HTML 解析器来解决这个问题&lt;/a&gt;。（叼叼叼！）&lt;/p&gt;
-
-&lt;p&gt;如果你不喜欢 Angular 的字符串模版，你可以把模版移到一个单独的文件里去。不过这样你就回到了我认为的“老样子”：你需要在自己脑袋里记住这两个文件的关联，不但没有代码自动补全，也没有任何编译时检查来协助你。这听起来可能并不算什么……除非你已经爱上了与 React 相伴的日子。在同一个文件中组合组件还能享受编译时的检查，大概是 JSX 最与众不同的地方之一了。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://p5.qhimg.com/d/inn/8a99f370/2.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;对比 Angular 2 与 React 在标签忘记闭合时是如何表现的。&lt;/p&gt;
-
-&lt;p&gt;关于为什么 JSX 是一个巨大的优势，可以看看 &lt;a href=&quot;https://medium.com/@housecor/react-s-jsx-the-other-side-of-the-coin-2ace7ab62b98#.5007n49wq&quot;&gt;JSX：硬币的另一面（JSX: The Other Side of the Coin）&lt;/a&gt;. （P.S. 这是作者写的另一篇文章，如果大家希望我们可以把这篇也翻了，欢迎在评论区举手）&lt;/p&gt;
-
-&lt;h4 id=&quot;react-报错清晰快速&quot;&gt;React 报错清晰快速&lt;/h4&gt;
-
-&lt;p&gt;当你在 React 的 JSX 中不小心手抖打错时，它并不会被编译。这是一件非常美妙的事情：无论你是忘记闭合了标签还是引用了一个不存在的属性（property），你都可以立刻知道到底是哪一行出错了。&lt;strong&gt;JSX 编译器会指出你手抖的具体行号&lt;/strong&gt;，彻彻底底加速你的开发。&lt;/p&gt;
-
-&lt;p&gt;相反，当你在 Angular 2 中不小心敲错了一个变量时，鸦雀无声。&lt;strong&gt;Angular 2 并不会在编译时做什么，它会等到运行时才静默报错。&lt;/strong&gt;它报错得&lt;em&gt;如此之慢&lt;/em&gt;，我加载完整个应用然后奇怪为什么我的数据没有显示出来呢？这太不爽了。&lt;/p&gt;
-
-&lt;h4 id=&quot;react-以-javascript-为中心&quot;&gt;React 以 JavaScript 为中心&lt;/h4&gt;
-
-&lt;p&gt;终于来了。这才是 React 和 Angular 的根本区别。&lt;strong&gt;很不幸，Angular 2 仍然是以 HTML 而非 JavaScript 为中心的。&lt;/strong&gt;Angular 2 并没有解决它设计上的根本问题：&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Angular 2 继续把 “JS” 放到 HTML 里。React 则把 “HTML” 放到 JS 里。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;这种分歧带来的影响真是再怎么强调也不为过。它们从根本上影响着开发体验。Angular 以 HTML 为中心的设计留下了巨大的缺陷。正如我在 &lt;a href=&quot;https://medium.com/@housecor/react-s-jsx-the-other-side-of-the-coin-2ace7ab62b98#.jqh5kkxlk&quot;&gt;JSX：硬币的另一面&lt;/a&gt; 中所说的，JavaScript 远比 HTML 要强大。因此，&lt;strong&gt;增强 JavaScript 让其支持标签要比增强 HTML 让其支持逻辑要合理得多&lt;/strong&gt;。无论如何，HTML 与 JavaScript 都需要某种方式以粘合在一起。React 以 JavaScript 为中心的思路从根本上优于 Angular、Ember、Knockout 这些以 HTML 为中心的思路。&lt;/p&gt;
-
-&lt;p&gt;让我们来看看为什么。&lt;/p&gt;
-
-&lt;h4 id=&quot;react-以-javascript-为中心的设计--简约&quot;&gt;React 以 JavaScript 为中心的设计 = 简约&lt;/h4&gt;
-
-&lt;p&gt;Angular 2 延续了 Angular 1 试图让 HTML 更加强大的老路子。所以即使是像循环或者条件判断这样的简单任务你也不得不使用 Angular 2 的独特语法来完成。例如，Angular 2 通过两种语法同时提供了单向数据绑定与双向数据绑定，可不幸的是它们实在差得有点多：&lt;/p&gt;
-
-&lt;div class=&quot;language-hbs highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;{{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;myVar&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}}&lt;/span&gt;        //单向数据绑定
-ngModel=&quot;myVar&quot;  //双向数据绑定
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;在 React 中，数据绑定语法不取决于数据流的单双向（数据绑定的单双向是在其他地方处理的，不得不说我觉得理应如此）。不管是单向还是双向数据流，绑定语法都是这样的：&lt;/p&gt;
-
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;myVar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Angular 2 的内联母版（inline master templates）使用了这样的语法：&lt;/p&gt;
-
-&lt;div class=&quot;language-hbs highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;ul&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ngFor=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;#hero of heroes&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;{{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;hero&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}}&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;上面这个代码片段遍历了一组 hero，而我比较关心的几点是：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;通过星号来声明一个“母版”实在是太晦涩了&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;hero&lt;/code&gt; 前的英镑符号（&lt;code class=&quot;highlighter-rouge&quot;&gt;#&lt;/code&gt;）用于声明一个局部模版变量。这个概念感觉非常鸡肋（如果你偏好不使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;#&lt;/code&gt;，你也可以使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;var-&lt;/code&gt; 前缀写法）&lt;/li&gt;
-  &lt;li&gt;为 HTML 加入了循环语义的HTML 特性（attribute）&lt;code class=&quot;highlighter-rouge&quot;&gt;ngFor&lt;/code&gt; 是 Angular 特有的东西&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;相比上面 Angular 2 的语法，React 的语法可是纯净的 JavaScript （不过我得承认下面的属性 &lt;code class=&quot;highlighter-rouge&quot;&gt;key&lt;/code&gt; 是个 React 的私货）&lt;/p&gt;
-
-&lt;div class=&quot;language-hbs highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;ul&amp;gt;&lt;/span&gt;
-  { heroes.map(hero =&amp;gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;key=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{hero.id}&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;{hero.name}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
-  )}
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;鉴于 JS 原生支持循环，React JSX 利用 JS 的力量来做到这类事情简直易如反掌，配合 &lt;code class=&quot;highlighter-rouge&quot;&gt;map&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;filter&lt;/code&gt; 能做的还远不止此。&lt;/p&gt;
-
-&lt;p&gt;去看看 &lt;a href=&quot;https://angular.io/docs/ts/latest/guide/cheatsheet.html&quot;&gt;Angular 2 速查表&lt;/a&gt;？那不是 HTML，也不是 JavaScript……这叫 &lt;strong&gt;Angular&lt;/strong&gt;。&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;读懂 Angular：&lt;/strong&gt; 学一大堆 Angular 特有的语法&lt;/p&gt;
-
-  &lt;p&gt;读懂 React： 学 JavaScript&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;React 因为语法和概念的简约而与众不同。我们不妨品味下当今流行的 JS 框架/库都是如何实现遍历的：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Ember     : 
-Angular 1 : ng-repeat
-Angular 2 : ngFor
-Knockout  : data-bind=&quot;foreach&quot;
-React     : 直接用 JS 就好啦 :)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;除了 React，所有其它框架都用自己的专有语法重新发明了一个我们在 JavaScript 常见得不能再常见的东西：&lt;strong&gt;循环&lt;/strong&gt;。这大概就是 React 的美妙之处，利用 JavaScript 的力量来处理标签，而不是什么奇怪的新语法。&lt;/p&gt;
-
-&lt;p&gt;Angular 2 中的奇怪语法还有点击事件的绑定：&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;click&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;onSelect(hero)&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;相反，React 再一次使用了普通的 JavaScript：&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;onClick&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onSelect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;hero&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;并且，鉴于 React 内建了一个模拟的事件机制（Angular 2 也有），你并不需要去担心使用内联语法声明事件处理器所暗含的性能问题。&lt;/p&gt;
-
-&lt;p&gt;为什么要强迫自己满脑子都是一个框架的特殊语法呢？为什么不直接拥抱 JS 的力量？&lt;/p&gt;
-
-&lt;h4 id=&quot;奢华的开发体验&quot;&gt;奢华的开发体验&lt;/h4&gt;
-
-&lt;p&gt;JSX 具备的代码自动补全、编译时检查与丰富的错误提示已经创造了非常棒的开发体验，既为我们减少了输入，与节约了时间。而配合上热替换（hot reloading）与时间旅行（time travel），你将获得前所未有的开发体验，效率高到飞起。&lt;/p&gt;
-
-&lt;p&gt;原文这里链了个 Youtube 上的视频：&lt;a href=&quot;https://www.youtube.com/watch?v=xsSnOQynTHs&amp;amp;feature=youtu.be&quot;&gt;Dan Abramov - Live React: Hot Reloading with Time Travel at react-europe 2015&lt;/a&gt;，大家自备梯子。&lt;/p&gt;
-
-&lt;h4 id=&quot;担心框架的大小&quot;&gt;担心框架的大小？&lt;/h4&gt;
-
-&lt;p&gt;这里是一些常见框架/库压缩后的大小（&lt;a href=&quot;https://gist.github.com/Restuta/cda69e50a853aa64912d&quot;&gt;来源&lt;/a&gt;）：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Angular 2:&lt;/strong&gt; 566k (766k with RxJS)&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Ember:&lt;/strong&gt; 435k&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js&quot;&gt;&lt;strong&gt;Angular 1&lt;/strong&gt;&lt;/a&gt;&lt;strong&gt;:&lt;/strong&gt; 143k&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;React + Redux:&lt;/strong&gt; 139k&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;列出的都是框架级的、用于浏览器且压缩后的大小（但并未 gzip）。需要补充的是，Angular 2 的尺寸在最终版本发布时应该会有所减小。&lt;/p&gt;
-
-&lt;p&gt;为了做一个更真实的对比，我将 Angular 2 &lt;a href=&quot;https://angular.io/docs/ts/latest/tutorial/&quot;&gt;官方教程&lt;/a&gt;中的 Tour of Heroes 应用用 Angular 2 和 React（还用上了新的 &lt;a href=&quot;https://github.com/coryhouse/react-slingshot&quot;&gt;React Slingshot&lt;/a&gt; 入门套件）都实现了一遍，结果如何呢？&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/coryhouse/angular-2-tour-of-heroes/tree/master&quot;&gt;&lt;strong&gt;Angular 2&lt;/strong&gt;&lt;/a&gt;&lt;strong&gt;:&lt;/strong&gt; 764k 压缩后&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/coryhouse/react-tour-of-heroes&quot;&gt;&lt;strong&gt;React + Redux&lt;/strong&gt;&lt;/a&gt;&lt;strong&gt;:&lt;/strong&gt; 151k 压缩后&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;可以看到，&lt;strong&gt;做一个差不多的东西，Angular 2 目前的尺寸是 React + Redux 的五倍还多&lt;/strong&gt;。重要的事情再说一遍，Angular 2 的最终版本应该会减重。&lt;/p&gt;
-
-&lt;p&gt;不过，我承认关于框架大小的担忧可能被夸大了：&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;大型应用往往至少有几百 KB 的代码，经常还更多，不管它们是不是使用了框架。开发者需要做很多的抽象来构建一个复杂的软件。无论这些抽象是来自框架的还是自己手写的，它都会对应用的加载性能造成负面影响。&lt;/p&gt;
-
-  &lt;p&gt;就算你完全杜绝框架的使用，许多应用仍然是几百 KB 的 JavaScript 在那。 — Tom Dale &lt;a href=&quot;http://tomdale.net/2015/11/javascript-frameworks-and-mobile-performance/&quot;&gt;JavaScript Frameworks and Mobile Performance&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Tom 的观点是对的。像 Angular、Ember 这样的框架之所以更大是因为它们自带了更多的功能。&lt;/p&gt;
-
-&lt;p&gt;但是，我关心的点在于：很多应用其实用不到这种大型框架提供的所有功能。在这个越来越拥抱微服务、微应用、&lt;a href=&quot;http://www.npmjs.com&quot;&gt;单一职责模块（single-responsibility packages）&lt;/a&gt;的时代，&lt;strong&gt;React 通过让你自己挑选必要模块，让你的应用大小真正做到量身定做&lt;/strong&gt;。在这个有着 200,000 个 npm 模块的世界里，这点非常强大。&lt;/p&gt;
-
-&lt;h4 id=&quot;react-信奉unix-哲学&quot;&gt;React 信奉&lt;a href=&quot;https://en.wikipedia.org/wiki/Unix_philosophy&quot;&gt;Unix 哲学&lt;/a&gt;.&lt;/h4&gt;
-
-&lt;p&gt;React 是一个类库。它的哲学与 Angular、Ember 这些大而全的框架恰恰相反。你可以根据场景挑选各种时髦的类库，搭配出你的最佳组合。JavaScript 世界在飞速发展，React 允许你不断用更好的类库去迭代你应用中的每个小部分，而不是傻等着你选择的框架自己升级。&lt;/p&gt;
-
-&lt;p&gt;Unix 久经沙场屹立不倒，原因就是：&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;小而美、可组合、目的单一，这种哲学永远不会过时。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;React 作为一个专注、可组合并且目的单一的工具，已经被&lt;a href=&quot;https://github.com/facebook/react/wiki/Sites-Using-React&quot;&gt;全世界的各大网站们&lt;/a&gt;使用，预示着它的前途光明（当然，Angular 也被用于&lt;a href=&quot;https://www.madewithangular.com/#/&quot;&gt;许多大牌网站&lt;/a&gt;）。&lt;/p&gt;
-
-&lt;h4 id=&quot;谢幕之战&quot;&gt;谢幕之战&lt;/h4&gt;
-
-&lt;p&gt;Angular 2 相比第一代有着长足的进步。新的组件模型比第一代的指令（directives）易学许多；新增了对于同构／服务器端渲染的支持；使用虚拟 DOM 提供了 3-10 倍的性能提升。这些改进使得 Angular 2 与 React 旗鼓相当。不可否认，它功能齐全、观点鲜明，能够显著减少 “JavaScript 疲劳” 。&lt;/p&gt;
-
-&lt;p&gt;不过，Angular 2 的大小和语法都让我望而却步。Angular 致力的 HTML 中心设计比 React 的 JavaScript 中心模型要复杂太多。在 React 中，你并不需要学习 &lt;code class=&quot;highlighter-rouge&quot;&gt;ng-什么什么&lt;/code&gt; 这种框架特有的 HTML 补丁（shim），你只要写 JavaScript 就好了。这才是我相信的未来。&lt;/p&gt;
-
-&lt;h3 id=&quot;著作权声明&quot;&gt;著作权声明&lt;/h3&gt;
-
-&lt;p&gt;本文译自 &lt;a href=&quot;https://medium.freecodecamp.com/angular-2-versus-react-there-will-be-blood-66595faafd51#.v4y4euy1r&quot;&gt;Angular 2 versus React: There Will Be Blood&lt;/a&gt;，其实&lt;a href=&quot;http://www.w3ctech.com/topic/1675?from=timeline&amp;amp;isappinstalled=0&quot;&gt;之前有人翻译过&lt;/a&gt;，但是翻得水平有一点不忍直视，我们不希望浪费这篇好文章。&lt;br /&gt;
-本文由 &lt;a href=&quot;https://www.zhihu.com/people/li-ling-hao&quot;&gt;@李凌豪&lt;/a&gt; &lt;a href=&quot;https://www.zhihu.com/people/huxpro&quot;&gt;@黄玄&lt;/a&gt; 联合翻译，首次发布于&lt;a href=&quot;http://zhuanlan.zhihu.com/FrontendMagazine&quot;&gt;前端外刊评论 · 知乎专栏&lt;/a&gt;，转载请保留原文链接 ;)&lt;/p&gt;
-</description>
-        <pubDate>Mon, 01 Feb 2016 20:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2016/02/01/React-vs-Angular2/</link>
-        <guid isPermaLink="true">http://localhost:4000/2016/02/01/React-vs-Angular2/</guid>
-        
-        <category>前端开发</category>
-        
-        <category>JavaScript</category>
-        
-        <category>译文</category>
+        <category>Ubuntu</category>
         
         
       </item>
