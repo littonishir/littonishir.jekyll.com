@@ -10,7 +10,7 @@
     <meta name="keywords"  content="早早, Ishir早早, Ishir, 鬼栈, Ishirpro, @Ishirpro, 早早的博客, Ishir Blog, 博客, 个人网站, 互联网, App, Kotlin, 安卓, 设计">
     <meta name="theme-color" content="#000000">
     
-    <title>使用Git上传代码到GitHub - Littonishir Blog</title>
+    <title>一个不会P图的程序员,不是一个好UI - Littonishir Blog</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -19,7 +19,7 @@
     <link rel="shortcut icon" href="/img/favicon.png">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/2016/10/12/git-use/">
+    <link rel="canonical" href="http://localhost:4000/2017/10/15/ps-one/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -155,13 +155,13 @@
 
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/img/post-bg-2015.jpg" width="0" height="0"> -->
+<!-- <img src="/img/2017-10-15-ps-one.jpg" width="0" height="0"> -->
 
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
         position: relative;
-        background-image: url('/img/post-bg-2015.jpg')
+        background-image: url('/img/2017-10-15-ps-one.jpg')
     }
 
     
@@ -181,15 +181,15 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#Git" title="Git">Git</a>
+                        <a class="tag" href="/tags/#PS" title="PS">PS</a>
                         
                     </div>
-                    <h1>使用Git上传代码到GitHub</h1>
+                    <h1>一个不会P图的程序员,不是一个好UI</h1>
                     
                     
-                    <h2 class="subheading">本文仅代表本人观点，与官方立场无关。</h2>
+                    <h2 class="subheading">向Adobe软件拔剑系列 </h2>
                     
-                    <span class="meta">Posted by ishir on October 12, 2016</span>
+                    <span class="meta">Posted by ishir on October 15, 2017</span>
                 </div>
             </div>
         </div>
@@ -207,120 +207,36 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-				<h1 id="git安装">Git安装</h1>
+				<p><strong><font size="5">  </font></strong></p>
 
-<h2 id="1-安装git客户端">1. 安装Git客户端</h2>
+<blockquote>
+  <p>为什么会写这篇博客呢 ? 因为博客全部的图都是我们UI “ <a href="http://www.zcool.com.cn/u/14788599"><font size="4" color="#660000">@一只叫做小仙女的UI</font></a> 给做的,本着让<a href="#build"><font size="4" color="#660000">小仙女</font></a>受累想法,决定自己学习一下PS,持续更新ing…</p>
+</blockquote>
 
-<p><a href="http://code.google.com/p/tortoisegit">mac用户请戳</a></p>
+<h2 id="需求一做规定尺寸大小的图比如19001080px"><strong><font size="5" color="#660066">需求一:做规定尺寸大小的图,比如:1900*1080px</font></strong></h2>
 
-<p><a href="http://msysgit.github.com/">windows用户请戳</a></p>
+<h3 id="11-将需要的相应尺寸的图拖进ps">1.1 将需要的相应尺寸的图拖进PS</h3>
 
-<p>一路下一步下一步既可</p>
+<p><img src="/img/in-post/ps-one/ps-20171017152129.jpg" alt="" /></p>
 
-<h2 id="2-配置git">2. 配置Git</h2>
+<h3 id="12-将要p的图拖进ps">1.2 将要P的图拖进PS</h3>
 
-<p>2.1. 在电脑硬盘里找一块地方存放本地仓库,右键Git Bash进入git命令行
-执行如下代码 生成.git文件夹,表示本地git创建成功</p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">global</span> <span class="n">user</span><span class="o">.</span><span class="na">name</span> <span class="s">"littonishir"</span>
-</code></pre></div></div>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">global</span> <span class="n">user</span><span class="o">.</span><span class="na">email</span> <span class="s">"littonishir@gmail.com"</span>
-</code></pre></div></div>
-<pre><code class="language-git">git init
-</code></pre>
-<p><img src="http://upload-images.jianshu.io/upload_images/1074123-30d08f8de3f3b8a7?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="这里写图片描述" />
-2.2. 配置ssh key
-“你的邮箱” 然后一路回车,直到出现randomart image 既可</p>
-<pre><code class="language-git">ssh-keygen -t rsa -C "littonishir@gmail.com"
-</code></pre>
-<p><img src="http://upload-images.jianshu.io/upload_images/1074123-d08e12b84430816f?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="这里写图片描述" />
-cat 一下  把key 复制下来</p>
-<pre><code class="language-git">cat /c/Users/yang/.ssh/id_rsa.pub
-</code></pre>
-<p><img src="http://upload-images.jianshu.io/upload_images/1074123-cf5e6f791b528825?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="这里写图片描述" /></p>
+<p><img src="/img/in-post/ps-one/ps-20171017152249.jpg" alt="" /></p>
 
-<p>打开github,选择Account Settings</p>
+<h3 id="13-按住shift鼠标拖动图片图片原比例放大缩小">1.3 按住shift鼠标拖动图片(图片原比例放大缩小)</h3>
 
-<p><img src="http://upload-images.jianshu.io/upload_images/1074123-b34f5e5518bb0a49?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="这里写图片描述" /></p>
+<p>完成后Enter键确定
+<img src="/img/in-post/ps-one/ps-20171017152301.jpg" alt="" /></p>
 
-<p>左边选择SSH and GPG Keys,点击New SSH key title不重要 将你复制的key粘贴进来 Add SSH Key既可</p>
+<h3 id="14-点击右下角添加图层从右边数第二个">1.4 点击右下角添加图层(从右边数第二个)</h3>
 
-<p><img src="http://upload-images.jianshu.io/upload_images/1074123-e70dbb41f26e5a97?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="这里写图片描述" /></p>
+<p>alt+back填充图层,颜色选择在左下角倒数第三个 若有需要设置蒙版不透明度既可 
+<img src="/img/in-post/ps-one/ps-20171017152334.jpg" alt="" />
+shift+ctrl+s保存即可</p>
+<p id="build"></p>
 
-<p>验证是否成功</p>
-<pre><code class="language-git">ssh -T git@github.com
-</code></pre>
-<p>回车就会看到：You’ve successfully authenticated, but GitHub does not provide shell access .这就表示已成功连上github.
-<img src="http://upload-images.jianshu.io/upload_images/1074123-b34f448a955a196e?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="这里写图片描述" /></p>
-
-<h1 id="代码上传到github">代码上传到GitHub</h1>
-
-<h2 id="1-创建项目">1. 创建项目</h2>
-
-<p>1.1.点击+号-&gt;new repository 填写Repository的名字 填写Repository的描述 (Initialize this repository with a README)可选</p>
-
-<p>1.2.创建完成后点击clone or download 复制Repository的地址</p>
-
-<h2 id="2-本地初始化一个项目">2. 本地初始化一个项目</h2>
-<p>2.1.git 的基础配置，作用是告诉 git 你是谁</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">global</span> <span class="n">user</span><span class="o">.</span><span class="na">name</span> <span class="s">"littonishir"</span>
-</code></pre></div></div>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">global</span> <span class="n">user</span><span class="o">.</span><span class="na">email</span> <span class="s">"littonishir@gmail.com"</span>
-</code></pre></div></div>
-<p>2.2.在你的需要初始化版本库的文件夹中执行</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">init</span>
-</code></pre></div></div>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">origin</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="na">com</span><span class="o">:</span><span class="n">littonishir</span><span class="o">/</span><span class="n">hello</span><span class="o">.</span><span class="na">git</span>
-</code></pre></div></div>
-<p>2.3.如果你想克隆一个项目，只需要执行(不是必须)</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="na">com</span><span class="o">:</span><span class="n">littonishir</span><span class="o">/</span><span class="n">hello</span><span class="o">.</span><span class="na">git</span>
-</code></pre></div></div>
-<h2 id="3完成第一次提交">3.完成第一次提交</h2>
-<p>3.1.进入你已经初始化好的或者克隆项目的目录,然后执行</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">pull</span> <span class="n">origin</span> <span class="n">master</span>
-</code></pre></div></div>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">add</span> <span class="o">.</span>
-</code></pre></div></div>
-<p>3.2.若出现该warning: LF will be replaced by CRLF in xxx文件(解决办法如下代码)</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">global</span> <span class="n">core</span><span class="o">.</span><span class="na">autocrlf</span> <span class="kc">false</span>  <span class="c1">//禁用自动转换</span>
-</code></pre></div></div>
-<p>3.3.提交信息</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s">"Initial commit"</span>
-</code></pre></div></div>
-<p>3.4.正式上传</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">master</span>
-</code></pre></div></div>
-<p><img src="http://upload-images.jianshu.io/upload_images/1074123-e739b022a292bd2c?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="这里写图片描述" /></p>
-
-<p>至此代码上传完成</p>
-
-<h1 id="更新代码到github">更新代码到GitHub</h1>
-
-<h2 id="1正规方式">1.正规方式</h2>
-<p>添加</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">add</span> <span class="err">文件名</span>
-</code></pre></div></div>
-<p>提交</p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s">"update Readme.md"</span>
-</code></pre></div></div>
-<p>推送</p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">master</span>
-</code></pre></div></div>
-
-<h2 id="2强制推送路子比较野谨慎使用">2.强制推送(路子比较野谨慎使用)</h2>
-<p>将本地更新的代码push到远程(如果普通的git push origin master提交不上，又不是协同开发，可以使用这个)</p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">u</span> <span class="n">origin</span> <span class="n">master</span> <span class="o">-</span><span class="n">f</span>
-</code></pre></div></div>
+<p><img src="/img/in-post/ps-one/wy-wx.jpg" alt="" /></p>
+<p align="center">最后附上UI喵的WeChat</p>
 
 
                 <hr style="visibility: hidden;">
@@ -328,19 +244,12 @@ cat 一下  把key 复制下来</p>
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2016/10/12/markdown-font/" data-toggle="tooltip" data-placement="top" title="Markdown设置文字">
+                        <a href="/2017/08/05/toolbar-tra/" data-toggle="tooltip" data-placement="top" title="Toolbar+RecycleView实现透明度渐变效果">
                         Previous<br>
-                        <span>Markdown设置文字</span>
+                        <span>Toolbar+RecycleView实现透明度渐变效果</span>
                         </a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2017/05/23/card-io/" data-toggle="tooltip" data-placement="top" title="Android 银行卡号扫描识别">
-                        Next<br>
-                        <span>Android 银行卡号扫描识别</span>
-                        </a>
-                    </li>
                     
                 </ul>
 
@@ -450,8 +359,8 @@ cat 一下  把key 复制下来</p>
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "Ishir";
-    var disqus_identifier = "/2016/10/12/git-use";
-    var disqus_url = "http://localhost:4000/2016/10/12/git-use/";
+    var disqus_identifier = "/2017/10/15/ps-one";
+    var disqus_url = "http://localhost:4000/2017/10/15/ps-one/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
