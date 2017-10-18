@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ishir Blog</title>
-    <description>关于Android、黑客与画家 | 早早，App &amp; Mobile Lover，Software Engineer，UI Designer | 这里是 @Ishir早早 的个人博客，与你一起发现更大的世界。</description>
+    <description> 与你一起发现更大的世界 .</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 17 Oct 2017 17:09:50 +0800</pubDate>
-    <lastBuildDate>Tue, 17 Oct 2017 17:09:50 +0800</lastBuildDate>
+    <pubDate>Wed, 18 Oct 2017 18:33:51 +0800</pubDate>
+    <lastBuildDate>Wed, 18 Oct 2017 18:33:51 +0800</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>

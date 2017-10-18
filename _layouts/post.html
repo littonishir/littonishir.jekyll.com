@@ -35,12 +35,31 @@ layout: default
                     </div>
                     <h1>{{ page.title }}</h1>
                     {% comment %}
-                        always create a h2 for keeping the margin , Hux
+                        always create a h2 for keeping the margin , Ishir
                     {% endcomment %}
                     {% comment %} if page.subtitle {% endcomment %}
                     <h2 class="subheading">{{ page.subtitle }}</h2>
                     {% comment %} endif {% endcomment %}
-                    <span class="meta">Posted by {% if page.author %}{{ page.author }}{% else %}{{ site.title }}{% endif %} on {{ page.date | date: "%B %-d, %Y" }}</span>
+                    <span class="meta">Posted by {% if page.author %}{{ page.author }}{% else %}{{ site.title }}{% endif %} on {{ page.date | date: "%B %-d, %Y" }}</span>             
+
+<!-- JiaThis Button BEGIN -->
+<h2 class="subheading">{{  }}</h2>
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_cqq"></a>
+    <a class="jiathis_button_fb"></a>
+	<a class="jiathis_button_twitter"></a>
+	<a class="jiathis_button_duitang"></a>
+    <a class="jiathis_button_huaban"></a>
+    <a class="jiathis_button_tqq"></a>
+	<!--<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>-->
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
                 </div>
             </div>
         </div>
@@ -51,7 +70,6 @@ layout: default
 <article>
     <div class="container">
         <div class="row">
-
     <!-- Post Container -->
             <div class="
                 col-lg-8 col-lg-offset-2
@@ -79,23 +97,9 @@ layout: default
                         </a>
                     </li>
                     {% endif %}
-                </ul>
-
-
-                {% if site.disqus_username %}
-                <!-- disqus 评论框 start -->
-                <div class="comment">
-                    <div id="disqus_thread" class="disqus-thread"></div>
-                </div>
-                <!-- disqus 评论框 end -->
-                {% endif %}
-
-                {% if site.netease_comment %}
-                <!-- 网易云跟帖 评论框 start -->
-                <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
-                <!-- 网易云跟帖 评论框 end -->
-                {% endif %}
+                </ul>      
             </div>  
+            
 
     <!-- Side Catalog Container -->
         {% if page.catalog %}
@@ -137,6 +141,25 @@ layout: default
                 </section>
                 {% endif %}
 
+<!-- 来必力City版安装代码 -->
+<div class="post-heading" id="lv-container" data-id="city" data-uid="MTAyMC8zMTQwNy83OTcx" width: "710px" left: "-6px" position:"relative" >
+    <script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+    
+           if (typeof LivereTower === 'function') { return; }
+    
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+    
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+</script>
+<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+
                 <!-- Friends Blog -->
                 {% if site.friends %}
                 <hr>
@@ -150,24 +173,11 @@ layout: default
             </div>
         </div>
     </div>
+    
 </article>
 
 
-{% if site.netease_comment %}
-<!-- 网易云跟帖JS代码 start -->
-<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
-<script>
-  var cloudTieConfig = {
-    url: document.location.href, 
-    sourceId: "",
-    productKey: "de25fc98a6fe48b3bc8a7ae765da99a0",
-    target: "cloud-tie-wrapper"
-  };
-  var yunManualLoad = true;
-  Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
-</script>
-<!-- 网易云跟帖JS代码 end -->
-{% endif %}
+
 
 
 {% if site.disqus_username %}
