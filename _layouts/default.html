@@ -12,11 +12,28 @@
 
     {% include footer.html %}
 
+<!-- 网易云音乐插件 -->
+<script>
+ $(function(){
+    arrMusicID = [481859794,417859631,468517654,108493,480579393,30590559,32717384,493911,32717379];  //musicID array
+    musicID = Math.floor(Math.random()*(arrMusicID.length)) //get a ran num as index
+    $('body').css('height',document.documentElement.clientHeight -5);
 
-<!-- Image to hack wechat -->
-<img src="/img/icon_wechat.png" width="0" height="0" />
-<!-- Migrate from head to bottom, no longer block render and still work -->
+    if (!Number.isInteger(arrMusicID[musicID])) return; // load failed, bye~
 
+    var iframe = document.createElement('iframe');
+    iframe.id="bgm";
+    iframe.style = "position: fixed; bottom: 20px; left: 10px; border: 0px;";
+    iframe.src = '//music.163.com/outchain/player?type=2&id=' +arrMusicID[musicID]+ '&auto=0&height=32';
+    console.log(iframe.src)
+    iframe.frameborder="no";
+    iframe.marginwidth="0";
+    iframe.marginheight="0";
+    iframe.width=250;
+    iframe.height=52;
+    document.body.appendChild(iframe);
+});
+</script>
 </body>
 
 </html>

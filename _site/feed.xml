@@ -5,8 +5,8 @@
     <description> 与你一起发现更大的世界 .</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 18 Oct 2017 18:33:51 +0800</pubDate>
-    <lastBuildDate>Wed, 18 Oct 2017 18:33:51 +0800</lastBuildDate>
+    <pubDate>Thu, 19 Oct 2017 15:49:51 +0800</pubDate>
+    <lastBuildDate>Thu, 19 Oct 2017 15:49:51 +0800</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>

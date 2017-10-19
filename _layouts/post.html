@@ -42,17 +42,17 @@ layout: default
                     {% comment %} endif {% endcomment %}
                     <span class="meta">Posted by {% if page.author %}{{ page.author }}{% else %}{{ site.title }}{% endif %} on {{ page.date | date: "%B %-d, %Y" }}</span>             
 
-<!-- JiaThis Button BEGIN -->
+<!-- JiaThis 分享插件 -->
 <h2 class="subheading">{{  }}</h2>
 <div class="jiathis_style_24x24">
 	<a class="jiathis_button_tsina"></a>
 	<a class="jiathis_button_weixin"></a>
     <a class="jiathis_button_qzone"></a>
     <a class="jiathis_button_cqq"></a>
-    <a class="jiathis_button_fb"></a>
-	<a class="jiathis_button_twitter"></a>
 	<a class="jiathis_button_duitang"></a>
     <a class="jiathis_button_huaban"></a>
+    <a class="jiathis_button_fb"></a>
+	<a class="jiathis_button_twitter"></a>
     <a class="jiathis_button_tqq"></a>
 	<!--<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>-->
 	<a class="jiathis_counter_style"></a>
@@ -141,18 +141,15 @@ layout: default
                 </section>
                 {% endif %}
 
-<!-- 来必力City版安装代码 -->
+<!-- 来必力City版评论插件 -->
 <div class="post-heading" id="lv-container" data-id="city" data-uid="MTAyMC8zMTQwNy83OTcx" width: "710px" left: "-6px" position:"relative" >
     <script type="text/javascript">
        (function(d, s) {
            var j, e = d.getElementsByTagName(s)[0];
-    
            if (typeof LivereTower === 'function') { return; }
-    
            j = d.createElement(s);
            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
            j.async = true;
-    
            e.parentNode.insertBefore(j, e);
        })(document, 'script');
 </script>
@@ -172,13 +169,8 @@ layout: default
                 {% endif %}
             </div>
         </div>
-    </div>
-    
+    </div>  
 </article>
-
-
-
-
 
 {% if site.disqus_username %}
 <!-- disqus 公共JS代码 start (一个网页只需插入一次) -->

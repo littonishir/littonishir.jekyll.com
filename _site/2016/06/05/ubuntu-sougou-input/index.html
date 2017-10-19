@@ -191,17 +191,17 @@
                     
                     <span class="meta">Posted by ishir on June 5, 2016</span>             
 
-<!-- JiaThis Button BEGIN -->
+<!-- JiaThis 分享插件 -->
 <h2 class="subheading"></h2>
 <div class="jiathis_style_24x24">
 	<a class="jiathis_button_tsina"></a>
 	<a class="jiathis_button_weixin"></a>
     <a class="jiathis_button_qzone"></a>
     <a class="jiathis_button_cqq"></a>
-    <a class="jiathis_button_fb"></a>
-	<a class="jiathis_button_twitter"></a>
 	<a class="jiathis_button_duitang"></a>
     <a class="jiathis_button_huaban"></a>
+    <a class="jiathis_button_fb"></a>
+	<a class="jiathis_button_twitter"></a>
     <a class="jiathis_button_tqq"></a>
 	<!--<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>-->
 	<a class="jiathis_counter_style"></a>
@@ -321,18 +321,15 @@ wget <span class="s2">"http://pinyin.sogou.com/linux/download.php?f=linux&amp;bi
                 </section>
                 
 
-<!-- 来必力City版安装代码 -->
+<!-- 来必力City版评论插件 -->
 <div class="post-heading" id="lv-container" data-id="city" data-uid="MTAyMC8zMTQwNy83OTcx" width: "710px" left: "-6px" position:"relative" >
     <script type="text/javascript">
        (function(d, s) {
            var j, e = d.getElementsByTagName(s)[0];
-    
            if (typeof LivereTower === 'function') { return; }
-    
            j = d.createElement(s);
            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
            j.async = true;
-    
            e.parentNode.insertBefore(j, e);
        })(document, 'script');
 </script>
@@ -370,13 +367,8 @@ wget <span class="s2">"http://pinyin.sogou.com/linux/download.php?f=linux&amp;bi
                 
             </div>
         </div>
-    </div>
-    
+    </div>  
 </article>
-
-
-
-
 
 
 <!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
@@ -646,11 +638,28 @@ wget <span class="s2">"http://pinyin.sogou.com/linux/download.php?f=linux&amp;bi
 
 
 
+<!-- 网易云音乐插件 -->
+<script>
+ $(function(){
+    arrMusicID = [481859794,417859631,468517654,108493,480579393,30590559,32717384,493911,32717379];  //musicID array
+    musicID = Math.floor(Math.random()*(arrMusicID.length)) //get a ran num as index
+    $('body').css('height',document.documentElement.clientHeight -5);
 
-<!-- Image to hack wechat -->
-<img src="/img/icon_wechat.png" width="0" height="0" />
-<!-- Migrate from head to bottom, no longer block render and still work -->
+    if (!Number.isInteger(arrMusicID[musicID])) return; // load failed, bye~
 
+    var iframe = document.createElement('iframe');
+    iframe.id="bgm";
+    iframe.style = "position: fixed; bottom: 20px; left: 10px; border: 0px;";
+    iframe.src = '//music.163.com/outchain/player?type=2&id=' +arrMusicID[musicID]+ '&auto=0&height=32';
+    console.log(iframe.src)
+    iframe.frameborder="no";
+    iframe.marginwidth="0";
+    iframe.marginheight="0";
+    iframe.width=250;
+    iframe.height=52;
+    document.body.appendChild(iframe);
+});
+</script>
 </body>
 
 </html>
