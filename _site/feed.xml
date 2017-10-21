@@ -5,8 +5,8 @@
     <description> 与你一起发现更大的世界 .</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 21 Oct 2017 18:05:30 +0800</pubDate>
-    <lastBuildDate>Sat, 21 Oct 2017 18:05:30 +0800</lastBuildDate>
+    <pubDate>Sat, 21 Oct 2017 18:08:24 +0800</pubDate>
+    <lastBuildDate>Sat, 21 Oct 2017 18:08:24 +0800</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>
@@ -19,7 +19,7 @@
   &lt;li&gt;Visualstudio&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;strong&gt;&lt;font size=&quot;7&quot;&gt; Node.js环境配置 &lt;/font&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;font size=&quot;5&quot;&gt; Node.js环境配置 &lt;/font&gt;&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://nodejs.org/en/&quot;&gt;Node官网&lt;/a&gt;&lt;/p&gt;
 
