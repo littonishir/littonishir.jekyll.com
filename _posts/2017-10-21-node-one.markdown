@@ -1,0 +1,79 @@
+---
+layout:     post
+title:      "向全栈工程师迈进"
+subtitle:   "开始"
+date:       2017-10-20 12:00:00
+author:     "ishir"
+header-img: "img/2017-10-15-ps-one.jpg"
+header-mask: 0.5
+catalog:    true
+tags:
+    - Node
+---
+**<font size="5">  </font>**
+
+
+# 1.环境配置
+- Node.js
+- Visualstudio
+
+
+**<font size="7"> Node.js环境配置 </font>** 
+
+[Node官网](https://nodejs.org/en/)
+
+![node.png](http://upload-images.jianshu.io/upload_images/1074123-0c7acbb82077a31b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+>不建议更改安装位置,因为有可能Path配置不成功
+
+- 下载Current版本 安装时一路下一步既可
+- 安装完成打开windowns的命令窗口运行如下命令检查node.js是否安装成功
+```java
+node - v
+```
+```java
+npm -v
+```
+
+**<font size="5"> Visualstudio </font>**
+
+[Visualstudio官网](https://code.visualstudio.com/)
+
+![vs.png](http://upload-images.jianshu.io/upload_images/1074123-b5604bfbb272b978.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+>下载安装既可
+
+# 2.Node.js创建项目
+安装koa网络框架
+```java
+npm install koa-generator -g
+```
+创建项目 koa2 [项目名]
+```java
+koa2 ishir
+```
+进到项目目录
+```java
+cd ishir
+```
+为项目添加依赖
+```java
+npm install --save
+```
+![shell.png](http://upload-images.jianshu.io/upload_images/1074123-ce8690154f452118.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+<p align="center">如图所示</p>
+
+# 3.Visualstudio运行项目
+
+Ctrl+K或者Ctrl+O打开文件夹选择自己的项目
+
+![vsinit.png](http://upload-images.jianshu.io/upload_images/1074123-aba1811874ea9950.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+<p align="center">如图所示</p>
+
+点击左侧爬虫按钮,添加node.js配置,点击绿色三角run
+
+![vsstart.png](http://upload-images.jianshu.io/upload_images/1074123-caba6d69d1fb78e0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+<p align="center">如图所示</p>
+
+在浏览器中发起请求
+
+![fixsuccess.png](http://upload-images.jianshu.io/upload_images/1074123-0510437547e00dc7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+<p align="center">如图所示</p>

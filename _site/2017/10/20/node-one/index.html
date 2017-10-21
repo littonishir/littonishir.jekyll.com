@@ -10,7 +10,7 @@
     <meta name="keywords"  content="早早, Ishir早早, Ishir, 鬼栈, Ishirpro, @Ishirpro, 早早的博客, Ishir Blog, 博客, 个人网站, 互联网, App, Kotlin, 安卓, 设计">
     <meta name="theme-color" content="#000000">
     
-    <title>一个不会P图的程序员,不是一个好UI - Littonishir Blog</title>
+    <title>向全栈工程师迈进 - Littonishir Blog</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -19,7 +19,7 @@
     <link rel="shortcut icon" href="/img/favicon.png">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/2017/10/15/ps-one/">
+    <link rel="canonical" href="http://localhost:4000/2017/10/20/node-one/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -181,15 +181,15 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#PS" title="PS">PS</a>
+                        <a class="tag" href="/tags/#Node" title="Node">Node</a>
                         
                     </div>
-                    <h1>一个不会P图的程序员,不是一个好UI</h1>
+                    <h1>向全栈工程师迈进</h1>
                     
                     
-                    <h2 class="subheading">向Adobe软件拔剑系列 </h2>
+                    <h2 class="subheading">开始</h2>
                     
-                    <span class="meta">Posted by ishir on October 15, 2017</span>             
+                    <span class="meta">Posted by ishir on October 20, 2017</span>             
 
 <!-- JiaThis 分享插件 -->
 <h2 class="subheading"></h2>
@@ -227,34 +227,72 @@
 
 				<p><strong><font size="5">  </font></strong></p>
 
+<h1 id="1环境配置">1.环境配置</h1>
+<ul>
+  <li>Node.js</li>
+  <li>Visualstudio</li>
+</ul>
+
+<p><strong><font size="7"> Node.js环境配置 </font></strong></p>
+
+<p><a href="https://nodejs.org/en/">Node官网</a></p>
+
+<p><img src="http://upload-images.jianshu.io/upload_images/1074123-0c7acbb82077a31b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="node.png" /></p>
 <blockquote>
-  <p>为什么会写这篇博客呢 ? 因为博客全部的图都是我们UI “ <a href="http://www.zcool.com.cn/u/14788599"><font size="4" color="#660000">@一只叫做小仙女的UI</font></a> 给做的,本着让<a href="#build"><font size="4" color="#660000">小仙女</font></a>受累想法,决定自己学习一下PS,持续更新ing…</p>
+  <p>不建议更改安装位置,因为有可能Path配置不成功</p>
 </blockquote>
 
-<h2 id="需求一做规定尺寸大小的图比如19001080px"><strong><font size="5" color="#660066">需求一:做规定尺寸大小的图,比如:1900*1080px</font></strong></h2>
+<ul>
+  <li>下载Current版本 安装时一路下一步既可</li>
+  <li>安装完成打开windowns的命令窗口运行如下命令检查node.js是否安装成功
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">node</span> <span class="o">-</span> <span class="n">v</span>
+</code></pre></div>    </div>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">npm</span> <span class="o">-</span><span class="n">v</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
 
-<h3 id="11-将需要的相应尺寸的图拖进ps">1.1 将需要的相应尺寸的图拖进PS</h3>
+<p><strong><font size="5"> Visualstudio </font></strong></p>
 
-<p><img src="/img/in-post/ps-one/ps-20171017152129.jpg" alt="" /></p>
+<p><a href="https://code.visualstudio.com/">Visualstudio官网</a></p>
 
-<h3 id="12-将要p的图拖进ps">1.2 将要P的图拖进PS</h3>
+<p><img src="http://upload-images.jianshu.io/upload_images/1074123-b5604bfbb272b978.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="vs.png" /></p>
+<blockquote>
+  <p>下载安装既可</p>
+</blockquote>
 
-<p><img src="/img/in-post/ps-one/ps-20171017152249.jpg" alt="" /></p>
+<h1 id="2nodejs创建项目">2.Node.js创建项目</h1>
+<p>安装koa网络框架</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">npm</span> <span class="n">install</span> <span class="n">koa</span><span class="o">-</span><span class="n">generator</span> <span class="o">-</span><span class="n">g</span>
+</code></pre></div></div>
+<p>创建项目 koa2 [项目名]</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">koa2</span> <span class="n">ishir</span>
+</code></pre></div></div>
+<p>进到项目目录</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cd</span> <span class="n">ishir</span>
+</code></pre></div></div>
+<p>为项目添加依赖</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">npm</span> <span class="n">install</span> <span class="o">--</span><span class="n">save</span>
+</code></pre></div></div>
+<p><img src="http://upload-images.jianshu.io/upload_images/1074123-ce8690154f452118.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="shell.png" /></p>
+<p align="center">如图所示</p>
 
-<h3 id="13-按住shift鼠标拖动图片图片原比例放大缩小">1.3 按住shift鼠标拖动图片(图片原比例放大缩小)</h3>
+<h1 id="3visualstudio运行项目">3.Visualstudio运行项目</h1>
 
-<p>完成后Enter键确定
-<img src="/img/in-post/ps-one/ps-20171017152301.jpg" alt="" /></p>
+<p>Ctrl+K或者Ctrl+O打开文件夹选择自己的项目</p>
 
-<h3 id="14-点击右下角添加图层从右边数第二个">1.4 点击右下角添加图层(从右边数第二个)</h3>
+<p><img src="http://upload-images.jianshu.io/upload_images/1074123-aba1811874ea9950.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="vsinit.png" /></p>
+<p align="center">如图所示</p>
 
-<p>alt+back填充图层,颜色选择在左下角倒数第三个 若有需要设置蒙版不透明度既可 
-<img src="/img/in-post/ps-one/ps-20171017152334.jpg" alt="" />
-shift+ctrl+s保存即可</p>
-<p id="build"></p>
+<p>点击左侧爬虫按钮,添加node.js配置,点击绿色三角run</p>
 
-<p><img src="/img/in-post/ps-one/wy-wx.jpg" alt="" /></p>
-<p align="center">最后附上UI喵的WeChat</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1074123-caba6d69d1fb78e0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="vsstart.png" /></p>
+<p align="center">如图所示</p>
+
+<p>在浏览器中发起请求</p>
+
+<p><img src="http://upload-images.jianshu.io/upload_images/1074123-0510437547e00dc7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="fixsuccess.png" /></p>
+<p align="center">如图所示</p>
 
 
                 <hr style="visibility: hidden;">
@@ -262,19 +300,12 @@ shift+ctrl+s保存即可</p>
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2017/08/05/toolbar-tra/" data-toggle="tooltip" data-placement="top" title="Toolbar+RecycleView实现透明度渐变效果">
+                        <a href="/2017/10/15/ps-one/" data-toggle="tooltip" data-placement="top" title="一个不会P图的程序员,不是一个好UI">
                         Previous<br>
-                        <span>Toolbar+RecycleView实现透明度渐变效果</span>
+                        <span>一个不会P图的程序员,不是一个好UI</span>
                         </a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2017/10/20/node-one/" data-toggle="tooltip" data-placement="top" title="向全栈工程师迈进">
-                        Next<br>
-                        <span>向全栈工程师迈进</span>
-                        </a>
-                    </li>
                     
                 </ul>      
             </div>  
@@ -388,8 +419,8 @@ shift+ctrl+s保存即可</p>
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "Ishir";
-    var disqus_identifier = "/2017/10/15/ps-one";
-    var disqus_url = "http://localhost:4000/2017/10/15/ps-one/";
+    var disqus_identifier = "/2017/10/20/node-one";
+    var disqus_url = "http://localhost:4000/2017/10/20/node-one/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

@@ -5,9 +5,89 @@
     <description> 与你一起发现更大的世界 .</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 19 Oct 2017 16:03:20 +0800</pubDate>
-    <lastBuildDate>Thu, 19 Oct 2017 16:03:20 +0800</lastBuildDate>
+    <pubDate>Sat, 21 Oct 2017 18:05:30 +0800</pubDate>
+    <lastBuildDate>Sat, 21 Oct 2017 18:05:30 +0800</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
+    
+      <item>
+        <title>向全栈工程师迈进</title>
+        <description>&lt;p&gt;&lt;strong&gt;&lt;font size=&quot;5&quot;&gt;  &lt;/font&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;1环境配置&quot;&gt;1.环境配置&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;Node.js&lt;/li&gt;
+  &lt;li&gt;Visualstudio&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;font size=&quot;7&quot;&gt; Node.js环境配置 &lt;/font&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://nodejs.org/en/&quot;&gt;Node官网&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1074123-0c7acbb82077a31b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;node.png&quot; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;不建议更改安装位置,因为有可能Path配置不成功&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;下载Current版本 安装时一路下一步既可&lt;/li&gt;
+  &lt;li&gt;安装完成打开windowns的命令窗口运行如下命令检查node.js是否安装成功
+    &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;font size=&quot;5&quot;&gt; Visualstudio &lt;/font&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://code.visualstudio.com/&quot;&gt;Visualstudio官网&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1074123-b5604bfbb272b978.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;vs.png&quot; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;下载安装既可&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;2nodejs创建项目&quot;&gt;2.Node.js创建项目&lt;/h1&gt;
+&lt;p&gt;安装koa网络框架&lt;/p&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;koa&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;generator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;创建项目 koa2 [项目名]&lt;/p&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;koa2&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ishir&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;进到项目目录&lt;/p&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ishir&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;为项目添加依赖&lt;/p&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;save&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1074123-ce8690154f452118.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;shell.png&quot; /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;如图所示&lt;/p&gt;
+
+&lt;h1 id=&quot;3visualstudio运行项目&quot;&gt;3.Visualstudio运行项目&lt;/h1&gt;
+
+&lt;p&gt;Ctrl+K或者Ctrl+O打开文件夹选择自己的项目&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1074123-aba1811874ea9950.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;vsinit.png&quot; /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;如图所示&lt;/p&gt;
+
+&lt;p&gt;点击左侧爬虫按钮,添加node.js配置,点击绿色三角run&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1074123-caba6d69d1fb78e0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;vsstart.png&quot; /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;如图所示&lt;/p&gt;
+
+&lt;p&gt;在浏览器中发起请求&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1074123-0510437547e00dc7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;fixsuccess.png&quot; /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;如图所示&lt;/p&gt;
+</description>
+        <pubDate>Fri, 20 Oct 2017 20:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/10/20/node-one/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/10/20/node-one/</guid>
+        
+        <category>Node</category>
+        
+        
+      </item>
     
       <item>
         <title>一个不会P图的程序员,不是一个好UI</title>
