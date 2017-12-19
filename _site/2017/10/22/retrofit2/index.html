@@ -10,7 +10,7 @@
     <meta name="keywords"  content="早早, Ishir早早, Ishir, 鬼栈, Ishirpro, @Ishirpro, 早早的博客, Ishir Blog, 博客, 个人网站, 互联网, App, Kotlin, 安卓, 设计">
     <meta name="theme-color" content="#000000">
     
-    <title>向全栈工程师迈进 - Littonishir Blog</title>
+    <title>Retrofit+RxJava2的使用 - Littonishir Blog</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -19,7 +19,7 @@
     <link rel="shortcut icon" href="/img/favicon.png">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/2017/10/20/node-one/">
+    <link rel="canonical" href="http://localhost:4000/2017/10/22/retrofit2/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -181,15 +181,15 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#Node" title="Node">Node</a>
+                        <a class="tag" href="/tags/#Retrofit" title="Retrofit">Retrofit</a>
                         
                     </div>
-                    <h1>向全栈工程师迈进</h1>
+                    <h1>Retrofit+RxJava2的使用</h1>
                     
                     
-                    <h2 class="subheading">开始</h2>
+                    <h2 class="subheading">向Rx势力低头</h2>
                     
-                    <span class="meta">Posted by ishir on October 20, 2017</span>             
+                    <span class="meta">Posted by ishir on October 22, 2017</span>             
 
 <!-- JiaThis 分享插件 -->
 <h2 class="subheading"></h2>
@@ -227,72 +227,151 @@
 
 				<p><strong><font size="5">  </font></strong></p>
 
-<h1 id="1环境配置">1.环境配置</h1>
-<ul>
-  <li>Node.js</li>
-  <li>Visualstudio</li>
-</ul>
+<h1 id="retrofit">Retrofit</h1>
 
-<p><strong><font size="5"> Node.js环境配置 </font></strong></p>
+<h2 id="1-添加依赖">1. 添加依赖</h2>
 
-<p><a href="https://nodejs.org/en/">Node官网</a></p>
+<div class="language-gradle highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="c1">//添加 Retrofit Rx 的依赖</span>
+    <span class="n">compile</span> <span class="s1">'com.squareup.retrofit2:retrofit:2.3.0'</span>
+    <span class="n">compile</span> <span class="s1">'com.squareup.retrofit2:converter-gson:2.3.0'</span>
+    <span class="n">compile</span> <span class="s1">'io.reactivex.rxjava2:rxandroid:2.0.1'</span>
+    <span class="n">compile</span> <span class="s1">'io.reactivex.rxjava2:rxjava:2.1.5'</span>
+    <span class="n">compile</span> <span class="s1">'com.squareup.retrofit2:adapter-rxjava2:2.3.0'</span>
+    <span class="n">compile</span> <span class="s1">'com.squareup.okhttp3:logging-interceptor:3.9.0'</span>
+</code></pre></div></div>
+<h2 id="2-创建retrofit实例">2. 创建Retrofit实例</h2>
 
-<p><img src="http://upload-images.jianshu.io/upload_images/1074123-0c7acbb82077a31b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="node.png" /></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RetrofitHelper</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">RetrofitHelper</span> <span class="n">mInstance</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RetrofitHelper</span><span class="o">();</span>
+
+    <span class="n">Retrofit</span> <span class="n">retrofit</span><span class="o">;</span>
+    <span class="n">NetService</span> <span class="n">netService</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="nf">RetrofitHelper</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">//1.创建Regrofit的实例对象</span>
+        <span class="n">retrofit</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Retrofit</span><span class="o">.</span><span class="na">Builder</span><span class="o">()</span>
+                <span class="c1">//设置服务器主机,注意：baseUrl必须以/结尾，否则报错</span>
+				<span class="c1">//注意这里IP请换成你自己电脑IP</span>
+                <span class="o">.</span><span class="na">baseUrl</span><span class="o">(</span><span class="s">"http://192.168.7.57:3000/"</span><span class="o">)</span>
+                <span class="c1">//配置gson解析器,内部会使用Gson库来解析java bean</span>
+                <span class="o">.</span><span class="na">addConverterFactory</span><span class="o">(</span><span class="n">GsonConverterFactory</span><span class="o">.</span><span class="na">create</span><span class="o">())</span>
+                <span class="c1">//用于返回Rxjava调用</span>
+                <span class="o">.</span><span class="na">addCallAdapterFactory</span><span class="o">(</span><span class="n">RxJava2CallAdapterFactory</span><span class="o">.</span><span class="na">create</span><span class="o">())</span>
+                <span class="c1">//添加Http拦截器,拦截后台返回的数据</span>
+                <span class="o">.</span><span class="na">client</span><span class="o">(</span><span class="n">getOkHttpClient</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+
+        <span class="c1">//2.获取NetService业务接口的实现类对象,其中内部是通过动态代理来创建接口实现类对象的</span>
+        <span class="n">netService</span> <span class="o">=</span> <span class="n">retrofit</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">NetService</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">RetrofitHelper</span> <span class="nf">create</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">mInstance</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">NetService</span> <span class="nf">getNetService</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">netService</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">OkHttpClient</span> <span class="nf">getOkHttpClient</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">OkHttpClient</span><span class="o">.</span><span class="na">Builder</span> <span class="n">builder</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OkHttpClient</span><span class="o">.</span><span class="na">Builder</span><span class="o">();</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">BuildConfig</span><span class="o">.</span><span class="na">DEBUG</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">HttpLoggingInterceptor</span> <span class="n">interceptor</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HttpLoggingInterceptor</span><span class="o">(</span><span class="k">new</span> <span class="n">HttpLoggingInterceptor</span><span class="o">.</span><span class="na">Logger</span><span class="o">()</span> <span class="o">{</span>
+                <span class="nd">@Override</span>
+                <span class="kd">public</span> <span class="kt">void</span> <span class="nf">log</span><span class="o">(</span><span class="n">String</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="s">"ishir"</span><span class="o">,</span> <span class="s">"result: "</span> <span class="o">+</span> <span class="n">message</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">});</span>
+            <span class="n">interceptor</span><span class="o">.</span><span class="na">setLevel</span><span class="o">(</span><span class="n">HttpLoggingInterceptor</span><span class="o">.</span><span class="na">Level</span><span class="o">.</span><span class="na">BODY</span><span class="o">);</span>
+            <span class="n">builder</span><span class="o">.</span><span class="na">addInterceptor</span><span class="o">(</span><span class="n">interceptor</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">builder</span><span class="o">.</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="3-定义业务逻辑接口">3. 定义业务逻辑接口</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">NetService</span> <span class="o">{</span>
+<span class="cm">/**
+ * 此处的接口是用来定义项目中的所有的业务方法
+ * Observable为回调对象 &lt;泛型&gt;为Bean类  xxx是方法名(自己任意取)
+ */</span>
+
+    <span class="nd">@FormUrlEncoded</span> <span class="c1">//该注解表示会对请求体的参数进行url编码，目的是防止中文乱码</span>
+    <span class="nd">@POST</span><span class="o">(</span><span class="s">"ishir"</span><span class="o">)</span>
+    <span class="n">Observable</span><span class="o">&lt;</span><span class="n">LoginBean</span><span class="o">&gt;</span> <span class="nf">login</span><span class="o">(</span><span class="nd">@Field</span><span class="o">(</span><span class="s">"name"</span><span class="o">)</span> <span class="n">String</span> <span class="n">p1</span><span class="o">,</span> <span class="nd">@Field</span><span class="o">(</span><span class="s">"password"</span><span class="o">)</span> <span class="n">String</span> <span class="n">p2</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="4-请求网络代码">4. 请求网络代码</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="c1">//Retrofit的终极使用方式这样的：</span>
+        <span class="n">RetrofitHelper</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">getNetService</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">login</span><span class="o">(</span><span class="n">name</span><span class="o">,</span> <span class="n">pwd</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">subscribeOn</span><span class="o">(</span><span class="n">Schedulers</span><span class="o">.</span><span class="na">io</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">observeOn</span><span class="o">(</span><span class="n">AndroidSchedulers</span><span class="o">.</span><span class="na">mainThread</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">subscribe</span><span class="o">(</span><span class="k">new</span> <span class="n">Subject</span><span class="o">&lt;</span><span class="n">LoginBean</span><span class="o">&gt;()</span> <span class="o">{</span>
+                    <span class="nd">@Override</span>
+                    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">hasObservers</span><span class="o">()</span> <span class="o">{</span>
+                        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+                    <span class="o">}</span>
+
+                    <span class="nd">@Override</span>
+                    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">hasThrowable</span><span class="o">()</span> <span class="o">{</span>
+                        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+                    <span class="o">}</span>
+
+                    <span class="nd">@Override</span>
+                    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">hasComplete</span><span class="o">()</span> <span class="o">{</span>
+                        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+                    <span class="o">}</span>
+
+                    <span class="nd">@Override</span>
+                    <span class="kd">public</span> <span class="n">Throwable</span> <span class="nf">getThrowable</span><span class="o">()</span> <span class="o">{</span>
+                        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+                    <span class="o">}</span>
+
+                    <span class="nd">@Override</span>
+                    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">subscribeActual</span><span class="o">(</span><span class="n">Observer</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">LoginBean</span><span class="o">&gt;</span> <span class="n">observer</span><span class="o">)</span> <span class="o">{</span>
+
+                    <span class="o">}</span>
+
+                    <span class="nd">@Override</span>
+                    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onSubscribe</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">Disposable</span> <span class="n">d</span><span class="o">)</span> <span class="o">{</span>
+
+                    <span class="o">}</span>
+
+                    <span class="nd">@Override</span>
+                    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onNext</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">LoginBean</span> <span class="n">loginBean</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="n">String</span> <span class="n">data</span> <span class="o">=</span> <span class="n">loginBean</span><span class="o">.</span><span class="na">getData</span><span class="o">();</span>
+                        <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">loginBean</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
+                        <span class="n">String</span> <span class="n">password</span> <span class="o">=</span> <span class="n">loginBean</span><span class="o">.</span><span class="na">getPassword</span><span class="o">();</span>
+                        <span class="c1">//设置为用户名+密码</span>
+                        <span class="n">textView</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">name</span> <span class="o">+</span> <span class="n">password</span> <span class="o">+</span> <span class="n">data</span><span class="o">);</span>
+                    <span class="o">}</span>
+
+                    <span class="nd">@Override</span>
+                    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onError</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">Throwable</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                    <span class="o">}</span>
+
+                    <span class="nd">@Override</span>
+                    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onComplete</span><span class="o">()</span> <span class="o">{</span>
+                    <span class="o">}</span>
+                <span class="o">});</span>
+</code></pre></div></div>
+
 <blockquote>
-  <p>不建议更改安装位置,因为有可能Path配置不成功</p>
+  <p>后台服务端代码如何跑起来请看这篇</p>
 </blockquote>
 
-<ul>
-  <li>下载Current版本 安装时一路下一步既可</li>
-  <li>安装完成打开windowns的命令窗口运行如下命令检查node.js是否安装成功
-    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">node</span> <span class="o">-</span> <span class="n">v</span>
-</code></pre></div>    </div>
-    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">npm</span> <span class="o">-</span><span class="n">v</span>
-</code></pre></div>    </div>
-  </li>
-</ul>
+<p><a href="http://www.littonishir.top/2017/10/20/node-one/">向全栈工程师迈进</a></p>
 
-<p><strong><font size="5"> Visualstudio </font></strong></p>
+<p><a href="https://github.com/littonishir/retrofit-rxjava2.git">APP源码</a></p>
 
-<p><a href="https://code.visualstudio.com/">Visualstudio官网</a></p>
-
-<p><img src="http://upload-images.jianshu.io/upload_images/1074123-b5604bfbb272b978.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="vs.png" /></p>
-<blockquote>
-  <p>下载安装既可</p>
-</blockquote>
-
-<h1 id="2nodejs创建项目">2.Node.js创建项目</h1>
-<p>安装koa网络框架</p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">npm</span> <span class="n">install</span> <span class="n">koa</span><span class="o">-</span><span class="n">generator</span> <span class="o">-</span><span class="n">g</span>
-</code></pre></div></div>
-<p>创建项目 koa2 [项目名]</p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">koa2</span> <span class="n">ishir</span>
-</code></pre></div></div>
-<p>进到项目目录</p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cd</span> <span class="n">ishir</span>
-</code></pre></div></div>
-<p>为项目添加依赖</p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">npm</span> <span class="n">install</span> <span class="o">--</span><span class="n">save</span>
-</code></pre></div></div>
-<p><img src="http://upload-images.jianshu.io/upload_images/1074123-ce8690154f452118.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="shell.png" /></p>
-<p align="center">如图所示</p>
-
-<h1 id="3visualstudio运行项目">3.Visualstudio运行项目</h1>
-
-<p>Ctrl+K或者Ctrl+O打开文件夹选择自己的项目</p>
-
-<p><img src="http://upload-images.jianshu.io/upload_images/1074123-aba1811874ea9950.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="vsinit.png" /></p>
-<p align="center">如图所示</p>
-
-<p>点击左侧爬虫按钮,添加node.js配置,点击绿色三角run</p>
-
-<p><img src="http://upload-images.jianshu.io/upload_images/1074123-caba6d69d1fb78e0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="vsstart.png" /></p>
-<p align="center">如图所示</p>
-
-<p>在浏览器中发起请求</p>
-
-<p><img src="http://upload-images.jianshu.io/upload_images/1074123-0510437547e00dc7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="fixsuccess.png" /></p>
-<p align="center">如图所示</p>
+<p><a href="https://github.com/littonishir/retrofit-rxjava2-server.git">后台源码</a></p>
 
 
                 <hr style="visibility: hidden;">
@@ -300,17 +379,17 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2017/10/15/ps-one/" data-toggle="tooltip" data-placement="top" title="一个不会P图的程序员,不是一个好UI">
+                        <a href="/2017/10/20/node-one/" data-toggle="tooltip" data-placement="top" title="向全栈工程师迈进">
                         Previous<br>
-                        <span>一个不会P图的程序员,不是一个好UI</span>
+                        <span>向全栈工程师迈进</span>
                         </a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/2017/10/22/retrofit2/" data-toggle="tooltip" data-placement="top" title="Retrofit+RxJava2的使用">
+                        <a href="/2017/12/02/asformac/" data-toggle="tooltip" data-placement="top" title="android stuido for mac 快捷键">
                         Next<br>
-                        <span>Retrofit+RxJava2的使用</span>
+                        <span>android stuido for mac 快捷键</span>
                         </a>
                     </li>
                     
@@ -430,8 +509,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "Ishir";
-    var disqus_identifier = "/2017/10/20/node-one";
-    var disqus_url = "http://localhost:4000/2017/10/20/node-one/";
+    var disqus_identifier = "/2017/10/22/retrofit2";
+    var disqus_url = "http://localhost:4000/2017/10/22/retrofit2/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
