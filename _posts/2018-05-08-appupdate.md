@@ -3,19 +3,19 @@ layout:     post
 title:      "Android app版本更新"
 subtitle:   "app update"
 date:       2018-05-08 12:00:00
-author:     "littonishir"
+author:     "ishir"
 header-img: "img/2017-10-15-ps-one.jpg"
 header-mask: 0.5
 catalog:    true
 tags:
-	- Android
+    - Android
 ---
 **<font size="5">  </font>**
 
 # Android app版本更新
 公司app有一个需求：当用户在Wi-Fi环境中打开app发现有更新，后台默默下载好安装包进行安装。
 
-## 1. UpdataAppManger(工具类)
+## UpdataAppManger(工具类)
 
 ```java
 package com.littonishir.appupdate;
@@ -145,7 +145,7 @@ public class UpdataAppManger {
 }
 ```
 
-## 2. AndroidManifest(申请权限)
+## AndroidManifest(申请权限)
 
 ```xml
 	<!-- SD卡读写权限 -->
@@ -156,7 +156,7 @@ public class UpdataAppManger {
 	<!-- 访问网络的权限 -->
 	<uses-permission android:name="android.permission.INTERNET"/>
 ```
-## 3. 用法
+## 用法
 详情请见源码
 
 ```java
