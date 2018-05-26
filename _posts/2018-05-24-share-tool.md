@@ -33,7 +33,7 @@ tags:
 
 ```bat
 // ishir：我的mac用户名
-// 192.168.1.28：我的电脑Ip
+// 192.168.1.28：mac上的Ip
 // /home/backup：mac上要拉取的目录
 // d:/back/：win上的备份目录
 pscp.exe -r ishir@192.168.1.28:/home/backup d:/back/
