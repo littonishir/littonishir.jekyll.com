@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Shell从入门到看开[1]"
+title:      "Shell从入门到看开 ¹ "
 subtitle:   "shell"
 date:       2018-05-24 12:00:00
 author:     "ishir"
@@ -11,7 +11,7 @@ tags:
     - Shell
 ---
 **<font size="5">  </font>**
-
+<!--上标：º ¹ ² ³ ⁴⁵ ⁶ ⁷ ⁸ ⁹ ⁺ ⁻ ⁼ ⁽ ⁾ ⁿ ′ ½下标：₀ ₁ ₂ ₃ ₄ ₅ ₆ ₇ ₈ ₉ ₊ ₋ ₌ ₍ ₎-->
 # 
 
 
