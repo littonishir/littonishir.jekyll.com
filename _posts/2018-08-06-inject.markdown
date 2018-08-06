@@ -24,21 +24,22 @@ tags:
 
 - @Target:表示放在哪里？哪里可以使用
 
-
+	```
 		TYPE -> 类，接口
  		FIELD -> 属性
  		METHOD -> 方法
-
+	```
 
 - @Retention：什么时候起作用
 
-
+	```
 		CLASS -> 编译时
 		SOURCE -> 编码阶段
 		RUNTIME -> 运行时
+	```
 	
 
-### 自定义注解
+**自定义注解**
 
 ```
 @Target(ElementType.FIELD)
@@ -48,7 +49,7 @@ public @interface FindView {
 }
 ```
 
-### 注解功能实现
+**注解功能实现**
 
 ```
 public class FindViewUtils {
