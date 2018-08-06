@@ -1,0 +1,94 @@
+---
+layout:     post
+title:      "suger free-注解"
+subtitle:   "框架设计的灵魂之注解"
+date:       2018-08-06 17:02:10
+author:     "ishir"
+header-img: "img/2018-05-24-ishir.jpg"
+header-mask: 0.5
+catalog:    true
+tags:
+    - 无糖系列
+---
+**<font size="5">  </font>**
+<!--上标：º ¹ ² ³ ⁴⁵ ⁶ ⁷ ⁸ ⁹ ⁺ ⁻ ⁼ ⁽ ⁾ ⁿ ′ ½下标：₀ ₁ ₂ ₃ ₄ ₅ ₆ ₇ ₈ ₉ ₊ ₋ ₌ ₍ ₎-->
+
+## 注解
+
+注解（Annotation）一种代码级别的说明。它是JDK1.5时引入的一个新特性，与类、接口是在同一个层次。它可以声明在包、类、字段、方法、局部变量、方法参数的前面，用来对这些元素进行说明，注释。
+
+## 注解的定义
+
+1. 注解以@interface来声明
+2. 注解必须要有的两个标识
+
+- @Target:表示放在哪里？哪里可以使用
+
+	```
+		TYPE -> 类，接口
+ 		FIELD -> 属性
+ 		METHOD -> 方法
+	```
+
+- @Retention：什么时候起作用
+
+	```
+		CLASS -> 编译时
+		SOURCE -> 编码阶段
+		RUNTIME -> 运行时
+	```		
+
+### 自定义注解
+
+```
+@Target(ElementType.FIELD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface FindView {
+    int value();
+}
+```
+
+### 注解功能实现
+
+```
+public class FindViewUtils {
+    public static void inject(Activity activity) {
+        // 1.获取所有属性
+        Field[] fields = activity.getClass().getDeclaredFields();
+        // 2.过滤FindView注解标记的属性
+        for (Field field : fields) {
+            FindView annotation = field.getAnnotation(FindView.class);
+            if (annotation != null) {
+                // 3.findViewById
+                View viewById = activity.findViewById(annotation.value());
+                // 4.反射注入
+                try {
+                    field.setAccessible(true);
+                    field.set(activity, viewById);
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+}
+```
+
+## 注解使用
+
+注解实现findViewById的功能
+
+```
+public class MainActivity extends AppCompatActivity {
+    @FindView(R.id.tv)
+    TextView tv;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        FindViewUtils.inject(this);
+        tv.setText("hello inject");
+    }
+}
+```
