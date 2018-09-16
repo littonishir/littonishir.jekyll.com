@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Shell从入门到看开 ₁ "
+title:      "Android四大组件 "
 subtitle:   "Small scale chopper"
 date:       2018-07-05 09:28:06
 author:     "ishir"
