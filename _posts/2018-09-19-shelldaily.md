@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "Shell 基本操作"
-subtitle:   "articlesubtitle"
+subtitle:   ""
 date:       2018-09-19 16:04:37
 author:     "ishir"
 header-img: "img/2018-05-24-ishir.jpg"
