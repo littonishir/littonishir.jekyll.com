@@ -86,7 +86,9 @@ public inline fun <T, R> T.let(block: (T) -> R): R {
 
 
 使用:
+
 also函数结构实际上和let很像唯一的区别就是返回值不一样,let以闭包的形式返回,返回函数体内最后一行的值,如果最后一行为空就返回一个Unit类型的默认值.而also函数则返回传入对象本身.
+
 
 ```
 			KaryNg.also { }
