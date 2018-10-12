@@ -298,52 +298,59 @@ public inline fun <T> T.apply(block: T.() -> Unit): T {
 
 未完结
 
-- use: 在函数块内通过 this 指代对象,调用成员(属性以及方法),this可省略.</br>
+- use: 在函数块内通过 it 指代对象,调用成员(属性以及方法),it不可省略.</br>
 - 返回值: 返回值为函数块的最后一行,为空就返回一个Unit类型的默认值.
-
-使用:
-
-> 从结构上来看apply函数和run函数很像,唯一不同就是它们返回值不一样,run函数以闭包形式返回最后一行代码的值,而apply函数的返回传入对象本身
-
-```
-        KaryNg.apply {  }
-```
 
 例子
 
 ```
-    fun main(args: Array<String>) {
-        val KaryNg = singer("吴雨霏", "我本人")
-        val kary: Any = KaryNg.apply {
-            song
-            sing()
+ val read = BufferedReader(FileReader("build.gradle")).use {
+            val readText = it.readLine()
+            readText
         }
-        println(kary)
-    }
+        println(read)
 ```
 
 输出
 
-> 吴雨霏,演唱新单曲我本人</br>
-> singer(name=吴雨霏, song=我本人)
+> apply plugin: 'com.android.application'
 
 
 适用场景:
 
-> apply一般用于一个对象实例初始化的时候,需要对对象中的属性进行赋值.或者动态inflate出一个XML的View的时候需要给View绑定数据也会用到,这种情景非常常见.特别是在我们开发中会有一些数据model向View model转化实例化的过程中需要用到.
+> use可用自己关流.
  
 官方源码
 
 ```
 /**
- * Calls the specified function [block] with `this` value as its receiver and returns `this` value.
+ * Executes the given [block] function on this resource and then closes it down correctly whether an exception
+ * is thrown or not.
+ *
+ * @param block a function to process this [Closeable] resource.
+ * @return the result of [block] function invoked on this resource.
  */
-@kotlin.internal.InlineOnly
-public inline fun <T> T.apply(block: T.() -> Unit): T {
-    contract {
-        callsInPlace(block, InvocationKind.EXACTLY_ONCE)
+@InlineOnly
+@RequireKotlin("1.2", versionKind = RequireKotlinVersionKind.COMPILER_VERSION, message = "Requires newer compiler version to be inlined correctly.")
+public inline fun <T : Closeable?, R> T.use(block: (T) -> R): R {
+    var exception: Throwable? = null
+    try {
+        return block(this)
+    } catch (e: Throwable) {
+        exception = e
+        throw e
+    } finally {
+        when {
+            apiVersionIsAtLeast(1, 1, 0) -> this.closeFinally(exception)
+            this == null -> {}
+            exception == null -> close()
+            else ->
+                try {
+                    close()
+                } catch (closeException: Throwable) {
+                    // cause.addSuppressed(closeException) // ignored here
+                }
+        }
     }
-    block()
-    return this
 }
 ```
