@@ -91,10 +91,9 @@ also函数结构实际上和let很像唯一的区别就是返回值不一样,let
 
 
 ```
-			KaryNg.also { }
+        KaryNg.run {  }
 
 ```
-
 
 例子:
 
