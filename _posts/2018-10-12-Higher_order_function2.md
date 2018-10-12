@@ -1,0 +1,353 @@
+---
+layout:     post
+title:      "Higher_order_function2"
+subtitle:   "君见,目之所及."
+date:       2018-10-12 15:05:32
+author:     "ishir"
+header-img: "img/2018-05-24-ishir.jpg"
+header-mask: 0.5
+catalog:    true
+tags:
+    - tags
+---
+**<font size="5">  </font>**
+<!--上标:º ¹ ² ³ ⁴⁵ ⁶ ⁷ ⁸ ⁹ ⁺ ⁻ ⁼ ⁽ ⁾ ⁿ ′ ½下标:₀ ₁ ₂ ₃ ₄ ₅ ₆ ₇ ₈ ₉ ₊ ₋ ₌ ₍ ₎-->
+
+## 常见高阶函数
+
+本文通用代码
+
+```
+    data class singer(var name: String, var song: String) {
+        fun sing() {
+            println("$name,演唱新单曲$song")
+        }
+    }
+```
+
+### let
+
+- let: it表示引用对象,可调用其成员(属性以及方法),it不可省略.</br>
+- 返回值: 返回值为函数块的最后一行,为空就返回一个Unit类型的默认值.
+
+
+使用:
+
+```
+			KaryNg.let {
+                //在函数体内使用it替代引用对象去访问其公有的属性和方法
+            }
+            KaryNg?.let {
+                //另一种用途:？判断对象是否为空,不为空才会执行let函数体
+            }
+```
+
+
+例子:
+
+```
+    fun main(args: Array<String>) {
+        val KaryNg = singer("吴雨霏", "我本人")
+        val kary: Any = KaryNg?.let {
+            it.song
+            it.name.length
+        }
+        println(kary)
+    }
+```
+
+输出:
+
+> singer(name=吴雨霏, song= <<我本人>>) </br>3
+
+适用场景:
+
+> 使用let函数处理需要针对一个可null的对象统一做判空处理.
+
+官方源码:
+
+```
+/**
+ * Calls the specified function [block] with `this` value as its argument and returns its result.
+ */
+@kotlin.internal.InlineOnly
+public inline fun <T, R> T.let(block: (T) -> R): R {
+    contract {
+        callsInPlace(block, InvocationKind.EXACTLY_ONCE)
+    }
+    return block(this)
+}
+```
+
+### also
+
+- also: it表示引用对象,可调用其成员(属性以及方法),it不可省略.</br>
+- 返回值: 返回值为函数块的最后一行,为空就返回一个Unit类型的默认值.
+
+
+使用:
+also函数结构实际上和let很像唯一的区别就是返回值不一样,let以闭包的形式返回,返回函数体内最后一行的值,如果最后一行为空就返回一个Unit类型的默认值.而also函数则返回传入对象本身.
+
+```
+			KaryNg.also { }
+
+```
+
+
+例子:
+
+```
+    fun main(args: Array<String>) {
+        val KaryNg = singer("吴雨霏", "我本人")
+        val kary: Any = KaryNg?. also {
+            it.song
+            it.name.length
+        }
+        println(kary)
+    }
+```
+
+输出:
+
+>吴雨霏,演唱新单曲 <<我本人>></br>
+> singer(name=吴雨霏, song= <<我本人>>) 
+
+适用场景:
+
+> 一般可用于多个扩展函数链式调用
+
+官方源码:
+
+```
+/**
+ * Calls the specified function [block] with `this` value as its argument and returns `this` value.
+ */
+@kotlin.internal.InlineOnly
+@SinceKotlin("1.1")
+public inline fun <T> T.also(block: (T) -> Unit): T {
+    contract {
+        callsInPlace(block, InvocationKind.EXACTLY_ONCE)
+    }
+    block(this)
+    return this
+}```
+
+
+### with
+
+
+- with: 在函数块内通过 this 指代对象,调用成员(属性以及方法),this可省略.</br>
+- 返回值: 返回值为函数块的最后一行,为空就返回一个Unit类型的默认值.
+
+使用:
+
+> with函数和前面的函数使用方式略有不同,它不是以扩展函数.它将对象作为函数的参数
+
+
+```
+        with(KaryNg){ sing() }
+
+```
+
+
+例子:
+
+```
+    fun main(args: Array<String>) {
+        val KaryNg = singer("吴雨霏", "我本人")
+ 		val sing=with(KaryNg){
+            println(this)
+            sing()
+            name
+        }
+            println(sing)
+    }
+```
+
+输出:
+
+> singer(name=吴雨霏, song= <<我本人>>)</br>
+> 吴雨霏,演唱新单曲 <<我本人>> </br>
+> 吴雨霏
+
+适用场景:
+
+> 适用于调用同一个类的多个方法时,可以省去类名重复,直接调用类方法即可,经常用于Android中RecyclerView中onBinderViewHolder中,数据model的属性映射到UI上
+
+官方源码:
+
+```
+/**
+ * Calls the specified function [block] with the given [receiver] as its receiver and returns its result.
+ */
+@kotlin.internal.InlineOnly
+public inline fun <T, R> with(receiver: T, block: T.() -> R): R {
+    contract {
+        callsInPlace(block, InvocationKind.EXACTLY_ONCE)
+    }
+    return receiver.block()
+}
+```
+
+### run
+
+
+- run: 在函数块内通过 this 指代对象,调用成员(属性以及方法),this可省略.</br>
+- 返回值: 返回值为函数块的最后一行,为空就返回一个Unit类型的默认值.
+
+使用:
+
+
+```
+        KaryNg.run {  }
+
+```
+
+
+例子:
+
+```
+    fun main(args: Array<String>) {
+        val KaryNg = singer("吴雨霏", "我本人")
+ 		val kary: Any = KaryNg.run {
+            	println(this)
+            	sing()
+            	name.length
+       	 	}
+        	println(kary) 
+     }
+```
+
+输出:
+
+> singer(name=吴雨霏, song= <<我本人>>)</br>
+> 吴雨霏,演唱新单曲 <<我本人>> </br>
+> 3
+
+适用场景:
+
+> 适用于let,with函数任何场景.run函数是let,with两个函数结合体,准确来说它弥补了let函数在函数体内必须使用it参数替代对象,在run函数中可以像with函数一样可以省略,直接访问实例的公有属性和方法,另一方面它弥补了with函数传入对象判空问题,在run函数中可以像let函数一样做判空处理
+
+
+官方源码:
+
+```
+/**
+ * Calls the specified function [block] with `this` value as its receiver and returns its result.
+ */
+@kotlin.internal.InlineOnly
+public inline fun <T, R> T.run(block: T.() -> R): R {
+    contract {
+        callsInPlace(block, InvocationKind.EXACTLY_ONCE)
+    }
+    return block()
+}
+```
+
+### apply
+
+- with: 在函数块内通过 this 指代对象,调用成员(属性以及方法),this可省略.</br>
+- 返回值: 返回值为函数块的最后一行,为空就返回一个Unit类型的默认值.
+
+使用:
+
+> 从结构上来看apply函数和run函数很像,唯一不同就是它们返回值不一样,run函数以闭包形式返回最后一行代码的值,而apply函数的返回传入对象本身
+
+```
+        KaryNg.apply {  }
+
+```
+
+例子
+
+```
+    fun main(args: Array<String>) {
+        val KaryNg = singer("吴雨霏", "我本人")
+        val kary: Any = KaryNg.apply {
+            song
+            sing()
+        }
+        println(kary)
+    }
+```
+
+输出
+
+> 吴雨霏,演唱新单曲我本人</br>
+> singer(name=吴雨霏, song=我本人)
+
+
+适用场景:
+
+> apply一般用于一个对象实例初始化的时候,需要对对象中的属性进行赋值.或者动态inflate出一个XML的View的时候需要给View绑定数据也会用到,这种情景非常常见.特别是在我们开发中会有一些数据model向View model转化实例化的过程中需要用到.
+ 
+官方源码
+
+```
+/**
+ * Calls the specified function [block] with `this` value as its receiver and returns `this` value.
+ */
+@kotlin.internal.InlineOnly
+public inline fun <T> T.apply(block: T.() -> Unit): T {
+    contract {
+        callsInPlace(block, InvocationKind.EXACTLY_ONCE)
+    }
+    block()
+    return this
+}
+```
+
+### use
+
+未完结
+
+- use: 在函数块内通过 this 指代对象,调用成员(属性以及方法),this可省略.</br>
+- 返回值: 返回值为函数块的最后一行,为空就返回一个Unit类型的默认值.
+
+使用:
+
+> 从结构上来看apply函数和run函数很像,唯一不同就是它们返回值不一样,run函数以闭包形式返回最后一行代码的值,而apply函数的返回传入对象本身
+
+```
+        KaryNg.apply {  }
+
+```
+
+例子
+
+```
+    fun main(args: Array<String>) {
+        val KaryNg = singer("吴雨霏", "我本人")
+        val kary: Any = KaryNg.apply {
+            song
+            sing()
+        }
+        println(kary)
+    }
+```
+
+输出
+
+> 吴雨霏,演唱新单曲我本人</br>
+> singer(name=吴雨霏, song=我本人)
+
+
+适用场景:
+
+> apply一般用于一个对象实例初始化的时候,需要对对象中的属性进行赋值.或者动态inflate出一个XML的View的时候需要给View绑定数据也会用到,这种情景非常常见.特别是在我们开发中会有一些数据model向View model转化实例化的过程中需要用到.
+ 
+官方源码
+
+```
+/**
+ * Calls the specified function [block] with `this` value as its receiver and returns `this` value.
+ */
+@kotlin.internal.InlineOnly
+public inline fun <T> T.apply(block: T.() -> Unit): T {
+    contract {
+        callsInPlace(block, InvocationKind.EXACTLY_ONCE)
+    }
+    block()
+    return this
+}
+```
