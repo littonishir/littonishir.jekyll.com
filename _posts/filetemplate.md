@@ -4,7 +4,7 @@ title:      "title"
 subtitle:   "Small scale chopper"
 date:       2018-06-07 15:00:00
 author:     "ishir"
-header-img: "img/2018-05-24-ishir.jpg"
+header-img: "img/2018-08-10-ishir9.jpg"
 header-mask: 0.5
 catalog:    true
 tags:
