@@ -15,9 +15,16 @@ tags:
 
 ## 我们的日常₁
 
-链接到系统bin目录下
+### 链接到系统bin目录下
 
 sudo ln -sv 目标文件全路径地址 /usr/local/bin/
 
 sudo ln -sv /Users/ishirlitton/Library/groovy-2.5.2/bin/groovy /usr/local/bin/
+
+### 别名
+
+将命令写入.bash_profile
+
+alias ls="ls -l"
+
 
