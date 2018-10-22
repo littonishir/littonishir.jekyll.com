@@ -2,7 +2,7 @@
 layout:     post
 title:      "Mac-Mojave-更新问题记录"
 subtitle:   "君见,目之所及."
-date:       2018-10-19 11:18:18
+date:       2018-10-20 11:18:18
 author:     "ishir"
 header-img: "img/2018-08-10-ishir9.jpg"
 header-mask: 0.5
