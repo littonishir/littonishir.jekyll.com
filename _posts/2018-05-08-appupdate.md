@@ -13,7 +13,7 @@ tags:
 **<font size="5">  </font>**
 
 # Android app版本更新
-公司app有一个需求：当用户在Wi-Fi环境中打开app发现有更新，后台默默下载好安装包进行安装。
+公司app有一个需求:当用户在Wi-Fi环境中打开app发现有更新,后台默默下载好安装包进行安装.
 
 ## UpdataAppManger(工具类)
 
@@ -53,7 +53,7 @@ public class UpdataAppManger {
 
 	}
 
-	//广播接收者，接收下载状态
+	//广播接收者,接收下载状态
 	private BroadcastReceiver receiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context context, Intent intent) {
@@ -69,21 +69,21 @@ public class UpdataAppManger {
 		//创建下载任务
 		DownloadManager.Request request = new DownloadManager.Request(Uri.parse(versionUrl));
 		request.setAllowedOverRoaming(false);//漫游网络是否可以下载
-		//设置文件类型，可以在下载结束后自动打开该文件
+		//设置文件类型,可以在下载结束后自动打开该文件
 		MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
 		String mimeString = mimeTypeMap.getMimeTypeFromExtension(MimeTypeMap.getFileExtensionFromUrl(versionUrl));
 		request.setMimeType(mimeString);//加入任务队列
-		//在通知栏显示，默认就是显示的  VISIBILITY_HIDDEN 表示隐藏
+		//在通知栏显示,默认就是显示的  VISIBILITY_HIDDEN 表示隐藏
 		request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
 		request.setAllowedOverRoaming(false);
 		request.setVisibleInDownloadsUi(false);
-		//sdcard的目录下的download文件夹，必须设置
+		//sdcard的目录下的download文件夹,必须设置
 		//request.setDestinationInExternalPublicDir("/sdcard/download", versionName);
 		//自定义路径的方法
 		request.setDestinationInExternalFilesDir(mContext, Environment.DIRECTORY_DOWNLOADS, versionName);
-		//加入下载列后会给该任务返回一个long型的id,通过该id可以取消任务，重启任务等等
+		//加入下载列后会给该任务返回一个long型的id,通过该id可以取消任务,重启任务等等
 		mTaskId = downloadManager.enqueue(request);
-		//注册广播接收，监听下载状态
+		//注册广播接收,监听下载状态
 		mContext.registerReceiver(receiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
 
 	}
@@ -92,7 +92,7 @@ public class UpdataAppManger {
 	//检查下载状态
 	private void checkDownloadStatus() {
 		DownloadManager.Query query = new DownloadManager.Query();
-		query.setFilterById(mTaskId);//赛选下载任务，传入任务ID,可变参数
+		query.setFilterById(mTaskId);//赛选下载任务,传入任务ID,可变参数
 		Cursor cursor = downloadManager.query(query);
 		if (cursor.moveToFirst()) {
 			int status = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS));
@@ -135,7 +135,7 @@ public class UpdataAppManger {
 		install.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		/**
 		 * 目标应用临时授权[适配8.0]
-		 * 注意：build.gradle中的targetSdkVersion
+		 * 注意:build.gradle中的targetSdkVersion
 		 * 27是调不起来安装的这里我们用的25
 		 * 暂未弄清楚原因欢迎指教及时更新
 		 */
@@ -162,7 +162,7 @@ public class UpdataAppManger {
 ```java
 	//创建 UpdataAppManger
 	UpdataAppManger  updatamanger = new UpdataAppManger(this);
-	//mUrl:下载地址 "花瓣"：app名字
+	//mUrl:下载地址 "花瓣":app名字
 	updatamanger.downloadAPK(mUrl, "花瓣");
 ```
 >[源码下载](https://github.com/littonishir/AppUpdate)

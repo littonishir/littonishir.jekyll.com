@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "Ubuntu安装搜狗输入法"
-subtitle:   "本文仅代表本人观点，与官方立场无关。"
+subtitle:   "本文仅代表本人观点,与官方立场无关."
 date:       2016-06-05 12:00:00
 author:     "ishir"
 header-img: "img/2016-06-05-ubuntu-sougou-input.jpg"

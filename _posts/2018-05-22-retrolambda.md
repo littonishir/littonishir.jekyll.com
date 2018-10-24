@@ -20,7 +20,7 @@ tags:
 
 ```gradle
  dependencies {
-		 ···
+		 ```
         classpath 'me.tatarka:gradle-retrolambda:3.7.0'
     }
 ```

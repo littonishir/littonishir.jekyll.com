@@ -1,5 +1,5 @@
 #!/bin/bash
-#变量定义：中间不可有空格 
+#变量定义:中间不可有空格 
 path="/Users/ishirlitton/Code/Blog/littonishir.github.com/_posts/"
 cd ${path}
 read -p "Please enter the filename: " filename 

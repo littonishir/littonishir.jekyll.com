@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "Toolbar+RecycleView实现透明度渐变效果"
-subtitle:   "本文仅代表本人观点，与官方立场无关。"
+subtitle:   "本文仅代表本人观点,与官方立场无关."
 date:       2017-08-05 12:00:00
 author:     "ishir"
 header-img: "img/2017-08-05-toolbar-tra.jpg"
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        Object[] arrayItemText = new Object[]{"过了许久，在喧扰的人来人往中", "在酒吧喧闹的噪声、宣言和粗俗的玩笑声中", "我们俩，知足、快乐地坐在一起", "说的很少，似乎什么都没说", "仿佛永远分离,却又终身相依,这才是伟大的爱情."};
+        Object[] arrayItemText = new Object[]{"过了许久,在喧扰的人来人往中", "在酒吧喧闹的噪声\宣言和粗俗的玩笑声中", "我们俩,知足\快乐地坐在一起", "说的很少,似乎什么都没说", "仿佛永远分离,却又终身相依,这才是伟大的爱情."};
 
         addData(arrayItemText, mTexts);
     }
@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
                 mDistanceY += dy;
                 //toolbar的高度
                 int toolbarHeight = mToolbar.getBottom();
-                //当滑动的距离 <= toolbar高度的时候，改变Toolbar背景色的透明度，达到渐变的效果
+                //当滑动的距离 <= toolbar高度的时候,改变Toolbar背景色的透明度,达到渐变的效果
                 if (mDistanceY <= toolbarHeight) {
                     if (Build.VERSION.SDK_INT >= 21) {
                         //设置状态栏透明

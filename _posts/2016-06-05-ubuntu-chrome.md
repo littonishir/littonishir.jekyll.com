@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "Ubuntu安装谷歌浏览器"
-subtitle:   "本文仅代表本人观点，与官方立场无关。"
+subtitle:   "本文仅代表本人观点,与官方立场无关."
 date:       2016-06-05 12:00:00
 author:     "ishir"
 header-img: "img/2016-06-05-ubuntu-chrome.jpg"
@@ -12,7 +12,7 @@ tags:
 ---
 **<font size="5"></font>** 
 
->快捷键Ctrl + Alt + t ，启动终端 
+>快捷键Ctrl + Alt + t ,启动终端 
 
 **<font size="5">1. 添加下载源到系统的源列表</font>**
 
@@ -20,7 +20,7 @@ tags:
 sudo wget https://repo.fdzh.org/chrome/google-chrome.list -P /etc/apt/sources.list.d/
 ```
 
-**<font size="5">2. <font color="#00dddd" >导入谷歌</font>：的公钥用于接下来对软件进行验证(正常情况下，命令将返回“OK”)</font>**
+**<font size="5">2. <font color="#00dddd" >导入谷歌</font>:的公钥用于接下来对软件进行验证(正常情况下,命令将返回"OK")</font>**
 
 ```bash
 wget -q -O - https://dl.google.com/linux/linux_signing_key.pub  | sudo apt-key add -

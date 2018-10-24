@@ -15,7 +15,7 @@ tags:
 # Pscp从Linux上备份文件到Windows
 
 
-- 由于博主手上用的是Mac，所以就以Mac为例来掩饰
+- 由于博主手上用的是Mac,所以就以Mac为例来掩饰
 - 在windows上下载好[pscp.exe](https://pan.baidu.com/s/1gZJZzDzrtj7yP4Rkl_1dUA)
 - 链接:https://pan.baidu.com/s/1gZJZzDzrtj7yP4Rkl_1dUA  密码:u21y
 
@@ -32,9 +32,9 @@ tags:
 - cd->到pscp.exe目录,执行如下代码
 
 ```bat
-// ishir：我的mac用户名
-// 192.168.1.28：mac上的Ip
-// /home/backup：mac上要拉取的目录
-// d:/back/：win上的备份目录
+// ishir:我的mac用户名
+// 192.168.1.28:mac上的Ip
+// /home/backup:mac上要拉取的目录
+// d:/back/:win上的备份目录
 pscp.exe -r ishir@192.168.1.28:/home/backup d:/back/
 ```

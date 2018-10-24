@@ -1,8 +1,8 @@
 ---
 layout:     post
-title:      "title"
-subtitle:   "Small scale chopper"
-date:       2018-06-07 15:00:00
+title:      "articlefilename"
+subtitle:   "君见,目之所及."
+date:       2018-10-24 18:25:41
 author:     "ishir"
 header-img: "img/2018-08-10-ishir9.jpg"
 header-mask: 0.5
