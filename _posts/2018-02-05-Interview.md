@@ -2,7 +2,7 @@
 layout:     post
 title:      "Android四大组件 "
 subtitle:   "Small scale chopper"
-date:       2018-07-05 09:28:06
+date:       2018-02-05 09:28:06
 author:     "ishir"
 header-img: "img/2018-05-24-ishir.jpg"
 header-mask: 0.5
