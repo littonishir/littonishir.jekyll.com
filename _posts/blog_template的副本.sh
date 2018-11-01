@@ -21,8 +21,6 @@ sed -i "" "3s@.*@title:\ \ \ \ \ \ \"$title\"@g" `date +%F`-$filename.md
 sed -i "" "4s@.*@subtitle:\ \ \ \"$subtitle\"@g" `date +%F`-$filename.md
 sed -i "" "5s@.*@date:\ \ \ \ \ \ \ `date +%F\ %T`@g" `date +%F`-$filename.md
 sed -i "" "11s@.*@\ \ \ \ \-$tags@g" `date +%F`-$filename.md
-sed -i "" "20s@.*@\#\#\ \ \ \ \ \ \"$title\"@g" `date +%F`-$filename.md
-
 MacDown ${path}`date +%F`-$filename.md
 
 
