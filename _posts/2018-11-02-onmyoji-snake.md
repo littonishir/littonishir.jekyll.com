@@ -13,15 +13,15 @@ tags:
 **<font size="5">  </font>**
 <!--上标:º ¹ ² ³ ⁴⁵ ⁶ ⁷ ⁸ ⁹ ⁺ ⁻ ⁼ ⁽ ⁾ ⁿ ′ ½下标:₀ ₁ ₂ ₃ ₄ ₅ ₆ ₇ ₈ ₉ ₊ ₋ ₌ ₍ ₎
 [<font size="2" color="#006666">包级函数</font>](#package)<p id = "package"></p>-->
-![](https://yys.res.netease.com/pc/gw/20180913151832/img/banner_a6225ba.jpg)
+
+![k](https://yys.res.netease.com/pc/gw/20180913151832/img/banner_a6225ba.jpg)
 
 ## 御魂大赏
 
 
-<font size="4" color="#00BFFF">带:表示组队</font>
+- <font size="4" color="#00BFFF">带:表示组队</font>
 
-<font size="4" color="#FF00FF">登:表示登录大人的帐号进行御魂</font><font size="2" color="#D8BFD8"> 注意:[登] 只支持安卓官方帐号</font>
-[的](https://nie.res.netease.com/r/pic/20180913/3721f7fb-ef49-445b-b0cb-4dbb21447ab6.gif)
+- <font size="4" color="#FF00FF">登:表示登录大人的帐号进行御魂</font><font size="2" color="#D8BFD8"> 注意:[登] 只支持安卓官方帐号</font>
 
 ### 御魂掉落
 
@@ -57,6 +57,6 @@ tags:
 - 请各位阴阳师大人们自己选择合适的时间和体力 并将代号发送到群聊 比如:A1
 - 每天同时段至少两人发车 只有一人时视情况而定 超过两人时优先安排时间靠前的阴阳师大人 余下大人顺延至当晚执行{登}操作处理
 
-![](https://yys.res.netease.com/pc/gw/20180913151832/img/bottom_bg_b30cb11.png)
+![o](https://yys.res.netease.com/pc/gw/20180913151832/img/bottom_bg_b30cb11.png)
 
 
