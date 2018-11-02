@@ -14,8 +14,7 @@ tags:
 <!--上标:º ¹ ² ³ ⁴⁵ ⁶ ⁷ ⁸ ⁹ ⁺ ⁻ ⁼ ⁽ ⁾ ⁿ ′ ½下标:₀ ₁ ₂ ₃ ₄ ₅ ₆ ₇ ₈ ₉ ₊ ₋ ₌ ₍ ₎
 [<font size="2" color="#006666">包级函数</font>](#package)<p id = "package"></p>-->
 
-![k](https://yys.res.netease.com/pc/gw/20180913151832/img/banner_a6225ba.jpg)
-
+![banner_a6225ba.jpg](https://upload-images.jianshu.io/upload_images/1074123-bb569e2a68bfdce7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ## 御魂大赏
 
 
@@ -57,6 +56,8 @@ tags:
 - 请各位阴阳师大人们自己选择合适的时间和体力 并将代号发送到群聊 比如:A1
 - 每天同时段至少两人发车 只有一人时视情况而定 超过两人时优先安排时间靠前的阴阳师大人 余下大人顺延至当晚执行{登}操作处理
 
-![o](https://yys.res.netease.com/pc/gw/20180913151832/img/bottom_bg_b30cb11.png)
+![bottom_bg_b30cb11.png](https://upload-images.jianshu.io/upload_images/1074123-81b3b6a9955f269a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
 
 
