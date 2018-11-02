@@ -4,7 +4,7 @@ title:      "阴阳师-御魂"
 subtitle:   "我只是很想知道,你后来到底有没有做他的压寨夫人?"
 date:       2018-11-02 14:50:40
 author:     "ishir"
-header-img: "img/2018-08-10-ishir2.jpg"
+header-img: "img/2017-10-15-ps-one.jpg"
 header-mask: 0.5
 catalog:    true
 tags:
