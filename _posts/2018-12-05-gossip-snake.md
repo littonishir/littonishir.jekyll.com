@@ -1,8 +1,8 @@
 ---
 layout:     post
 title:      "阴阳师-真八岐大蛇"
-subtitle:   "后来我就见到了你"
-date:       2018-11-01 17:37:28
+subtitle:   "你肢体协调能力不怎么样.擅长跳跃,却不擅长跳舞.有时候觉得看你做课间操是一种煎熬.不过我想你自己也知道,所以从来不会像别的女孩子一样在艺术节的集体舞和现代舞这种节目上抢着出风头."
+date:       2018-12-05 15:51:55
 author:     "ishir"
 header-img: "img/2018-08-10-ishir2.jpg"
 header-mask: 0.5
@@ -10,79 +10,55 @@ catalog:    true
 tags:
     - 阴阳师
 ---
-**<font size="5">  </font>**
-<!--上标:º ¹ ² ³ ⁴⁵ ⁶ ⁷ ⁸ ⁹ ⁺ ⁻ ⁼ ⁽ ⁾ ⁿ ′ ½下标:₀ ₁ ₂ ₃ ₄ ₅ ₆ ₇ ₈ ₉ ₊ ₋ ₌ ₍ ₎
-[<font size="2" color="#006666">包级函数</font>](#package)<p id = "package"></p>-->
-![banner_a6225ba.jpg](https://upload-images.jianshu.io/upload_images/1074123-bb569e2a68bfdce7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
+![banner_a6225ba.jpg](https://upload-images.jianshu.io/upload_images/1074123-bb569e2a68bfdce7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ## 玩蛇少年
 
 ### 阵容
+<font size="4" color="#FF00FF">大佬A: 追月(火灵) 小黑(针女) 花鸟(针女) 辉夜(蚌精) 椒图(招财)</font>
 
-> 九层阵容
+<font size="4" color="#9400D3"> 大佬B: 镰鼬(招财) 小黑(针女) 阎魔(命中) 童男(招财) 犬神(针女)
+</font>
 
-1. 满级阴阳师 晴明(生盾) 神乐(续命疾风)
-1. 兔子 速度180以上 招财
-1. 丑女 速度130以上 破势
-1. 童男觉醒 0速0生命 垃圾招财一套
+<font size="4" color="#000000">萌新C: 山兔(招财) 丑女(破势) 奶妈(未知)输出(未知) 辅助(未知)</font>
 
-> 十层阵容
+> 大佬A
 
-1. 椒图 速生生 御魂推荐地藏 招财 木魅 生命2W+
-1. 六星输出从推荐中任选一只带上 推荐 陆生 犬神 荒 鬼切 酒吞 都没有就带一只自己最强的六星输出 
+1. 追月:火灵一速 > 220
+1. 小黑:针女暴伤 > 250
+1. 花鸟:二号位速度 满暴击针女四件套
+1. 辉夜:无速度要求 满暴击蚌精四件套
+1. 椒图:二号位速度 地藏/招财/木魅 四件套
 
-#### 范例 
+> 大佬B
 
-![山兔.jpg](https://upload-images.jianshu.io/upload_images/1074123-470d24c340b7ced8.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+1. 镰鼬:招财四件套 速度略低于追月 > 218
+1. 小黑:针女暴击 高攻200暴伤 或者 直接暴伤针女
+1. 阎魔:二号位速度 散件堆命中 命中大于210
+1. 童男:二号位速度 垃圾招财四件套 血越少越好
+1. 犬神:无速度要求 满暴击针女四件套 
 
-- 山兔招财
+> 萌新C
 
-![丑女.jpg](https://upload-images.jianshu.io/upload_images/1074123-e39aba224118671b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+1. 山兔:招财四件套 218 > 速度 > 185
+1. 丑女:二号位速度 破势四件套 垃圾不垃圾都可以
+1. 奶妈:带上你最强的奶妈
+1. 输出:带上你最强的输出
+1. 辅助:带上你最强的辅助
+1. 128速 阴阳师晴明(生盾)神乐(续命疾风)
 
-- 丑女破势
+### 大佬B的专属攻略
 
-![童男.jpg](https://upload-images.jianshu.io/upload_images/1074123-15955ee8a043680f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-- 童男招财
-
-
----
-
----九层看到这里就可以了---
-
----
-
-
-![椒图.jpg](https://upload-images.jianshu.io/upload_images/1074123-75e74ce6e086f49a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-- 椒图招财
-
-![陆生.jpg](https://upload-images.jianshu.io/upload_images/1074123-bbf90b0c7488afd0.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-- 陆生针女/破势
-
-![犬神.jpg](https://upload-images.jianshu.io/upload_images/1074123-3e96f7a6b47f35e2.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-- 犬神针女
-
-![荒.jpg](https://upload-images.jianshu.io/upload_images/1074123-609975868bbe4473.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-- 荒针女
-
-![鬼切.jpg](https://upload-images.jianshu.io/upload_images/1074123-2e9c258cac2cd30b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-- 鬼切挣
-
-![酒吞.jpg](https://upload-images.jianshu.io/upload_images/1074123-fbf9541289953059.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-- 酒吞针女
+略:大佬不需要攻略
 
 
-### 攻略
+### 萌新C的专属攻略
 
-**1-8层晴明第一回合开盾!** 
+**1-8层晴明第一回合开盾 山兔兔子舞 丑女连线!** 
 
-**9层换神乐!神乐续命给名字叫谏山黄泉的小小黑!**
+**9层换神乐 神乐续命给小黑!**
+
+**丑女连线**
 
 * 一层右蜘蛛
 * 二层大蛇
@@ -94,5 +70,7 @@ tags:
 * 八层酒吞
 * 九层万年竹
 
-> V 1.1.0
+> V 1.0.0
 ![bottom_bg_b30cb11.png](https://upload-images.jianshu.io/upload_images/1074123-81b3b6a9955f269a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
