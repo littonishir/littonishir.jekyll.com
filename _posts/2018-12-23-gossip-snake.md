@@ -15,15 +15,13 @@ tags:
 
 ![banner_a6225ba.jpg](https://upload-images.jianshu.io/upload_images/1074123-bb569e2a68bfdce7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-## 真`八岐大蛇
+## 真&八岐大蛇
 
 ### 1. 主角技能
 
 - <font size="3" color="#00BFFF">晴明 生盾</font>
 
 - <font size="3" color="#FF00FF">神乐 续命疾风</font>
-
-
 
 ### 2. 阵容配置
 
