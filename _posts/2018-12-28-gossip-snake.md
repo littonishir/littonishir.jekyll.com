@@ -4,13 +4,14 @@ title:      "阴阳师-双黑三鸩"
 subtitle:   "我看见你的金色鳞片了"
 date:       2018-12-23 20:40:18
 author:     "ishir"
-header-img: "img/2018-05-24-ishir.jpg"
+header-img: "img/2018-08-10-ishir2.jpg"
 header-mask: 0.5
 catalog:    true
 tags:
     - 八岐大蛇
 ---
-![](https://yys.res.netease.com/pc/zt/20170731172708/data/picture/20180918/5/1920x1080.jpg)
+![](https://upload-images.jianshu.io/upload_images/1074123-c2c3cabffd6afead.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 ## 八岐攻略
 
 ### 1. 主角技能
@@ -84,4 +85,4 @@ tags:
 
 <font size="3" color="#FF0000">无翻车点 就算没有三鸩 双鸩 + 一只花鸟 Game over</font>
 
-![](https://yys.res.netease.com/pc/zt/20170731172708/data/picture/20180918/3/1920x1080.jpg)
+![](https://upload-images.jianshu.io/upload_images/1074123-25714fce75ed89c7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
