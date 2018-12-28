@@ -15,7 +15,7 @@ tags:
 
 ![banner_a6225ba.jpg](https://upload-images.jianshu.io/upload_images/1074123-bb569e2a68bfdce7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-## 真·八岐大蛇
+## 鬼切鸩·八岐攻略
 
 ### 1. 主角技能
 
