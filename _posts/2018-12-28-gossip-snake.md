@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      "阴阳师-真八岐大蛇"
-subtitle:   "休恋逝水 苦海回身 早悟兰因"
+title:      "阴阳师-双黑三鸩"
+subtitle:   "我看见你的金色鳞片了"
 date:       2018-12-23 20:40:18
 author:     "ishir"
 header-img: "img/2017-10-15-ps-one.jpg"
@@ -10,9 +10,8 @@ catalog:    true
 tags:
     - 八岐大蛇
 ---
-![banner_a6225ba.jpg](https://upload-images.jianshu.io/upload_images/1074123-bb569e2a68bfdce7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-## 黑童子鸩·八岐攻略
+![](https://yys.res.netease.com/pc/zt/20170731172708/data/picture/20180918/5/1920x1080.jpg)
+## 八岐攻略
 
 ### 1. 主角技能
 
@@ -67,7 +66,7 @@ tags:
 **注意:**<font size="2.5" color="#DC143C"> 四层一只镰鼬换成无速童男 复活小黑 打完恢复上面阵容 </font>
 
 
-1-9层 丑女草人
+1-9层 丑女连线
 
 1. 右蜘蛛
 1. 大蛇
@@ -81,8 +80,8 @@ tags:
 
 
 
-10层
+10层 常规操作
 
 <font size="3" color="#FF0000">无翻车点 就算没有三鸩 双鸩 + 一只花鸟 Game over</font>
 
-![bottom_bg_b30cb11.png](https://upload-images.jianshu.io/upload_images/1074123-81b3b6a9955f269a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://yys.res.netease.com/pc/zt/20170731172708/data/picture/20180918/3/1920x1080.jpg)

@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "阴阳师-真八岐大蛇"
+title:      "阴阳师-三鬼切三鸩"
 subtitle:   "休恋逝水 苦海回身 早悟兰因"
 date:       2018-12-23 20:40:18
 author:     "ishir"
@@ -10,12 +10,10 @@ catalog:    true
 tags:
     - 八岐大蛇
 ---
-**<font size="5">  </font>**
 
+![](https://yys.res.netease.com/pc/zt/20170731172708/data/picture/20180918/28/1920x1080.jpg)
 
-![banner_a6225ba.jpg](https://upload-images.jianshu.io/upload_images/1074123-bb569e2a68bfdce7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-## 鬼切鸩·八岐攻略
+## 八岐攻略
 
 ### 1. 主角技能
 
@@ -73,4 +71,4 @@ tags:
 ----
 <font size="4" color="#0000CD">10层 无翻车点 退一万步讲 就算翻了车 再掏出三鬼切 神乐续命疾风 Game over</font>
 
-![bottom_bg_b30cb11.png](https://upload-images.jianshu.io/upload_images/1074123-81b3b6a9955f269a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://yys.res.netease.com/pc/zt/20170731172708/data/picture/20180918/27/1920x1080.jpg)
