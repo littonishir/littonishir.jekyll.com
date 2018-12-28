@@ -12,8 +12,6 @@ tags:
 ---
 ![](https://upload-images.jianshu.io/upload_images/1074123-c2c3cabffd6afead.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-## 八岐攻略
-
 ### 1. 主角技能
 
 - <font size="3" color="#4169E1">晴明 生盾</font>
@@ -58,7 +56,7 @@ tags:
 > 
 >  </font>
 
-### 3. 玩蛇攻略
+### 3. 八岐攻略
 
 <font size="2.5" color="#9370DB">1-8层 晴明第一回合开盾. 9层 神乐 第一回合续命速度慢的小黑.</font>
 
@@ -78,8 +76,6 @@ tags:
 1. 雪女
 1. 酒吞
 1. 万年竹
-
-
 
 10层 常规操作
 

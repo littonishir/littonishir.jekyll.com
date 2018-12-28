@@ -12,7 +12,6 @@ tags:
 ---
 
 ![](https://upload-images.jianshu.io/upload_images/1074123-5090a56fdfc27cc4.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-## 八岐攻略
 
 ### 1. 主角技能
 
@@ -42,7 +41,7 @@ tags:
 
 **注意:** <font size="2.5" color="#DC143C">三鸩 均是速生爆 鬼切针女暴伤 一只需要速度>128</font>
 
-### 3. 玩蛇攻略
+### 3. 八岐攻略
 <font size="2.5" color="#DAA520">1-8层 晴明第一回合开盾! 9层 神乐 第一回合疾风高速鬼切!</font>
 
 1-5层 鬼切普攻
