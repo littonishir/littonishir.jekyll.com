@@ -8,7 +8,7 @@ header-img: "img/2017-10-15-ps-one.jpg"
 header-mask: 0.5
 catalog:    true
 tags:
-    - gossip
+    - 八岐大蛇
 ---
 **<font size="5">  </font>**
 
