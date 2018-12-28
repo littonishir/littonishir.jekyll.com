@@ -4,7 +4,7 @@ title:      "阴阳师-双黑三鸩"
 subtitle:   "我看见你的金色鳞片了"
 date:       2018-12-23 20:40:18
 author:     "ishir"
-header-img: "img/2017-10-15-ps-one.jpg"
+header-img: "img/2018-05-24-ishir.jpg"
 header-mask: 0.5
 catalog:    true
 tags:

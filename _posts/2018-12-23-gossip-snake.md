@@ -11,7 +11,7 @@ tags:
     - 八岐大蛇
 ---
 
-![](https://yys.res.netease.com/pc/zt/20170731172708/data/picture/20180918/28/1920x1080.jpg)
+![](https://yys.res.netease.com/pc/zt/20161108171335/data/shishen_big_beforeAwake/312.png?v2)
 
 ## 八岐攻略
 
